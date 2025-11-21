@@ -1,5 +1,5 @@
  .navbar {
-     background-color: #004d55 !important;
+     background-color: #004d57 !important;
      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
      padding: 1rem 0;
      position: sticky;
@@ -141,7 +141,7 @@
 
  .settingsMenuItem:hover {
      background-color: #f8f9fa;
-     color: #006d77;
+     color: #02808b;
  }
 
  .searchWrapper {
@@ -170,6 +170,6 @@
 
  .searchInput:focus {
      outline: none;
-     border-color: #006d77;
+     border-color: #02808b;
      opacity: 1;
  }

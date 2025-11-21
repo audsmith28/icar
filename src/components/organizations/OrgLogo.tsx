@@ -17,8 +17,8 @@ export function OrgLogo({ orgId, orgName, size = 'md', className = '' }: OrgLogo
 
     // Generate a consistent color based on org ID
     const colors = [
-        '#006d77', '#e29578', '#83c5be', '#ffddd2', '#004d55',
-        '#d17f63', '#5d4037', '#0284c7', '#0ea5e9', '#2563eb'
+        '#02808b', '#d95222', '#83c5be', '#ffddd2', '#004d57',
+        '#c0451a', '#5d4037', '#0284c7', '#0ea5e9', '#2563eb'
     ];
     const colorIndex = orgId.charCodeAt(orgId.length - 1) % colors.length;
     const bgColor = colors[colorIndex];

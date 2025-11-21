@@ -1,18 +1,31 @@
 // ICAR Design Tokens
 export const ICAR_TOKENS = {
   colors: {
-    // Primary (Sea Green)
+    // Primary (Sea Green) - Updated to match website
     primary: {
-      darkest: '#004d55',
-      darker: '#006d77',
-      base: '#006d77',
+      darkest: '#004d57',
+      darker: '#02808b',
+      base: '#02808b',
       light: '#83c5be',
       offWhite: '#f0f9fa',
     },
-    // Accent (Orange)
+    // Accent (Orange) - Updated to match website
     accent: {
-      base: '#e29578',
+      base: '#d95222',
+      hover: '#c0451a',
       light: '#ffddd2',
+    },
+    // Peach/Coral (from brand guidelines)
+    peach: {
+      base: '#ffb4a0',
+      light: '#ffddd2',
+    },
+    coral: {
+      base: '#ff8c6b',
+    },
+    // Brown (from website palette)
+    brown: {
+      dark: '#48231a',
     },
     // Grays
     gray: {

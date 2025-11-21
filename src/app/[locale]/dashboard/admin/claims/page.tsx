@@ -113,7 +113,7 @@ export default function AdminClaimsPage() {
                         <Card key={claim.id} className="p-6">
                             <div className="flex items-start justify-between mb-4">
                                 <div>
-                                    <h3 className="text-lg font-semibold text-[#004d55]">
+                                    <h3 className="text-lg font-semibold text-[#004d57]">
                                         {claim.organization_name}
                                     </h3>
                                     <p className="text-sm text-gray-600 mt-1">

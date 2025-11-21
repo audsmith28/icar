@@ -164,7 +164,7 @@ export default function EditProjectPage() {
             <div className="container py-10">
                 <p className="text-red-600">Project not found.</p>
                 <Link href="/dashboard/projects">
-                    <Button className="mt-4">Back to Projects</Button>
+                    <Button variant="outline" className="mt-4">Back to Projects</Button>
                 </Link>
             </div>
         );
@@ -175,7 +175,7 @@ export default function EditProjectPage() {
             <div className="container py-10">
                 <p className="text-red-600">You must be signed in to edit a project.</p>
                 <Link href="/auth/signin">
-                    <Button className="mt-4">Sign In</Button>
+                    <Button variant="primary" className="mt-4">Sign In</Button>
                 </Link>
             </div>
         );
@@ -234,7 +234,7 @@ export default function EditProjectPage() {
                                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                                     required
                                     rows={5}
-                                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006d77]"
+                                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
                                 />
                             </div>
 
@@ -247,7 +247,7 @@ export default function EditProjectPage() {
                                         value={formData.status}
                                         onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                                         required
-                                        className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006d77]"
+                                        className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
                                     >
                                         {STATUS_OPTIONS.map(status => (
                                             <option key={status} value={status}>{status}</option>
@@ -284,7 +284,7 @@ export default function EditProjectPage() {
                                         onClick={() => handleFocusAreaToggle(area)}
                                         className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                                             formData.focus_areas.includes(area)
-                                                ? 'bg-[#006d77] text-white'
+                                                ? 'bg-[#02808b] text-white'
                                                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                                         }`}
                                     >
@@ -336,7 +336,7 @@ export default function EditProjectPage() {
                                 value={formData.collaboration_needs}
                                 onChange={(e) => setFormData({ ...formData, collaboration_needs: e.target.value })}
                                 rows={4}
-                                className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006d77]"
+                                className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
                             />
                         </CardContent>
                     </Card>
@@ -378,8 +378,8 @@ export default function EditProjectPage() {
                     <div className="flex gap-4">
                         <Button
                             type="submit"
+                            variant="primary"
                             disabled={isSaving}
-                            className="bg-[#006d77] hover:bg-[#004d55] text-white"
                         >
                             <Save className="w-4 h-4 mr-2" />
                             {isSaving ? 'Saving...' : 'Save Changes'}

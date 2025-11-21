@@ -96,7 +96,7 @@ export default function AboutPage() {
                                     Discover and connect with organizations across the ecosystem.
                                 </p>
                                 <Link href="/organizations">
-                                    <Button>Explore Directory</Button>
+                                    <Button variant="primary">Explore Directory</Button>
                                 </Link>
                             </CardContent>
                         </Card>

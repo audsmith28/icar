@@ -73,7 +73,7 @@ export function Modal({
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-200">
                     <div>
-                        <h2 className="text-2xl font-bold text-[#004d55]">{title}</h2>
+                        <h2 className="text-2xl font-bold text-[#004d57]">{title}</h2>
                         {subtitle && (
                             <p className="text-sm text-gray-600 mt-1">{subtitle}</p>
                         )}

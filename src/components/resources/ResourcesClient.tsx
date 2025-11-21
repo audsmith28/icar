@@ -90,7 +90,7 @@ export function ResourcesClient({ resources }: ResourcesClientProps) {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search resources..."
-                        className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77]"
+                        className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b]"
                     />
                 </div>
             </div>
@@ -104,7 +104,7 @@ export function ResourcesClient({ resources }: ResourcesClientProps) {
                             onClick={() => setSelectedCategory(category.value)}
                             className={`px-4 py-2 font-medium text-sm transition-colors border-b-2 ${
                                 selectedCategory === category.value
-                                    ? 'border-[#006d77] text-[#006d77]'
+                                    ? 'border-[#02808b] text-[#02808b]'
                                     : 'border-transparent text-gray-600 hover:text-gray-900'
                             }`}
                         >
@@ -124,7 +124,7 @@ export function ResourcesClient({ resources }: ResourcesClientProps) {
                 <select
                     value={selectedType}
                     onChange={(e) => setSelectedType(e.target.value)}
-                    className="px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#006d77]"
+                    className="px-3 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#02808b]"
                 >
                     <option value="all">All Types</option>
                     {availableTypes.map((type) => (

@@ -99,10 +99,10 @@ export function SearchResultsClient({
             {/* Search Header */}
             <div className="mb-8">
                 <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-[#006d77] bg-opacity-10 rounded-lg">
-                        <Search className="w-6 h-6 text-[#006d77]" />
+                    <div className="p-2 bg-[#02808b] bg-opacity-10 rounded-lg">
+                        <Search className="w-6 h-6 text-[#02808b]" />
                     </div>
-                    <h1 className="text-3xl font-bold text-[#004d55]">
+                    <h1 className="text-3xl font-bold text-[#004d57]">
                         Search Results
                     </h1>
                 </div>
@@ -117,10 +117,10 @@ export function SearchResultsClient({
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search organizations and projects..."
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77]"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b]"
                             />
                         </div>
-                        <Button type="submit" className="bg-[#006d77] hover:bg-[#004d55] text-white">
+                        <Button type="submit" variant="primary">
                             Search
                         </Button>
                     </div>
@@ -148,7 +148,7 @@ export function SearchResultsClient({
                             onClick={() => handleTypeChange('all')}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                 searchType === 'all'
-                                    ? 'bg-[#006d77] text-white'
+                                    ? 'bg-[#02808b] text-white'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
                         >
@@ -158,7 +158,7 @@ export function SearchResultsClient({
                             onClick={() => handleTypeChange('orgs')}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                 searchType === 'orgs'
-                                    ? 'bg-[#006d77] text-white'
+                                    ? 'bg-[#02808b] text-white'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
                         >
@@ -168,7 +168,7 @@ export function SearchResultsClient({
                             onClick={() => handleTypeChange('projects')}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                 searchType === 'projects'
-                                    ? 'bg-[#006d77] text-white'
+                                    ? 'bg-[#02808b] text-white'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
                         >
@@ -212,8 +212,8 @@ export function SearchResultsClient({
                     {(searchType === 'all' || searchType === 'orgs') && results.organizations.length > 0 && (
                         <div>
                             <div className="flex items-center gap-2 mb-4">
-                                <Building2 className="w-5 h-5 text-[#006d77]" />
-                                <h2 className="text-xl font-semibold text-[#004d55]">
+                                <Building2 className="w-5 h-5 text-[#02808b]" />
+                                <h2 className="text-xl font-semibold text-[#004d57]">
                                     Organizations ({results.organizations.length})
                                 </h2>
                             </div>
@@ -225,7 +225,7 @@ export function SearchResultsClient({
                                                 <div className="flex items-start gap-4 mb-3">
                                                     <OrgLogo orgId={org.id} orgName={org.name} size="md" />
                                                     <div className="flex-1 min-w-0">
-                                                        <h3 className="text-lg font-semibold text-[#004d55] mb-1 line-clamp-2">
+                                                        <h3 className="text-lg font-semibold text-[#004d57] mb-1 line-clamp-2">
                                                             {org.name}
                                                         </h3>
                                                         <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -260,8 +260,8 @@ export function SearchResultsClient({
                     {(searchType === 'all' || searchType === 'projects') && results.projects.length > 0 && (
                         <div>
                             <div className="flex items-center gap-2 mb-4">
-                                <Briefcase className="w-5 h-5 text-[#e29578]" />
-                                <h2 className="text-xl font-semibold text-[#004d55]">
+                                <Briefcase className="w-5 h-5 text-[#d95222]" />
+                                <h2 className="text-xl font-semibold text-[#004d57]">
                                     Projects ({results.projects.length})
                                 </h2>
                             </div>
@@ -272,13 +272,13 @@ export function SearchResultsClient({
                                             <div className="p-6">
                                                 <div className="flex items-start justify-between mb-3">
                                                     <div className="flex-1">
-                                                        <h3 className="text-lg font-semibold text-[#004d55] mb-1 line-clamp-2">
+                                                        <h3 className="text-lg font-semibold text-[#004d57] mb-1 line-clamp-2">
                                                             {project.title}
                                                         </h3>
                                                         <Link
                                                             href={`/organizations/${project.organization_id}`}
                                                             onClick={(e) => e.stopPropagation()}
-                                                            className="text-sm text-[#006d77] hover:underline"
+                                                            className="text-sm text-[#02808b] hover:underline"
                                                         >
                                                             {project.organization_name}
                                                         </Link>

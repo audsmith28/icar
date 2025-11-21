@@ -51,13 +51,13 @@ export function Filters({
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
             <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
-                    <SlidersHorizontal className="w-5 h-5 text-[#006d77]" />
+                    <SlidersHorizontal className="w-5 h-5 text-[#02808b]" />
                     <h3 className="text-lg font-semibold text-slate-900">Filter Organizations</h3>
                 </div>
                 {hasActiveFilters && (
                     <button
                         onClick={onClearFilters}
-                        className="flex items-center gap-1.5 text-sm text-slate-600 hover:text-[#006d77] transition-colors font-medium"
+                        className="flex items-center gap-1.5 text-sm text-slate-600 hover:text-[#02808b] transition-colors font-medium"
                     >
                         <X className="w-4 h-4" />
                         Clear all
@@ -73,7 +73,7 @@ export function Filters({
                     <select
                         value={selectedType}
                         onChange={(e) => onTypeChange(e.target.value)}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77] focus:border-transparent bg-white text-slate-900 transition-all"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b] focus:border-transparent bg-white text-slate-900 transition-all"
                     >
                         <option value="">All Types</option>
                         {types.map((type) => (
@@ -91,7 +91,7 @@ export function Filters({
                     <select
                         value={selectedFocus}
                         onChange={(e) => onFocusChange(e.target.value)}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77] focus:border-transparent bg-white text-slate-900 transition-all"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b] focus:border-transparent bg-white text-slate-900 transition-all"
                     >
                         <option value="">All Focus Areas</option>
                         {focusAreas.map((area) => (
@@ -109,7 +109,7 @@ export function Filters({
                     <select
                         value={selectedLocation}
                         onChange={(e) => onLocationChange(e.target.value)}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77] focus:border-transparent bg-white text-slate-900 transition-all"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b] focus:border-transparent bg-white text-slate-900 transition-all"
                     >
                         <option value="">All Locations</option>
                         {locations.map((location) => (
@@ -127,7 +127,7 @@ export function Filters({
                     <select
                         value={selectedStatus}
                         onChange={(e) => onStatusChange(e.target.value)}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77] focus:border-transparent bg-white text-slate-900 transition-all"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b] focus:border-transparent bg-white text-slate-900 transition-all"
                     >
                         <option value="">All Statuses</option>
                         {statuses.map((status) => (
@@ -146,7 +146,7 @@ export function Filters({
                         <select
                             value={selectedNationalImperative}
                             onChange={(e) => onNationalImperativeChange?.(e.target.value)}
-                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77] focus:border-transparent bg-white text-slate-900 transition-all"
+                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b] focus:border-transparent bg-white text-slate-900 transition-all"
                         >
                             <option value="">All Imperatives</option>
                             {nationalImperatives.map((imperative) => (
@@ -164,44 +164,44 @@ export function Filters({
                 <div className="mt-4 pt-4 border-t border-slate-200">
                     <div className="flex flex-wrap gap-2">
                         {selectedType && (
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#006d77] bg-opacity-10 text-[#006d77] rounded-full text-sm font-medium">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#02808b] bg-opacity-10 text-[#02808b] rounded-full text-sm font-medium">
                                 Type: {selectedType}
                                 <button
                                     onClick={() => onTypeChange('')}
-                                    className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
+                                    className="hover:bg-[#02808b] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
                                 >
                                     <X className="w-3.5 h-3.5" />
                                 </button>
                             </span>
                         )}
                         {selectedFocus && (
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#006d77] bg-opacity-10 text-[#006d77] rounded-full text-sm font-medium">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#02808b] bg-opacity-10 text-[#02808b] rounded-full text-sm font-medium">
                                 Focus: {selectedFocus}
                                 <button
                                     onClick={() => onFocusChange('')}
-                                    className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
+                                    className="hover:bg-[#02808b] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
                                 >
                                     <X className="w-3.5 h-3.5" />
                                 </button>
                             </span>
                         )}
                         {selectedLocation && (
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#006d77] bg-opacity-10 text-[#006d77] rounded-full text-sm font-medium">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#02808b] bg-opacity-10 text-[#02808b] rounded-full text-sm font-medium">
                                 Location: {selectedLocation}
                                 <button
                                     onClick={() => onLocationChange('')}
-                                    className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
+                                    className="hover:bg-[#02808b] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
                                 >
                                     <X className="w-3.5 h-3.5" />
                                 </button>
                             </span>
                         )}
                         {selectedStatus && (
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#006d77] bg-opacity-10 text-[#006d77] rounded-full text-sm font-medium">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#02808b] bg-opacity-10 text-[#02808b] rounded-full text-sm font-medium">
                                 Status: {selectedStatus}
                                 <button
                                     onClick={() => onStatusChange('')}
-                                    className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
+                                    className="hover:bg-[#02808b] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
                                 >
                                     <X className="w-3.5 h-3.5" />
                                 </button>

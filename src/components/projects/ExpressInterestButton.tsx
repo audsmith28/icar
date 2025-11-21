@@ -34,7 +34,8 @@ export function ExpressInterestButton({
     return (
         <>
             <Button 
-                className="w-full bg-[#006d77] hover:bg-[#004d55] text-white"
+                variant="primary"
+                className="w-full"
                 size="lg"
                 onClick={handleExpressInterest}
             >

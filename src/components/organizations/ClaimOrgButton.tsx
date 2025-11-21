@@ -34,13 +34,13 @@ export function ClaimOrgButton({ orgId, orgName, userEmail, userName }: ClaimOrg
     };
 
     return (
-        <div className="rounded-xl bg-gradient-to-br from-[#f0f9fa] to-white border-2 border-[#006d77] p-6">
+        <div className="rounded-xl bg-gradient-to-br from-[#f0f9fa] to-white border-2 border-[#02808b] p-6">
             <div className="flex items-start gap-4 mb-4">
-                <div className="p-3 bg-[#006d77] bg-opacity-10 rounded-lg">
-                    <Building2 className="w-6 h-6 text-[#006d77]" />
+                <div className="p-3 bg-[#02808b] bg-opacity-10 rounded-lg">
+                    <Building2 className="w-6 h-6 text-[#02808b]" />
                 </div>
                 <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-[#004d55] mb-1">
+                    <h3 className="text-lg font-semibold text-[#004d57] mb-1">
                         Is this your organization?
                     </h3>
                     <p className="text-sm text-gray-600">
@@ -49,10 +49,11 @@ export function ClaimOrgButton({ orgId, orgName, userEmail, userName }: ClaimOrg
                 </div>
             </div>
             <Button
+                variant="primary"
                 onClick={handleClaim}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="w-full bg-[#006d77] hover:bg-[#004d55] text-white"
+                className="w-full"
             >
                 <Mail className="w-4 h-4 mr-2" />
                 Claim Organization via Email

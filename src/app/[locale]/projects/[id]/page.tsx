@@ -101,7 +101,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                                     {projectData.status}
                                 </Badge>
                             </div>
-                            <h1 className="text-4xl font-bold text-[#004d55] mb-4">
+                            <h1 className="text-4xl font-bold text-[#004d57] mb-4">
                                 {projectData.title}
                             </h1>
                             <div className="flex flex-wrap items-center gap-4 text-slate-600">
@@ -155,7 +155,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
                         {/* Collaboration Needs */}
                         {canViewCollaboration && projectData.collaborationNeeds.length > 0 && (
-                            <Card className="border-2 border-[#006d77]">
+                            <Card className="border-2 border-[#02808b]">
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-2">
                                         What this project needs
@@ -166,7 +166,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                                     <ul className="space-y-3">
                                         {projectData.collaborationNeeds.map((need, idx) => (
                                             <li key={idx} className="flex items-start gap-3">
-                                                <CheckCircle className="w-5 h-5 text-[#006d77] mt-0.5 shrink-0" />
+                                                <CheckCircle className="w-5 h-5 text-[#02808b] mt-0.5 shrink-0" />
                                                 <span className="text-slate-700">{need}</span>
                                             </li>
                                         ))}
@@ -184,8 +184,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                                 <div className="space-y-3">
                                     {projectData.partners.map((partner, idx) => (
                                         <div key={idx} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
-                                            <div className="w-10 h-10 rounded-lg bg-[#006d77] bg-opacity-10 flex items-center justify-center">
-                                                <Users className="w-5 h-5 text-[#006d77]" />
+                                            <div className="w-10 h-10 rounded-lg bg-[#02808b] bg-opacity-10 flex items-center justify-center">
+                                                <Users className="w-5 h-5 text-[#02808b]" />
                                             </div>
                                             <span className="font-medium text-slate-900">{partner}</span>
                                         </div>
@@ -198,10 +198,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                     {/* Sidebar */}
                     <div className="space-y-6">
                         {/* Express Interest CTA */}
-                        <Card className="bg-gradient-to-br from-[#f0f9fa] to-white border-2 border-[#006d77]">
+                        <Card className="bg-gradient-to-br from-[#f0f9fa] to-white border-2 border-[#02808b]">
                             <CardContent className="pt-6">
                                 <div className="text-center mb-6">
-                                    <h3 className="text-lg font-semibold text-[#004d55] mb-2">
+                                    <h3 className="text-lg font-semibold text-[#004d57] mb-2">
                                         Interested in this project?
                                     </h3>
                                     <p className="text-sm text-slate-600">
@@ -248,7 +248,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                                         Sign in to see collaboration needs and express interest in this project.
                                     </p>
                                     <Link href="/auth/signin">
-                                        <Button className="w-full">Sign In</Button>
+                                        <Button variant="primary" className="w-full">Sign In</Button>
                                     </Link>
                                 </CardContent>
                             </Card>

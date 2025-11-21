@@ -151,7 +151,7 @@ export default async function EcosystemPage() {
                 </p>
                 <div className="flex gap-4 justify-center">
                     <Link href="/organizations">
-                        <Button variant="secondary" size="md">
+                        <Button variant="primary" size="md">
                             Explore Organizations
                         </Button>
                     </Link>

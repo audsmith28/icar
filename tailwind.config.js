@@ -8,30 +8,47 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // ICAR Brand Colors
+        // ICAR Brand Colors (Updated to match website)
         'sea-green': {
-          darkest: '#004d55',
-          darker: '#006d77',
-          DEFAULT: '#006d77',
+          darkest: '#004d57',
+          darker: '#02808b',
+          DEFAULT: '#02808b',
           light: '#83c5be',
           'off-white': '#f0f9fa',
         },
         'orange': {
-          DEFAULT: '#e29578',
-          hover: '#d17f63',
+          DEFAULT: '#d95222',
+          hover: '#c0451a',
           light: '#ffddd2',
+        },
+        'peach': {
+          DEFAULT: '#ffb4a0',
+          light: '#ffddd2',
+        },
+        'coral': {
+          DEFAULT: '#ff8c6b',
         },
         'icar': {
           teal: {
-            darkest: '#004d55',
-            dark: '#006d77',
+            darkest: '#004d57',
+            dark: '#02808b',
             light: '#83c5be',
             lightest: '#f0f9fa',
           },
           orange: {
-            primary: '#e29578',
-            hover: '#d17f63',
+            primary: '#d95222',
+            hover: '#c0451a',
             light: '#ffddd2',
+          },
+          peach: {
+            DEFAULT: '#ffb4a0',
+            light: '#ffddd2',
+          },
+          coral: {
+            DEFAULT: '#ff8c6b',
+          },
+          brown: {
+            dark: '#48231a',
           },
         },
       },

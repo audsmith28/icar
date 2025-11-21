@@ -72,7 +72,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900">
             {/* Hero section */}
-            <section className="rounded-xl bg-[#004d55] px-6 py-5 text-white shadow-sm">
+            <section className="rounded-xl bg-[#004d57] px-6 py-5 text-white shadow-sm">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-teal-200">
                     Organization dashboard
                 </p>
@@ -93,7 +93,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                             Active projects
                         </p>
-                        <p className="mt-2 text-3xl font-semibold text-[#004d55]">
+                        <p className="mt-2 text-3xl font-semibold text-[#004d57]">
                             {activeProjects}
                         </p>
                     </div>
@@ -101,7 +101,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                             Open opportunities
                         </p>
-                        <p className="mt-2 text-3xl font-semibold text-[#004d55]">
+                        <p className="mt-2 text-3xl font-semibold text-[#004d57]">
                             {openOpportunities}
                         </p>
                     </div>
@@ -109,7 +109,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                             Resources shared
                         </p>
-                        <p className="mt-2 text-3xl font-semibold text-[#004d55]">
+                        <p className="mt-2 text-3xl font-semibold text-[#004d57]">
                             {resourcesShared}
                         </p>
                     </div>
@@ -135,7 +135,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                         </p>
                         <div className="mt-1 h-2 w-full rounded-full bg-slate-100">
                             <div
-                                className="h-2 rounded-full bg-[#e29578]"
+                                className="h-2 rounded-full bg-[#d95222]"
                                 style={{ width: `${profileCompleteness}%` }}
                             />
                         </div>
@@ -170,7 +170,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                                         key={p.id}
                                         className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"
                                     >
-                                        <p className="font-medium text-[#004d55]">{p.title}</p>
+                                        <p className="font-medium text-[#004d57]">{p.title}</p>
                                         <p className="text-xs text-slate-600">
                                             Your role: {p.organization_id === org.id ? 'Lead partner' : 'Participant'} · Status: {p.status}
                                         </p>
@@ -198,7 +198,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                             <ul className="space-y-3 text-sm text-slate-700">
                                 {recommendedOpportunities.map((o) => (
                                     <li key={o.id} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
-                                        <p className="font-medium text-[#004d55]">{o.title}</p>
+                                        <p className="font-medium text-[#004d57]">{o.title}</p>
                                         <p className="text-xs text-slate-600">
                                             {o.location}
                                         </p>
@@ -243,7 +243,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                             and direct contact with ICAR facilitators.
                         </p>
                         <Link href="/contact">
-                            <button className="mt-3 rounded-full bg-[#e29578] px-3 py-1 text-xs font-medium text-white hover:bg-[#d17f63]">
+                            <button className="mt-3 rounded-full bg-[#d95222] px-3 py-1 text-xs font-medium text-white hover:bg-[#c0451a]">
                                 Contact ICAR team
                             </button>
                         </Link>

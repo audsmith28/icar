@@ -92,7 +92,7 @@ export default function ContactPage() {
                                     />
                                 </div>
 
-                                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                                <Button type="submit" variant="primary" className="w-full" disabled={isSubmitting}>
                                     {isSubmitting ? 'Sending...' : 'Send Message'}
                                 </Button>
                             </form>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                                 <Button variant="outline" className="w-full justify-start">About ICAR</Button>
                             </Link>
                             <Link href="/organizations">
-                                <Button>Browse Directory</Button>
+                                <Button variant="primary" className="w-full">Browse Directory</Button>
                             </Link>
                             <Link href="/projects">
                                 <Button variant="outline" className="w-full justify-start">Opportunities</Button>

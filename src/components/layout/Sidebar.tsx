@@ -45,7 +45,7 @@ export function Sidebar({ role = 'org' }: SidebarProps) {
     return (
         <aside className="w-64 bg-white border-r h-full flex flex-col">
             <div className="p-6 border-b">
-                <h2 className="text-xl font-bold text-[#004d55]">ICAR Platform</h2>
+                <h2 className="text-xl font-bold text-[#004d57]">ICAR Platform</h2>
                 <p className="text-xs text-gray-500 mt-1">
                     {role === 'admin' && 'Admin'}
                     {role === 'funder' && 'Funder'}
@@ -59,7 +59,7 @@ export function Sidebar({ role = 'org' }: SidebarProps) {
                         key={item.href}
                         href={item.href}
                         className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${isActive(item.href)
-                            ? 'bg-[#f0f9fa] text-[#004d55] font-medium'
+                            ? 'bg-[#f0f9fa] text-[#004d57] font-medium'
                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                             }`}
                     >

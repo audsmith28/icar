@@ -194,7 +194,7 @@ export default function TaxonomyPage() {
                                     }
                                 }}
                             />
-                            <Button onClick={() => handleAddItem(type)} className="bg-green-600 hover:bg-green-700">
+                            <Button variant="primary" onClick={() => handleAddItem(type)}>
                                 <Save className="w-4 h-4" />
                             </Button>
                             <Button variant="outline" onClick={() => setNewItem(null)}>

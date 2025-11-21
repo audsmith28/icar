@@ -14,10 +14,10 @@ interface ResourceCardProps {
 const getResourceIcon = (type: string) => {
     const lowerType = type.toLowerCase();
     if (lowerType.includes('guide') || lowerType.includes('document')) {
-        return { icon: BookOpen, color: '#006d77' };
+        return { icon: BookOpen, color: '#02808b' };
     }
     if (lowerType.includes('funding') || lowerType.includes('grant') || lowerType.includes('database')) {
-        return { icon: DollarSign, color: '#e29578' };
+        return { icon: DollarSign, color: '#d95222' };
     }
     if (lowerType.includes('training') || lowerType.includes('course') || lowerType.includes('workshop')) {
         return { icon: GraduationCap, color: '#0284c7' };
@@ -48,7 +48,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
 
     return (
         <Card
-            className="h-full border border-gray-200 hover:border-[#006d77] hover:shadow-lg transition-all duration-200 cursor-pointer group"
+            className="h-full border border-gray-200 hover:border-[#02808b] hover:shadow-lg transition-all duration-200 cursor-pointer group"
             onClick={handleClick}
         >
             <div className="p-6 flex flex-col h-full">
@@ -66,7 +66,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-semibold text-[#004d55] mb-2 group-hover:text-[#006d77] transition-colors line-clamp-2">
+                <h3 className="text-lg font-semibold text-[#004d57] mb-2 group-hover:text-[#02808b] transition-colors line-clamp-2">
                     {resource.title}
                 </h3>
 
@@ -82,11 +82,11 @@ export function ResourceCard({ resource }: ResourceCardProps) {
 
                 {/* View Button */}
                 <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-sm font-medium text-[#006d77] group-hover:text-[#004d55] transition-colors">
+                    <span className="text-sm font-medium text-[#02808b] group-hover:text-[#004d57] transition-colors">
                         {resource.url && resource.url !== '#' ? 'View Resource' : 'Coming Soon'}
                     </span>
                     {resource.url && resource.url !== '#' ? (
-                        <ExternalLink className="w-4 h-4 text-[#006d77] group-hover:translate-x-1 transition-transform" />
+                        <ExternalLink className="w-4 h-4 text-[#02808b] group-hover:translate-x-1 transition-transform" />
                     ) : (
                         <ArrowRight className="w-4 h-4 text-gray-400" />
                     )}

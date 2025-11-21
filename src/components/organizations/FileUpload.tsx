@@ -177,7 +177,7 @@ export function FileUpload({ organizationId, onFileUploaded, onFileDeleted }: Fi
                                         href={file.file_url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-sm text-[#006d77] hover:underline"
+                                        className="text-sm text-[#02808b] hover:underline"
                                     >
                                         View
                                     </a>

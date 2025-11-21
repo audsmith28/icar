@@ -87,10 +87,10 @@ export function SidebarFilters({
                     className="w-full flex items-center justify-between px-4 py-3 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
                 >
                     <div className="flex items-center gap-2">
-                        <Filter className="w-5 h-5 text-[#006d77]" />
+                        <Filter className="w-5 h-5 text-[#02808b]" />
                         <span className="font-medium text-slate-900">Filters</span>
                         {hasActiveFilters && (
-                            <span className="px-2 py-0.5 bg-[#006d77] text-white text-xs rounded-full">
+                            <span className="px-2 py-0.5 bg-[#02808b] text-white text-xs rounded-full">
                                 {[
                                     selectedType ? 1 : 0,
                                     selectedFocus.length,
@@ -121,13 +121,13 @@ export function SidebarFilters({
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-2">
-                        <Filter className="w-5 h-5 text-[#006d77]" />
+                        <Filter className="w-5 h-5 text-[#02808b]" />
                         <h3 className="text-lg font-semibold text-slate-900">Filters</h3>
                     </div>
                     {hasActiveFilters && (
                         <button
                             onClick={onClearFilters}
-                            className="flex items-center gap-1 text-sm text-slate-600 hover:text-[#006d77] transition-colors"
+                            className="flex items-center gap-1 text-sm text-slate-600 hover:text-[#02808b] transition-colors"
                             title="Clear all filters"
                         >
                             <X className="w-4 h-4" />
@@ -144,7 +144,7 @@ export function SidebarFilters({
                         <select
                             value={selectedType}
                             onChange={(e) => onTypeChange(e.target.value)}
-                            className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77] focus:border-transparent bg-white text-slate-900 text-sm"
+                            className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b] focus:border-transparent bg-white text-slate-900 text-sm"
                         >
                             <option value="">All Types</option>
                             {types.map((type) => (
@@ -164,7 +164,7 @@ export function SidebarFilters({
                             <label className="text-sm font-medium text-slate-700">
                                 Focus Areas
                                 {selectedFocus.length > 0 && (
-                                    <span className="ml-2 text-xs text-[#006d77]">
+                                    <span className="ml-2 text-xs text-[#02808b]">
                                         ({selectedFocus.length})
                                     </span>
                                 )}
@@ -190,7 +190,7 @@ export function SidebarFilters({
                                                 selectedFocus,
                                                 onFocusChange
                                             )}
-                                            className="w-4 h-4 text-[#006d77] border-slate-300 rounded focus:ring-[#006d77]"
+                                            className="w-4 h-4 text-[#02808b] border-slate-300 rounded focus:ring-[#02808b]"
                                         />
                                         <span className="text-sm text-slate-700">{area.label}</span>
                                     </label>
@@ -208,7 +208,7 @@ export function SidebarFilters({
                             <label className="text-sm font-medium text-slate-700">
                                 Location
                                 {selectedLocation.length > 0 && (
-                                    <span className="ml-2 text-xs text-[#006d77]">
+                                    <span className="ml-2 text-xs text-[#02808b]">
                                         ({selectedLocation.length})
                                     </span>
                                 )}
@@ -234,7 +234,7 @@ export function SidebarFilters({
                                                 selectedLocation,
                                                 onLocationChange
                                             )}
-                                            className="w-4 h-4 text-[#006d77] border-slate-300 rounded focus:ring-[#006d77]"
+                                            className="w-4 h-4 text-[#02808b] border-slate-300 rounded focus:ring-[#02808b]"
                                         />
                                         <span className="text-sm text-slate-700">{location.label}</span>
                                     </label>
@@ -251,7 +251,7 @@ export function SidebarFilters({
                         <select
                             value={selectedStatus}
                             onChange={(e) => onStatusChange(e.target.value)}
-                            className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77] focus:border-transparent bg-white text-slate-900 text-sm"
+                            className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#02808b] focus:border-transparent bg-white text-slate-900 text-sm"
                         >
                             <option value="">All Statuses</option>
                             {statuses.map((status) => (
@@ -272,7 +272,7 @@ export function SidebarFilters({
                                 <label className="text-sm font-medium text-slate-700">
                                     National Imperatives
                                     {selectedNationalImperative.length > 0 && (
-                                        <span className="ml-2 text-xs text-[#e29578]">
+                                        <span className="ml-2 text-xs text-[#d95222]">
                                             ({selectedNationalImperative.length})
                                         </span>
                                     )}
@@ -298,7 +298,7 @@ export function SidebarFilters({
                                                     selectedNationalImperative,
                                                     onNationalImperativeChange
                                                 )}
-                                                className="w-4 h-4 text-[#e29578] border-slate-300 rounded focus:ring-[#e29578]"
+                                                className="w-4 h-4 text-[#d95222] border-slate-300 rounded focus:ring-[#d95222]"
                                             />
                                             <span className="text-sm text-slate-700">{imperative.label}</span>
                                         </label>
@@ -314,55 +314,55 @@ export function SidebarFilters({
                             <p className="text-xs font-medium text-slate-500 mb-2">Active Filters:</p>
                             <div className="flex flex-wrap gap-1.5">
                                 {selectedType && (
-                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#006d77] bg-opacity-10 text-[#006d77] rounded-full text-xs">
+                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#02808b] bg-opacity-10 text-[#02808b] rounded-full text-xs">
                                         Type: {selectedType}
                                         <button
                                             onClick={() => onTypeChange('')}
-                                            className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5"
+                                            className="hover:bg-[#02808b] hover:bg-opacity-20 rounded-full p-0.5"
                                         >
                                             <X className="w-3 h-3" />
                                         </button>
                                     </span>
                                 )}
                                 {selectedFocus.map(focus => (
-                                    <span key={focus} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#006d77] bg-opacity-10 text-[#006d77] rounded-full text-xs">
+                                    <span key={focus} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#02808b] bg-opacity-10 text-[#02808b] rounded-full text-xs">
                                         {focus}
                                         <button
                                             onClick={() => onFocusChange(selectedFocus.filter(f => f !== focus))}
-                                            className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5"
+                                            className="hover:bg-[#02808b] hover:bg-opacity-20 rounded-full p-0.5"
                                         >
                                             <X className="w-3 h-3" />
                                         </button>
                                     </span>
                                 ))}
                                 {selectedLocation.map(location => (
-                                    <span key={location} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#006d77] bg-opacity-10 text-[#006d77] rounded-full text-xs">
+                                    <span key={location} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#02808b] bg-opacity-10 text-[#02808b] rounded-full text-xs">
                                         {location}
                                         <button
                                             onClick={() => onLocationChange(selectedLocation.filter(l => l !== location))}
-                                            className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5"
+                                            className="hover:bg-[#02808b] hover:bg-opacity-20 rounded-full p-0.5"
                                         >
                                             <X className="w-3 h-3" />
                                         </button>
                                     </span>
                                 ))}
                                 {selectedStatus && (
-                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#006d77] bg-opacity-10 text-[#006d77] rounded-full text-xs">
+                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#02808b] bg-opacity-10 text-[#02808b] rounded-full text-xs">
                                         Status: {selectedStatus}
                                         <button
                                             onClick={() => onStatusChange('')}
-                                            className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5"
+                                            className="hover:bg-[#02808b] hover:bg-opacity-20 rounded-full p-0.5"
                                         >
                                             <X className="w-3 h-3" />
                                         </button>
                                     </span>
                                 )}
                                 {selectedNationalImperative.map(imp => (
-                                    <span key={imp} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#e29578]/10 text-[#e29578] rounded-full text-xs">
+                                    <span key={imp} className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#d95222]/10 text-[#d95222] rounded-full text-xs">
                                         {imp}
                                         <button
                                             onClick={() => onNationalImperativeChange(selectedNationalImperative.filter(i => i !== imp))}
-                                            className="hover:bg-[#e29578] hover:bg-opacity-20 rounded-full p-0.5"
+                                            className="hover:bg-[#d95222] hover:bg-opacity-20 rounded-full p-0.5"
                                         >
                                             <X className="w-3 h-3" />
                                         </button>

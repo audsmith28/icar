@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 :root {
-  /* ICAR Brand Colors */
-  --color-teal-dark: #004d55;
-  --color-teal-primary: #006d77;
+  /* ICAR Brand Colors (Updated to match website) */
+  --color-teal-dark: #004d57;
+  --color-teal-primary: #02808b;
   --color-teal-light: #83c5be;
-  --color-orange-primary: #e29578;
+  --color-orange-primary: #d95222;
+  --color-orange-hover: #c0451a;
   --color-orange-light: #ffddd2;
+  --color-peach: #ffb4a0;
+  --color-coral: #ff8c6b;
+  --color-brown-dark: #48231a;
   --color-white: #ffffff;
   --color-gray-50: #f8f9fa;
   --color-gray-100: #e9ecef;

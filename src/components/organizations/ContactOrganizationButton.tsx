@@ -81,10 +81,10 @@ export function ContactOrganizationButton({
 
     if (contactSetting === 'via_icar' && !showForm) {
         return (
-            <Card className="border-[#006d77]">
+            <Card className="border-[#02808b]">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                        <MessageSquare className="w-5 h-5 text-[#006d77]" />
+                        <MessageSquare className="w-5 h-5 text-[#02808b]" />
                         Contact via ICAR
                     </CardTitle>
                 </CardHeader>
@@ -93,8 +93,9 @@ export function ContactOrganizationButton({
                         This organization prefers to be contacted through ICAR. We'll forward your message to them.
                     </p>
                     <Button
+                        variant="primary"
                         onClick={() => setShowForm(true)}
-                        className="w-full bg-[#006d77] hover:bg-[#004d55] text-white"
+                        className="w-full"
                     >
                         <MessageSquare className="w-4 h-4 mr-2" />
                         Request Contact
@@ -106,7 +107,7 @@ export function ContactOrganizationButton({
 
     if (contactSetting === 'via_icar' && showForm) {
         return (
-            <Card className="border-[#006d77]">
+            <Card className="border-[#02808b]">
                 <CardHeader>
                     <CardTitle>Contact Request via ICAR</CardTitle>
                 </CardHeader>
@@ -121,15 +122,16 @@ export function ContactOrganizationButton({
                                 onChange={(e) => setMessage(e.target.value)}
                                 required
                                 rows={4}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006d77]"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
                                 placeholder="Tell us why you'd like to contact this organization..."
                             />
                         </div>
                         <div className="flex gap-3">
                             <Button
                                 type="submit"
+                                variant="primary"
                                 disabled={isSubmitting}
-                                className="flex-1 bg-[#006d77] hover:bg-[#004d55] text-white"
+                                className="flex-1"
                             >
                                 {isSubmitting ? 'Submitting...' : 'Submit Request'}
                             </Button>
@@ -152,10 +154,10 @@ export function ContactOrganizationButton({
 
     // contactSetting === 'open'
     return (
-        <Card className="border-[#006d77]">
+        <Card className="border-[#02808b]">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                    <Mail className="w-5 h-5 text-[#006d77]" />
+                    <Mail className="w-5 h-5 text-[#02808b]" />
                     Contact Organization
                 </CardTitle>
             </CardHeader>
@@ -164,8 +166,9 @@ export function ContactOrganizationButton({
                     This organization accepts direct contact. Click below to send them an email.
                 </p>
                 <Button
+                    variant="primary"
                     onClick={handleContact}
-                    className="w-full bg-[#006d77] hover:bg-[#004d55] text-white"
+                    className="w-full"
                 >
                     <Mail className="w-4 h-4 mr-2" />
                     Contact via Email

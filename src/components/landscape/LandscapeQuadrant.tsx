@@ -46,8 +46,8 @@ const getCategoryColor = (category: string, groupingType: string): string => {
     const categoryLower = category.toLowerCase();
     
     if (groupingType === 'focus') {
-        if (categoryLower.includes('mental') || categoryLower.includes('health')) return '#006d77';
-        if (categoryLower.includes('emergency') || categoryLower.includes('response')) return '#e29578';
+        if (categoryLower.includes('mental') || categoryLower.includes('health')) return '#02808b';
+        if (categoryLower.includes('emergency') || categoryLower.includes('response')) return '#d95222';
         if (categoryLower.includes('food') || categoryLower.includes('security')) return '#83c5be';
         if (categoryLower.includes('community') || categoryLower.includes('development')) return '#ffddd2';
         if (categoryLower.includes('education')) return '#0284c7';
@@ -56,7 +56,7 @@ const getCategoryColor = (category: string, groupingType: string): string => {
     }
     
     // Default colors for other grouping types
-    const colors = ['#006d77', '#e29578', '#83c5be', '#ffddd2', '#0284c7', '#0ea5e9'];
+    const colors = ['#02808b', '#d95222', '#83c5be', '#ffddd2', '#0284c7', '#0ea5e9'];
     const index = category.charCodeAt(0) % colors.length;
     return colors[index];
 };
@@ -75,7 +75,7 @@ export function LandscapeQuadrant({
 
     return (
         <div 
-            className="bg-white rounded-xl border-2 border-gray-200 p-6 hover:border-[#006d77] hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+            className="bg-white rounded-xl border-2 border-gray-200 p-6 hover:border-[#02808b] hover:shadow-xl transition-all duration-300 flex flex-col h-full"
             style={{ borderTopColor: `${categoryColor}40`, borderTopWidth: '4px' }}
         >
             {/* Header */}
@@ -88,7 +88,7 @@ export function LandscapeQuadrant({
                         <CategoryIcon />
                     </div>
                     <div>
-                        <h3 className="text-lg font-bold text-[#004d55] line-clamp-1">
+                        <h3 className="text-lg font-bold text-[#004d57] line-clamp-1">
                             {category}
                         </h3>
                         <p className="text-sm text-gray-500">
@@ -111,7 +111,7 @@ export function LandscapeQuadrant({
             {organizations.length > previewCount && (
                 <button
                     onClick={onViewAll}
-                    className="w-full mt-auto px-4 py-2.5 bg-gray-50 hover:bg-[#006d77] hover:text-white text-gray-700 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 group"
+                    className="w-full mt-auto px-4 py-2.5 bg-gray-50 hover:bg-[#02808b] hover:text-white text-gray-700 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 group"
                 >
                     View All {organizations.length}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

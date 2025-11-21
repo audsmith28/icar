@@ -132,7 +132,7 @@ export const Navbar = () => {
                             )}
                     </div>
                     {!session && (
-                        <Button size="sm" asChild>
+                        <Button variant="primary" size="sm" asChild>
                             <Link href="/auth/signin">Login</Link>
                         </Button>
                     )}

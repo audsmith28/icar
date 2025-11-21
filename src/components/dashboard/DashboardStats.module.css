@@ -1,27 +1,44 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
     margin-bottom: 2rem;
 }
 
 .card {
-    background: var(--color-white);
-    padding: 1.5rem;
-    border-radius: var(--radius-md);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 2.5rem 2rem;
+    border-radius: 0;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: white;
+    text-align: center;
+}
+
+.card:nth-child(1) {
+    background-color: #d95222;
+    border-radius: 8px 0 0 8px;
+}
+
+.card:nth-child(2) {
+    background-color: #004d57;
+}
+
+.card:nth-child(3) {
+    background-color: #02808b;
+}
+
+.card:nth-child(4) {
+    background-color: #48231a;
+    border-radius: 0 8px 8px 0;
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .label {
     font-size: 0.875rem;
-    color: var(--color-sea-green-darker);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0.5rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -29,15 +46,16 @@
 }
 
 .value {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    color: var(--color-orange);
+    color: white;
     font-family: var(--font-heading);
     line-height: 1;
+    margin-bottom: 0.5rem;
 }
 
 .description {
     font-size: 0.875rem;
-    color: #666;
+    color: rgba(255, 255, 255, 0.8);
     margin-top: 0.5rem;
 }

@@ -30,7 +30,7 @@ export const PublicNavbar = () => {
                     <ThemeToggle />
                     <LanguageSwitcher />
                     <Link href="/auth/signin">
-                        <Button size="sm">Login</Button>
+                        <Button variant="primary" size="sm">Login</Button>
                     </Link>
                 </div>
             </div>
