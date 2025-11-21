@@ -1,66 +1,90 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-
-interface Claim {
-    id: string;
-    organizationName: string;
-    claimantName: string;
-    claimantEmail: string;
-    submittedDate: string;
-    status: 'pending' | 'approved' | 'rejected';
-    notes: string;
-}
+import { OrganizationClaim } from '@/lib/api/claims';
 
 export default function AdminClaimsPage() {
-    const [claims, setClaims] = useState<Claim[]>([
-        {
-            id: '1',
-            organizationName: 'Tech for Good Israel',
-            claimantName: 'Sarah Cohen',
-            claimantEmail: 'sarah@techforgood.org.il',
-            submittedDate: '2024-01-15',
-            status: 'pending',
-            notes: 'I am the Executive Director of this organization.'
-        },
-        {
-            id: '2',
-            organizationName: 'Community Resilience Network',
-            claimantName: 'David Levi',
-            claimantEmail: 'david@crn.org.il',
-            submittedDate: '2024-01-14',
-            status: 'pending',
-            notes: 'Founder and CEO. Can provide documentation.'
-        },
-        {
-            id: '3',
-            organizationName: 'Green Horizons Initiative',
-            claimantName: 'Rachel Goldstein',
-            claimantEmail: 'rachel@greenhorizons.org.il',
-            submittedDate: '2024-01-12',
-            status: 'approved',
-            notes: 'Program Director with authorization letter.'
-        }
-    ]);
+    const { data: session } = useSession();
+    const [claims, setClaims] = useState<OrganizationClaim[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleApprove = (id: string) => {
-        setClaims(claims.map(claim =>
-            claim.id === id ? { ...claim, status: 'approved' as const } : claim
-        ));
+    useEffect(() => {
+        const fetchClaims = async () => {
+            try {
+                const response = await fetch('/api/claims');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch claims');
+                }
+                const data = await response.json();
+                setClaims(data);
+            } catch (err: any) {
+                setError(err.message || 'Failed to load claims');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchClaims();
+    }, []);
+
+    const handleApprove = async (id: string) => {
+        try {
+            const response = await fetch(`/api/claims/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'approved' }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to approve claim');
+            }
+
+            const updatedClaim = await response.json();
+            setClaims(claims.map(claim =>
+                claim.id === id ? updatedClaim : claim
+            ));
+        } catch (err: any) {
+            setError(err.message || 'Failed to approve claim');
+        }
     };
 
-    const handleReject = (id: string) => {
-        setClaims(claims.map(claim =>
-            claim.id === id ? { ...claim, status: 'rejected' as const } : claim
-        ));
+    const handleReject = async (id: string) => {
+        try {
+            const response = await fetch(`/api/claims/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'rejected' }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to reject claim');
+            }
+
+            const updatedClaim = await response.json();
+            setClaims(claims.map(claim =>
+                claim.id === id ? updatedClaim : claim
+            ));
+        } catch (err: any) {
+            setError(err.message || 'Failed to reject claim');
+        }
     };
 
     const pendingClaims = claims.filter(c => c.status === 'pending');
     const reviewedClaims = claims.filter(c => c.status !== 'pending');
+
+    if (loading) {
+        return (
+            <div className="container py-10">
+                <p>Loading claims...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="container py-10">
@@ -68,6 +92,12 @@ export default function AdminClaimsPage() {
                 title="Organization Claims Moderation"
                 description="Review and approve organization ownership claims"
             />
+
+            {error && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 font-medium">Error: {error}</p>
+                </div>
+            )}
 
             <div className="mb-6 p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-gray-700">
@@ -83,24 +113,26 @@ export default function AdminClaimsPage() {
                         <Card key={claim.id} className="p-6">
                             <div className="flex items-start justify-between mb-4">
                                 <div>
-                                    <h3 className="text-lg font-semibold text-[var(--color-sea-green-darkest)]">
-                                        {claim.organizationName}
+                                    <h3 className="text-lg font-semibold text-[#004d55]">
+                                        {claim.organization_name}
                                     </h3>
                                     <p className="text-sm text-gray-600 mt-1">
-                                        Claimed by: {claim.claimantName} ({claim.claimantEmail})
+                                        Claimed by: {claim.claimant_name} ({claim.claimant_email})
                                     </p>
                                     <p className="text-xs text-gray-500 mt-1">
-                                        Submitted: {claim.submittedDate}
+                                        Submitted: {claim.submitted_date}
                                     </p>
                                 </div>
                                 <Badge variant="warning">Pending</Badge>
                             </div>
 
-                            <div className="mb-4 p-3 bg-gray-50 rounded">
-                                <p className="text-sm text-gray-700">
-                                    <span className="font-medium">Notes:</span> {claim.notes}
-                                </p>
-                            </div>
+                            {claim.notes && (
+                                <div className="mb-4 p-3 bg-gray-50 rounded">
+                                    <p className="text-sm text-gray-700">
+                                        <span className="font-medium">Notes:</span> {claim.notes}
+                                    </p>
+                                </div>
+                            )}
 
                             <div className="flex gap-3">
                                 <Button
@@ -137,11 +169,16 @@ export default function AdminClaimsPage() {
                             <div className="flex items-start justify-between">
                                 <div>
                                     <h3 className="text-lg font-semibold text-gray-700">
-                                        {claim.organizationName}
+                                        {claim.organization_name}
                                     </h3>
                                     <p className="text-sm text-gray-600 mt-1">
-                                        {claim.claimantName} ({claim.claimantEmail})
+                                        {claim.claimant_name} ({claim.claimant_email})
                                     </p>
+                                    {claim.reviewed_date && (
+                                        <p className="text-xs text-gray-500 mt-1">
+                                            Reviewed: {new Date(claim.reviewed_date).toLocaleDateString()}
+                                        </p>
+                                    )}
                                 </div>
                                 <Badge variant={claim.status === 'approved' ? 'success' : 'default'}>
                                     {claim.status.charAt(0).toUpperCase() + claim.status.slice(1)}

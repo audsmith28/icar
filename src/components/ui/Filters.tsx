@@ -13,14 +13,17 @@ interface FiltersProps {
     focusAreas: FilterOption[];
     locations: FilterOption[];
     statuses: FilterOption[];
+    nationalImperatives?: FilterOption[];
     selectedType: string;
     selectedFocus: string;
     selectedLocation: string;
     selectedStatus: string;
+    selectedNationalImperative?: string;
     onTypeChange: (value: string) => void;
     onFocusChange: (value: string) => void;
     onLocationChange: (value: string) => void;
     onStatusChange: (value: string) => void;
+    onNationalImperativeChange?: (value: string) => void;
     onClearFilters: () => void;
 }
 
@@ -29,17 +32,20 @@ export function Filters({
     focusAreas,
     locations,
     statuses,
+    nationalImperatives = [],
     selectedType,
     selectedFocus,
     selectedLocation,
     selectedStatus,
+    selectedNationalImperative = '',
     onTypeChange,
     onFocusChange,
     onLocationChange,
     onStatusChange,
+    onNationalImperativeChange,
     onClearFilters,
 }: FiltersProps) {
-    const hasActiveFilters = selectedType || selectedFocus || selectedLocation || selectedStatus;
+    const hasActiveFilters = selectedType || selectedFocus || selectedLocation || selectedStatus || selectedNationalImperative;
 
     return (
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
@@ -59,7 +65,7 @@ export function Filters({
                 )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className={`grid grid-cols-1 md:grid-cols-2 ${nationalImperatives.length > 0 ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} gap-4`}>
                 <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">
                         Organization Type
@@ -131,6 +137,26 @@ export function Filters({
                         ))}
                     </select>
                 </div>
+
+                {nationalImperatives.length > 0 && (
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                            National Imperative
+                        </label>
+                        <select
+                            value={selectedNationalImperative}
+                            onChange={(e) => onNationalImperativeChange?.(e.target.value)}
+                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006d77] focus:border-transparent bg-white text-slate-900 transition-all"
+                        >
+                            <option value="">All Imperatives</option>
+                            {nationalImperatives.map((imperative) => (
+                                <option key={imperative.value} value={imperative.value}>
+                                    {imperative.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )}
             </div>
 
             {/* Active Filters Pills */}
@@ -176,6 +202,17 @@ export function Filters({
                                 <button
                                     onClick={() => onStatusChange('')}
                                     className="hover:bg-[#006d77] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
+                                >
+                                    <X className="w-3.5 h-3.5" />
+                                </button>
+                            </span>
+                        )}
+                        {selectedNationalImperative && (
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#c8573c] bg-opacity-10 text-[#c8573c] rounded-full text-sm font-medium">
+                                Imperative: {selectedNationalImperative}
+                                <button
+                                    onClick={() => onNationalImperativeChange?.('')}
+                                    className="hover:bg-[#c8573c] hover:bg-opacity-20 rounded-full p-0.5 transition-colors"
                                 >
                                     <X className="w-3.5 h-3.5" />
                                 </button>

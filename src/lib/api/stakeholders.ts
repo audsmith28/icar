@@ -29,6 +29,7 @@ export interface Stakeholder {
     // Role-specific fields
     budget?: number; // Funder/Admin only
     collaboration_needs?: string; // Org/Funder/Admin only
+    national_imperatives?: string[]; // National Imperatives tags
 }
 
 export function getStakeholders(role: UserRole = 'public'): Stakeholder[] {
@@ -62,6 +63,7 @@ function filterStakeholderFields(row: any, role: UserRole): Stakeholder {
         description: row.description,
         contact: row.contact,
         email: row.email,
+        national_imperatives: JSON.parse(row.national_imperatives || '[]'),
     };
 
     // Add collaboration_needs for org, funder, admin
@@ -100,7 +102,8 @@ export function updateStakeholder(id: string, stakeholderData: Partial<Omit<Stak
             contact = COALESCE(?, contact),
             email = COALESCE(?, email),
             collaboration_needs = COALESCE(?, collaboration_needs),
-            budget = COALESCE(?, budget)
+            budget = COALESCE(?, budget),
+            national_imperatives = COALESCE(?, national_imperatives)
         WHERE id = ?
     `);
     
@@ -117,6 +120,7 @@ export function updateStakeholder(id: string, stakeholderData: Partial<Omit<Stak
         stakeholderData.email || null,
         stakeholderData.collaboration_needs || null,
         stakeholderData.budget ?? null,
+        stakeholderData.national_imperatives ? JSON.stringify(stakeholderData.national_imperatives) : null,
         id
     );
     

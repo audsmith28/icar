@@ -28,7 +28,8 @@ export function initDb() {
       contact TEXT,
       email TEXT,
       budget REAL, -- Funder/Admin only
-      collaboration_needs TEXT -- Org/Funder/Admin only
+      collaboration_needs TEXT, -- Org/Funder/Admin only
+      national_imperatives TEXT -- JSON array of National Imperatives
     )
   `);
 
@@ -61,6 +62,23 @@ export function initDb() {
     )
   `);
 
+  // Organization Claims Table
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS organization_claims (
+      id TEXT PRIMARY KEY,
+      organization_id TEXT NOT NULL,
+      organization_name TEXT NOT NULL,
+      claimant_name TEXT NOT NULL,
+      claimant_email TEXT NOT NULL,
+      submitted_date TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending',
+      notes TEXT,
+      reviewed_by TEXT,
+      reviewed_date TEXT,
+      FOREIGN KEY (organization_id) REFERENCES stakeholders(id)
+    )
+  `);
+
   // Projects Table
   db.exec(`
     CREATE TABLE IF NOT EXISTS projects (
@@ -80,7 +98,8 @@ export function initDb() {
       budget REAL, -- Funder/Admin only
       kpis TEXT, -- JSON, Funder/Admin only
       featured INTEGER DEFAULT 0, -- Boolean: 0 = false, 1 = true
-      expiry_date TEXT -- Optional expiry date for opportunities
+      expiry_date TEXT, -- Optional expiry date for opportunities
+      national_imperatives TEXT -- JSON array of National Imperatives
     )
   `);
 

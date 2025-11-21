@@ -8,6 +8,7 @@ import { Link } from '@/i18n/routing';
 import { Stakeholder } from '@/lib/api/stakeholders';
 import { Building2, MapPin, ArrowRight, Users } from 'lucide-react';
 import { OrgLogo } from './OrgLogo';
+import { NATIONAL_IMPERATIVES } from '@/lib/national-imperatives';
 
 interface OrganizationsClientProps {
     organizations: Stakeholder[];
@@ -19,6 +20,7 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
     const [selectedFocus, setSelectedFocus] = useState('');
     const [selectedLocation, setSelectedLocation] = useState('');
     const [selectedStatus, setSelectedStatus] = useState('');
+    const [selectedNationalImperative, setSelectedNationalImperative] = useState('');
 
     // Extract unique filter options from data
     const filterOptions = useMemo(() => {
@@ -35,7 +37,9 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
         const statuses = Array.from(new Set(organizations.map(o => o.status)))
             .map(s => ({ value: s, label: s }));
 
-        return { types, focusAreas, locations, statuses };
+        const nationalImperatives = NATIONAL_IMPERATIVES.map(imp => ({ value: imp, label: imp }));
+
+        return { types, focusAreas, locations, statuses, nationalImperatives };
     }, [organizations]);
 
     // Filter organizations based on selected filters
@@ -45,18 +49,20 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
             if (selectedFocus && !org.focus.includes(selectedFocus)) return false;
             if (selectedLocation && org.location !== selectedLocation) return false;
             if (selectedStatus && org.status !== selectedStatus) return false;
+            if (selectedNationalImperative && (!org.national_imperatives || !org.national_imperatives.includes(selectedNationalImperative))) return false;
             return true;
         });
-    }, [organizations, selectedType, selectedFocus, selectedLocation, selectedStatus]);
+    }, [organizations, selectedType, selectedFocus, selectedLocation, selectedStatus, selectedNationalImperative]);
 
     const clearFilters = () => {
         setSelectedType('');
         setSelectedFocus('');
         setSelectedLocation('');
         setSelectedStatus('');
+        setSelectedNationalImperative('');
     };
 
-    const hasActiveFilters = selectedType || selectedFocus || selectedLocation || selectedStatus;
+    const hasActiveFilters = selectedType || selectedFocus || selectedLocation || selectedStatus || selectedNationalImperative;
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -86,14 +92,17 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                         focusAreas={filterOptions.focusAreas}
                         locations={filterOptions.locations}
                         statuses={filterOptions.statuses}
+                        nationalImperatives={filterOptions.nationalImperatives}
                         selectedType={selectedType}
                         selectedFocus={selectedFocus}
                         selectedLocation={selectedLocation}
                         selectedStatus={selectedStatus}
+                        selectedNationalImperative={selectedNationalImperative}
                         onTypeChange={setSelectedType}
                         onFocusChange={setSelectedFocus}
                         onLocationChange={setSelectedLocation}
                         onStatusChange={setSelectedStatus}
+                        onNationalImperativeChange={setSelectedNationalImperative}
                         onClearFilters={clearFilters}
                     />
                 </div>

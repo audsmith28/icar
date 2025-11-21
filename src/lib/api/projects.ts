@@ -20,6 +20,7 @@ export interface Project {
     kpis?: any; // Parsed from JSON, Funder/Admin only
     featured?: boolean; // Featured opportunity
     expiry_date?: string; // Optional expiry date
+    national_imperatives?: string[]; // National Imperatives tags
 }
 
 /**
@@ -69,6 +70,7 @@ function filterProjectFields(row: any, role: UserRole): Project {
         end_date: row.end_date,
         featured: row.featured === 1 || row.featured === true,
         expiry_date: row.expiry_date || null,
+        national_imperatives: JSON.parse(row.national_imperatives || '[]'),
     };
 
     // Add collaboration_needs for org, funder, admin
@@ -96,8 +98,8 @@ export function createProject(projectData: Omit<Project, 'id' | 'organization_na
         INSERT INTO projects (
             id, title, organization_id, organization_name, description, status,
             focus_areas, location, lat, lng, start_date, end_date,
-            collaboration_needs, budget, kpis
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            collaboration_needs, budget, kpis, featured, expiry_date, national_imperatives
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
     
     stmt.run(
@@ -117,7 +119,8 @@ export function createProject(projectData: Omit<Project, 'id' | 'organization_na
         projectData.budget || null,
         projectData.kpis ? JSON.stringify(projectData.kpis) : null,
         projectData.featured ? 1 : 0,
-        projectData.expiry_date || null
+        projectData.expiry_date || null,
+        projectData.national_imperatives ? JSON.stringify(projectData.national_imperatives) : null
     );
     
     return getProjectById(id, 'admin')!;
@@ -148,7 +151,8 @@ export function updateProject(id: string, projectData: Partial<Omit<Project, 'id
             budget = COALESCE(?, budget),
             kpis = COALESCE(?, kpis),
             featured = COALESCE(?, featured),
-            expiry_date = COALESCE(?, expiry_date)
+            expiry_date = COALESCE(?, expiry_date),
+            national_imperatives = COALESCE(?, national_imperatives)
         WHERE id = ?
     `);
     
@@ -167,6 +171,7 @@ export function updateProject(id: string, projectData: Partial<Omit<Project, 'id
         projectData.kpis ? JSON.stringify(projectData.kpis) : null,
         projectData.featured ? 1 : 0,
         projectData.expiry_date || null,
+        projectData.national_imperatives ? JSON.stringify(projectData.national_imperatives) : null,
         id
     );
     
