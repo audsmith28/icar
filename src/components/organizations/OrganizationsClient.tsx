@@ -63,8 +63,8 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
             <div className="bg-white border-b border-slate-200">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-[var(--color-sea-green)] bg-opacity-10 rounded-lg">
-                            <Building2 className="w-6 h-6 text-[var(--color-sea-green)]" />
+                        <div className="p-2 bg-[#006d77] bg-opacity-10 rounded-lg">
+                            <Building2 className="w-6 h-6 text-[#006d77]" />
                         </div>
                         <h1 className="text-3xl font-bold text-slate-900">
                             Organizations Directory
@@ -114,12 +114,12 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {filteredOrganizations.map((org) => (
                         <Link key={org.id} href={`/organizations/${org.id}`} className="group">
-                            <Card className="h-full border border-slate-200 hover:border-[var(--color-sea-green)] hover:shadow-xl transition-all duration-200 bg-white">
+                            <Card className="h-full border border-slate-200 hover:border-[#006d77] hover:shadow-xl transition-all duration-200 bg-white">
                                 <div className="p-6">
                                     {/* Card Header */}
                                     <div className="flex items-start justify-between mb-4">
                                         <div className="flex-1 min-w-0">
-                                            <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[var(--color-sea-green)] transition-colors mb-1 line-clamp-2">
+                                            <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#006d77] transition-colors mb-1 line-clamp-2">
                                                 {org.name}
                                             </h3>
                                             <div className="flex items-center gap-2 text-xs text-slate-500">
@@ -179,10 +179,10 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
 
                                     {/* View Profile CTA */}
                                     <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                                        <span className="text-sm font-medium text-[var(--color-sea-green)] group-hover:text-[var(--color-sea-green-darkest)] transition-colors">
+                                        <span className="text-sm font-medium text-[#006d77] group-hover:text-[#004d55] transition-colors">
                                             View Profile
                                         </span>
-                                        <ArrowRight className="w-4 h-4 text-[var(--color-sea-green)] group-hover:translate-x-1 transition-transform" />
+                                        <ArrowRight className="w-4 h-4 text-[#006d77] group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
                             </Card>
@@ -204,7 +204,7 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                         </p>
                         <button
                             onClick={clearFilters}
-                            className="px-6 py-2.5 bg-[var(--color-sea-green)] text-white rounded-lg hover:bg-[var(--color-sea-green-darkest)] transition-colors font-medium"
+                            className="px-6 py-2.5 bg-[#006d77] text-white rounded-lg hover:bg-[#004d55] transition-colors font-medium"
                         >
                             Clear all filters
                         </button>
