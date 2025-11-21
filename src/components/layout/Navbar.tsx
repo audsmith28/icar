@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { Link } from '@/i18n/routing';
 import { Search, Settings, Map, BookOpen, ShieldCheck } from 'lucide-react';
@@ -14,6 +14,24 @@ export const Navbar = () => {
     const userRole = (session?.user as any)?.role || 'public';
     const isAdmin = userRole === 'admin';
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+    const settingsRef = useRef<HTMLDivElement>(null);
+
+    // Close settings menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
+                setShowSettingsMenu(false);
+            }
+        };
+
+        if (showSettingsMenu) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showSettingsMenu]);
 
     return (
         <nav className={styles.navbar}>
@@ -50,7 +68,7 @@ export const Navbar = () => {
                     </div>
                     <ThemeToggle />
                     <LanguageSwitcher />
-                    <div className={styles.settingsWrapper}>
+                    <div className={styles.settingsWrapper} ref={settingsRef}>
                         <button
                             onClick={() => setShowSettingsMenu(!showSettingsMenu)}
                             className={styles.settingsButton}
