@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Link } from '@/i18n/routing';
-import { Plus, MapPin } from 'lucide-react';
+import { Plus, MapPin, Briefcase } from 'lucide-react';
 import { Project } from '@/lib/api/projects';
 import { UserRole } from '@/lib/auth';
 
@@ -182,31 +182,46 @@ export function ProjectsClient({
 
             {/* Empty State */}
             {displayedProjects.length === 0 && (
-                <div className="text-center py-16">
+                <div className="text-center py-16" role="status" aria-live="polite">
                     <div className="max-w-md mx-auto">
-                        <p className="text-lg font-medium text-slate-700 mb-2">
+                        <div className="inline-flex items-center justify-center w-20 h-20 bg-sea-green-off-white rounded-full mb-6 border-2 border-sea-green-darker border-opacity-20">
+                            <Briefcase className="w-10 h-10 text-sea-green-darker" aria-hidden="true" />
+                        </div>
+                        <h3 className="text-xl font-bold text-sea-green-darkest mb-3">
                             {activeTab === 'seeking-collaboration'
                                 ? 'No projects seeking collaboration at this time'
                                 : 'No projects found'}
-                        </p>
-                        <p className="text-sm text-slate-500 mb-6">
+                        </h3>
+                        <p className="text-gray-600 mb-6 leading-relaxed">
                             {activeTab === 'seeking-collaboration'
                                 ? 'Check back soon or browse all projects to see what organizations are working on.'
                                 : 'Projects will appear here as organizations add them to the platform.'}
                         </p>
-                        {activeTab === 'seeking-collaboration' && (
-                            <button
-                                onClick={() => setActiveTab('all')}
-                                className="text-sm text-[#02808b] hover:underline"
-                            >
-                                View all projects →
-                            </button>
-                        )}
-                        {activeTab === 'all' && canCreateProject && (
-                            <Link href="/projects/new">
-                                <Button>Create Your First Project</Button>
-                            </Link>
-                        )}
+                        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                            {activeTab === 'seeking-collaboration' && (
+                                <button
+                                    onClick={() => setActiveTab('all')}
+                                    className="px-6 py-2.5 bg-sea-green-darker text-white rounded-lg hover:bg-sea-green-darkest transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-sea-green-darker focus:ring-offset-2"
+                                    aria-label="View all projects"
+                                >
+                                    View all projects
+                                </button>
+                            )}
+                            {activeTab === 'all' && canCreateProject && (
+                                <Link href="/projects/new">
+                                    <Button variant="primary" className="focus:outline-none focus:ring-2 focus:ring-sea-green-darker focus:ring-offset-2">
+                                        Create Your First Project
+                                    </Button>
+                                </Link>
+                            )}
+                            {activeTab === 'all' && !canCreateProject && (
+                                <Link href="/auth/signin">
+                                    <Button variant="outline" className="focus:outline-none focus:ring-2 focus:ring-sea-green-darker focus:ring-offset-2">
+                                        Sign In to Create Project
+                                    </Button>
+                                </Link>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}

@@ -211,22 +211,40 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
 
                         {/* Empty State */}
                         {filteredOrganizations.length === 0 && (
-                            <div className="text-center py-16">
-                                <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
-                                    <Building2 className="w-8 h-8 text-slate-400" />
+                            <div className="text-center py-16" role="status" aria-live="polite">
+                                <div className="inline-flex items-center justify-center w-20 h-20 bg-sea-green-off-white rounded-full mb-6 border-2 border-sea-green-darker border-opacity-20">
+                                    <Building2 className="w-10 h-10 text-sea-green-darker" aria-hidden="true" />
                                 </div>
-                                <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                                    No organizations found
+                                <h3 className="text-xl font-bold text-sea-green-darkest mb-3">
+                                    {hasActiveFilters ? 'No organizations match your filters' : 'No organizations available'}
                                 </h3>
-                                <p className="text-slate-600 mb-6">
-                                    Try adjusting your filters to see more results.
+                                <p className="text-gray-600 mb-6 max-w-md mx-auto leading-relaxed">
+                                    {hasActiveFilters 
+                                        ? 'Try adjusting your search criteria or clearing filters to see more results.'
+                                        : 'Organizations will appear here once they join the ICAR platform.'}
                                 </p>
-                                <button
-                                    onClick={clearFilters}
-                                    className="px-6 py-2.5 bg-sea-green-darker text-white rounded-lg hover:bg-sea-green-darkest transition-colors font-medium"
-                                >
-                                    Clear all filters
-                                </button>
+                                {hasActiveFilters ? (
+                                    <button
+                                        onClick={clearFilters}
+                                        className="px-6 py-2.5 bg-sea-green-darker text-white rounded-lg hover:bg-sea-green-darkest transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-sea-green-darker focus:ring-offset-2"
+                                        aria-label="Clear all filters and show all organizations"
+                                    >
+                                        Clear all filters
+                                    </button>
+                                ) : (
+                                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                                        <Link href="/contact">
+                                            <button className="px-6 py-2.5 bg-sea-green-darker text-white rounded-lg hover:bg-sea-green-darkest transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-sea-green-darker focus:ring-offset-2">
+                                                Contact Us
+                                            </button>
+                                        </Link>
+                                        <Link href="/about">
+                                            <button className="px-6 py-2.5 bg-white border-2 border-sea-green-darker text-sea-green-darker rounded-lg hover:bg-sea-green-off-white transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-sea-green-darker focus:ring-offset-2">
+                                                Learn More
+                                            </button>
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>

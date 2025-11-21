@@ -74,8 +74,12 @@ export function LandscapeMap({ organizations }: LandscapeMapProps) {
 
             {/* Quadrant Grid */}
             {sortedCategories.length === 0 ? (
-                <div className="text-center py-16">
-                    <p className="text-gray-500">No organizations found.</p>
+                <div className="text-center py-16" role="status" aria-live="polite">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-sea-green-off-white rounded-full mb-6 border-2 border-sea-green-darker border-opacity-20">
+                        <Building2 className="w-10 h-10 text-sea-green-darker" aria-hidden="true" />
+                    </div>
+                    <h3 className="text-xl font-bold text-sea-green-darkest mb-3">No organizations found</h3>
+                    <p className="text-gray-600">Organizations will appear here once they join the ICAR platform.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">

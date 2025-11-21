@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import { X, CheckCircle, AlertCircle, Info } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -22,7 +22,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
   const showToast = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info') => {
     const id = Math.random().toString(36).substring(7);
-    const toast: Toast = { id, message, type, duration: 3000 };
+    const toast: Toast = { id, message, type, duration: 4000 };
     
     setToasts((prev) => [...prev, toast]);
     
@@ -38,26 +38,60 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <div className="fixed bottom-4 right-4 z-50 space-y-2">
+      <div 
+        className="fixed bottom-4 right-4 z-50 space-y-3 flex flex-col items-end"
+        aria-live="polite"
+        aria-label="Notifications"
+      >
         {toasts.map((toast) => (
           <div
             key={toast.id}
+            role="alert"
             className={clsx(
-              'flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg min-w-[300px] max-w-md animate-in slide-in-from-right',
-              toast.type === 'success' && 'bg-green-500 text-white',
-              toast.type === 'error' && 'bg-red-500 text-white',
-              toast.type === 'info' && 'bg-blue-500 text-white'
+              'flex items-start gap-3 px-5 py-4 rounded-lg shadow-xl min-w-[320px] max-w-md',
+              'border-l-4 backdrop-blur-sm',
+              'animate-in slide-in-from-right fade-in duration-300',
+              'transform transition-all ease-out',
+              toast.type === 'success' && [
+                'bg-white border-sea-green-darker',
+                'text-sea-green-darkest',
+                'shadow-[0_4px_12px_rgba(2,128,139,0.15)]'
+              ],
+              toast.type === 'error' && [
+                'bg-white border-red-500',
+                'text-red-700',
+                'shadow-[0_4px_12px_rgba(239,68,68,0.15)]'
+              ],
+              toast.type === 'info' && [
+                'bg-white border-sea-green-darker',
+                'text-sea-green-darkest',
+                'shadow-[0_4px_12px_rgba(2,128,139,0.15)]'
+              ]
             )}
           >
-            {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
-            {toast.type === 'error' && <AlertCircle className="w-5 h-5" />}
-            {toast.type === 'info' && <Info className="w-5 h-5" />}
-            <p className="flex-1 text-sm font-medium">{toast.message}</p>
+            <div className={clsx(
+              'flex-shrink-0 mt-0.5',
+              toast.type === 'success' && 'text-sea-green-darker',
+              toast.type === 'error' && 'text-red-500',
+              toast.type === 'info' && 'text-sea-green-darker'
+            )}>
+              {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+              {toast.type === 'error' && <AlertCircle className="w-5 h-5" />}
+              {toast.type === 'info' && <Info className="w-5 h-5" />}
+            </div>
+            <p className="flex-1 text-sm font-medium leading-relaxed">{toast.message}</p>
             <button
               onClick={() => removeToast(toast.id)}
-              className="hover:opacity-70 transition-opacity"
+              className={clsx(
+                'flex-shrink-0 p-1 rounded-md transition-colors',
+                'hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2',
+                toast.type === 'success' && 'focus:ring-sea-green-darker',
+                toast.type === 'error' && 'focus:ring-red-500',
+                toast.type === 'info' && 'focus:ring-sea-green-darker'
+              )}
+              aria-label="Close notification"
             >
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4 text-gray-500" />
             </button>
           </div>
         ))}

@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Database } from 'lucide-react';
+import { Skeleton, TableRowSkeleton } from './Skeleton';
 
 export interface ICARTableColumn<T> {
   key: string;
@@ -29,28 +30,55 @@ export function ICARTable<T extends Record<string, any>>({
 }: ICARTableProps<T>) {
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <Loader2 className="h-6 w-6 animate-spin text-sea-green" />
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead className="bg-gray-50 border-b border-gray-200">
+            <tr>
+              {columns.map((column) => (
+                <th
+                  key={column.key}
+                  className={clsx(
+                    'p-4 text-left font-medium text-gray-500',
+                    column.align === 'center' && 'text-center',
+                    column.align === 'right' && 'text-right'
+                  )}
+                  style={{ width: column.width }}
+                >
+                  {column.header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <TableRowSkeleton key={i} columns={columns.length} />
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }
 
   if (data.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
-        {emptyMessage}
+      <div className="text-center py-12" role="status" aria-live="polite">
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-sea-green-off-white rounded-full mb-4 border-2 border-sea-green-darker border-opacity-20">
+          <Database className="w-8 h-8 text-sea-green-darker" aria-hidden="true" />
+        </div>
+        <p className="text-gray-600 font-medium">{emptyMessage}</p>
       </div>
     );
   }
 
   return (
     <div className={clsx('overflow-x-auto', className)}>
-      <table className="w-full">
+      <table className="w-full" role="table" aria-label="Data table">
         <thead className="bg-gray-50 border-b border-gray-200">
           <tr>
             {columns.map((column) => (
               <th
                 key={column.key}
+                scope="col"
                 className={clsx(
                   'p-4 text-left font-medium text-gray-500',
                   column.align === 'center' && 'text-center',

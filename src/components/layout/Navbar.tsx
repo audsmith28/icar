@@ -3,58 +3,143 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { Link } from '@/i18n/routing';
-import { Search, Settings, BookOpen, ShieldCheck, LogOut } from 'lucide-react';
+import { Search, Settings, BookOpen, ShieldCheck, LogOut, ChevronDown, Building2, Briefcase } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { LanguageSwitcher } from '../ui/LanguageSwitcher';
 import styles from './Navbar.module.css';
 import { ThemeToggle } from './ThemeToggle';
+import { Logo } from '../ui/Logo';
 
 export const Navbar = () => {
     const { data: session } = useSession();
     const userRole = (session?.user as any)?.role || 'public';
     const isAdmin = userRole === 'admin';
     const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+    const [showOrganizationsMenu, setShowOrganizationsMenu] = useState(false);
     const settingsRef = useRef<HTMLDivElement>(null);
+    const organizationsRef = useRef<HTMLDivElement>(null);
 
-    // Close settings menu when clicking outside
+    // Close menus when clicking outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
                 setShowSettingsMenu(false);
             }
+            if (organizationsRef.current && !organizationsRef.current.contains(event.target as Node)) {
+                setShowOrganizationsMenu(false);
+            }
         };
 
-        if (showSettingsMenu) {
+        if (showSettingsMenu || showOrganizationsMenu) {
             document.addEventListener('mousedown', handleClickOutside);
         }
 
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [showSettingsMenu]);
+    }, [showSettingsMenu, showOrganizationsMenu]);
 
     return (
         <nav className={styles.navbar}>
             <div className={styles.container}>
-                <Link href="/" className={styles.logo}>
-                    <span className={styles.logoText}>ICAR</span>
-                    <span className={styles.logoSub}>Collective</span>
-                </Link>
+                <Logo variant="light" height={40} />
 
                 <div className={styles.links}>
                     {/* Standardized navigation - same labels for all authenticated users */}
                     {session ? (
                         <>
                             <Link href="/dashboard" className={styles.navLink}>Dashboard</Link>
-                            <Link href="/dashboard/organizations" className={styles.navLink}>Organizations</Link>
-                            <Link href="/dashboard/projects" className={styles.navLink}>Projects</Link>
+                            <div className={styles.dropdownWrapper} ref={organizationsRef}>
+                                <button
+                                    onClick={() => setShowOrganizationsMenu(!showOrganizationsMenu)}
+                                    className={styles.navLink}
+                                    aria-expanded={showOrganizationsMenu}
+                                    aria-haspopup="true"
+                                    aria-label="Organizations menu"
+                                >
+                                    Organizations
+                                    <ChevronDown 
+                                        size={16} 
+                                        className={styles.chevron}
+                                        style={{ transform: showOrganizationsMenu ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                                        aria-hidden="true"
+                                    />
+                                </button>
+                                {showOrganizationsMenu && (
+                                    <div 
+                                        className={styles.dropdownMenu}
+                                        role="menu"
+                                        aria-label="Organizations menu"
+                                    >
+                                        <Link 
+                                            href="/dashboard/organizations" 
+                                            className={styles.dropdownMenuItem}
+                                            role="menuitem"
+                                            onClick={() => setShowOrganizationsMenu(false)}
+                                        >
+                                            <Building2 size={16} className="mr-2" aria-hidden="true" />
+                                            All Organizations
+                                        </Link>
+                                        <Link 
+                                            href="/dashboard/projects" 
+                                            className={styles.dropdownMenuItem}
+                                            role="menuitem"
+                                            onClick={() => setShowOrganizationsMenu(false)}
+                                        >
+                                            <Briefcase size={16} className="mr-2" aria-hidden="true" />
+                                            Projects
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
                             <Link href="/ecosystem" className={styles.navLink}>Ecosystem</Link>
                         </>
                     ) : (
                         // Public navigation
                         <>
-                            <Link href="/organizations" className={styles.navLink}>Organizations</Link>
-                            <Link href="/projects" className={styles.navLink}>Projects</Link>
+                            <div className={styles.dropdownWrapper} ref={organizationsRef}>
+                                <button
+                                    onClick={() => setShowOrganizationsMenu(!showOrganizationsMenu)}
+                                    className={styles.navLink}
+                                    aria-expanded={showOrganizationsMenu}
+                                    aria-haspopup="true"
+                                    aria-label="Organizations menu"
+                                >
+                                    Organizations
+                                    <ChevronDown 
+                                        size={16} 
+                                        className={styles.chevron}
+                                        style={{ transform: showOrganizationsMenu ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                                        aria-hidden="true"
+                                    />
+                                </button>
+                                {showOrganizationsMenu && (
+                                    <div 
+                                        className={styles.dropdownMenu}
+                                        role="menu"
+                                        aria-label="Organizations menu"
+                                    >
+                                        <Link 
+                                            href="/organizations" 
+                                            className={styles.dropdownMenuItem}
+                                            role="menuitem"
+                                            onClick={() => setShowOrganizationsMenu(false)}
+                                        >
+                                            <Building2 size={16} className="mr-2" aria-hidden="true" />
+                                            All Organizations
+                                        </Link>
+                                        <Link 
+                                            href="/projects" 
+                                            className={styles.dropdownMenuItem}
+                                            role="menuitem"
+                                            onClick={() => setShowOrganizationsMenu(false)}
+                                        >
+                                            <Briefcase size={16} className="mr-2" aria-hidden="true" />
+                                            Projects
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
                             <Link href="/ecosystem" className={styles.navLink}>Ecosystem</Link>
                         </>
                     )}
@@ -65,6 +150,7 @@ export const Navbar = () => {
                         action="/search" 
                         method="get"
                         className={styles.searchWrapper}
+                        role="search"
                         onSubmit={(e) => {
                             e.preventDefault();
                             const form = e.currentTarget;
@@ -74,14 +160,16 @@ export const Navbar = () => {
                             }
                         }}
                     >
-                        <Search size={18} className={styles.searchIcon} />
+                        <Search size={18} className={styles.searchIcon} aria-hidden="true" />
                         <input 
                             type="text" 
                             name="q"
                             placeholder="Search ecosystem..." 
                             className={styles.searchInput}
                             aria-label="Search organizations and projects"
+                            aria-describedby="search-description"
                         />
+                        <span id="search-description" className="sr-only">Search for organizations and projects in the ICAR ecosystem</span>
                     </form>
                     <ThemeToggle />
                     <LanguageSwitcher />
@@ -89,12 +177,18 @@ export const Navbar = () => {
                         <button
                             onClick={() => setShowSettingsMenu(!showSettingsMenu)}
                             className={styles.settingsButton}
-                            aria-label="Settings"
+                            aria-label="Settings menu"
+                            aria-expanded={showSettingsMenu}
+                            aria-haspopup="true"
                         >
-                            <Settings size={18} />
+                            <Settings size={18} aria-hidden="true" />
                         </button>
                             {showSettingsMenu && (
-                                <div className={styles.settingsMenu}>
+                                <div 
+                                    className={styles.settingsMenu}
+                                    role="menu"
+                                    aria-label="Settings menu"
+                                >
                                     {session && (
                                         <>
                                             <Link href="/dashboard/resources" className={styles.settingsMenuItem}>
@@ -124,8 +218,10 @@ export const Navbar = () => {
                                             <button
                                                 onClick={() => signOut({ callbackUrl: '/' })}
                                                 className={`${styles.settingsMenuItem} w-full text-left text-red-600 hover:bg-red-50 hover:text-red-700`}
+                                                role="menuitem"
+                                                aria-label="Sign out of your account"
                                             >
-                                                <LogOut size={16} className="mr-2" />
+                                                <LogOut size={16} className="mr-2" aria-hidden="true" />
                                                 Sign Out
                                             </button>
                                         </>
