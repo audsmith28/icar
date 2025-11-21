@@ -74,8 +74,8 @@ export default function InteractiveMap() {
                             <div className="p-1">
                                 <h3 className="font-bold text-sm mb-1">{o.title}</h3>
                                 <p className="text-xs text-gray-600 mb-2">{o.organization_name}</p>
-                                <Link href={`/opportunities/${o.id}`}>
-                                    <Button size="sm" variant="secondary" className="w-full text-xs h-7">View Opportunity</Button>
+                                <Link href={`/projects/${o.id}`}>
+                                    <Button size="sm" variant="secondary" className="w-full text-xs h-7">View Project</Button>
                                 </Link>
                             </div>
                         </Popup>

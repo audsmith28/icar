@@ -42,12 +42,12 @@ export const Navbar = () => {
                 </Link>
 
                 <div className={styles.links}>
-                    {isAdmin ? (
-                        // Admin navigation
+                    {/* Standardized navigation - same labels for all authenticated users */}
+                    {session ? (
                         <>
                             <Link href="/dashboard" className={styles.navLink}>Dashboard</Link>
                             <Link href="/dashboard/organizations" className={styles.navLink}>Organizations</Link>
-                            <Link href="/dashboard/opportunities" className={styles.navLink}>Opportunities</Link>
+                            <Link href="/dashboard/projects" className={styles.navLink}>Projects</Link>
                             <Link href="/landscape" className={styles.navLink}>
                                 <Map size={16} className={styles.navIcon} />
                                 Map
@@ -55,25 +55,16 @@ export const Navbar = () => {
                             <Link href="/dashboard/resources" className={styles.navLink}>
                                 <BookOpen size={16} className={styles.navIcon} />
                                 Resources
-                            </Link>
-                            <Link href="/dashboard/admin/claims" className={styles.navLink}>
-                                <ShieldCheck size={16} className={styles.navIcon} />
-                                Moderation
                             </Link>
                         </>
                     ) : (
-                        // Org/Stakeholder navigation
+                        // Public navigation
                         <>
-                            <Link href="/dashboard" className={styles.navLink}>My Dashboard</Link>
-                            <Link href="/dashboard/opportunities" className={styles.navLink}>Projects</Link>
-                            <Link href="/dashboard/organizations" className={styles.navLink}>Organizations</Link>
+                            <Link href="/organizations" className={styles.navLink}>Organizations</Link>
+                            <Link href="/projects" className={styles.navLink}>Projects</Link>
                             <Link href="/landscape" className={styles.navLink}>
                                 <Map size={16} className={styles.navIcon} />
                                 Map
-                            </Link>
-                            <Link href="/dashboard/resources" className={styles.navLink}>
-                                <BookOpen size={16} className={styles.navIcon} />
-                                Resources
                             </Link>
                         </>
                     )}
@@ -96,17 +87,29 @@ export const Navbar = () => {
                         </button>
                         {showSettingsMenu && (
                             <div className={styles.settingsMenu}>
-                                <Link href="/dashboard/my-organization" className={styles.settingsMenuItem}>
-                                    My Profile
-                                </Link>
-                                {isAdmin && (
-                                    <Link href="/dashboard/admin/settings" className={styles.settingsMenuItem}>
-                                        Admin Settings
-                                    </Link>
+                                {session && (
+                                    <>
+                                        {(userRole === 'org' || userRole === 'funder') && (
+                                            <Link href="/dashboard/my-organization" className={styles.settingsMenuItem}>
+                                                My Organization
+                                            </Link>
+                                        )}
+                                        {isAdmin && (
+                                            <>
+                                                <Link href="/dashboard/admin/claims" className={styles.settingsMenuItem}>
+                                                    <ShieldCheck size={16} className="mr-2" />
+                                                    Moderation
+                                                </Link>
+                                                <Link href="/dashboard/admin/settings" className={styles.settingsMenuItem}>
+                                                    Admin Settings
+                                                </Link>
+                                            </>
+                                        )}
+                                        <Link href="/dashboard/settings" className={styles.settingsMenuItem}>
+                                            Preferences
+                                        </Link>
+                                    </>
                                 )}
-                                <Link href="/dashboard/settings" className={styles.settingsMenuItem}>
-                                    Preferences
-                                </Link>
                             </div>
                         )}
                     </div>

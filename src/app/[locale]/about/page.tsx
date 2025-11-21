@@ -106,7 +106,7 @@ export default function AboutPage() {
                                 <p className="text-sm text-gray-600 mb-4">
                                     Find ways to contribute and collaborate on meaningful projects.
                                 </p>
-                                <Link href="/opportunities">
+                                <Link href="/projects">
                                     <Button variant="outline" size="sm">View Opportunities</Button>
                                 </Link>
                             </CardContent>

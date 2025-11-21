@@ -69,11 +69,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 {/* Back link and actions */}
                 <div className="flex items-center justify-between mb-6">
                     <Link 
-                        href="/dashboard/opportunities" 
+                        href="/dashboard/projects" 
                         className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
                     >
                         <ArrowLeft size={16} />
-                        Back to Opportunities
+                        Back to Projects
                     </Link>
                     {canEdit && (
                         <Link href={`/projects/${id}/edit`}>

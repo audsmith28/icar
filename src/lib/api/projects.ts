@@ -54,7 +54,7 @@ export function getProjectById(id: string, role: UserRole = 'public'): Project |
  * Funder: + collaboration_needs + budget + kpis
  * Admin: All fields
  */
-function filterProjectFields(row: any, role: UserRole): Project {
+export function filterProjectFields(row: any, role: UserRole): Project {
     const base: Project = {
         id: row.id,
         title: row.title,

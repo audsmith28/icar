@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { Filters } from '@/components/ui/Filters';
+import { SidebarFilters } from '@/components/ui/SidebarFilters';
 import { Link } from '@/i18n/routing';
 import { Stakeholder } from '@/lib/api/stakeholders';
 import { Building2, MapPin, ArrowRight, Users } from 'lucide-react';
@@ -17,10 +17,10 @@ interface OrganizationsClientProps {
 
 export function OrganizationsClient({ organizations, userRole = 'public' }: OrganizationsClientProps) {
     const [selectedType, setSelectedType] = useState('');
-    const [selectedFocus, setSelectedFocus] = useState('');
-    const [selectedLocation, setSelectedLocation] = useState('');
+    const [selectedFocus, setSelectedFocus] = useState<string[]>([]);
+    const [selectedLocation, setSelectedLocation] = useState<string[]>([]);
     const [selectedStatus, setSelectedStatus] = useState('');
-    const [selectedNationalImperative, setSelectedNationalImperative] = useState('');
+    const [selectedNationalImperative, setSelectedNationalImperative] = useState<string[]>([]);
 
     // Extract unique filter options from data
     const filterOptions = useMemo(() => {
@@ -45,24 +45,28 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
     // Filter organizations based on selected filters
     const filteredOrganizations = useMemo(() => {
         return organizations.filter(org => {
+            // Single-select filters
             if (selectedType && org.type !== selectedType) return false;
-            if (selectedFocus && !org.focus.includes(selectedFocus)) return false;
-            if (selectedLocation && org.location !== selectedLocation) return false;
             if (selectedStatus && org.status !== selectedStatus) return false;
-            if (selectedNationalImperative && (!org.national_imperatives || !org.national_imperatives.includes(selectedNationalImperative))) return false;
+            
+            // Multi-select filters - check if any selected value matches
+            if (selectedFocus.length > 0 && !selectedFocus.some(focus => org.focus.includes(focus))) return false;
+            if (selectedLocation.length > 0 && !selectedLocation.includes(org.location)) return false;
+            if (selectedNationalImperative.length > 0 && (!org.national_imperatives || !selectedNationalImperative.some(imp => org.national_imperatives?.includes(imp)))) return false;
+            
             return true;
         });
     }, [organizations, selectedType, selectedFocus, selectedLocation, selectedStatus, selectedNationalImperative]);
 
     const clearFilters = () => {
         setSelectedType('');
-        setSelectedFocus('');
-        setSelectedLocation('');
+        setSelectedFocus([]);
+        setSelectedLocation([]);
         setSelectedStatus('');
-        setSelectedNationalImperative('');
+        setSelectedNationalImperative([]);
     };
 
-    const hasActiveFilters = selectedType || selectedFocus || selectedLocation || selectedStatus || selectedNationalImperative;
+    const hasActiveFilters = selectedType || selectedFocus.length > 0 || selectedLocation.length > 0 || selectedStatus || selectedNationalImperative.length > 0;
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -85,9 +89,10 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
 
             {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Filters Section */}
-                <div className="mb-8">
-                    <Filters
+                {/* Layout: Sidebar + Results */}
+                <div className="flex flex-col lg:flex-row gap-8">
+                    {/* Sidebar Filters */}
+                    <SidebarFilters
                         types={filterOptions.types}
                         focusAreas={filterOptions.focusAreas}
                         locations={filterOptions.locations}
@@ -105,23 +110,24 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                         onNationalImperativeChange={setSelectedNationalImperative}
                         onClearFilters={clearFilters}
                     />
-                </div>
 
-                {/* Results Count */}
-                <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-slate-500" />
-                        <p className="text-sm font-medium text-slate-700">
-                            {filteredOrganizations.length} {filteredOrganizations.length === 1 ? 'organization' : 'organizations'}
-                            {hasActiveFilters && (
-                                <span className="text-slate-500"> (filtered from {organizations.length})</span>
-                            )}
-                        </p>
-                    </div>
-                </div>
+                    {/* Results Section */}
+                    <div className="flex-1">
+                        {/* Results Count */}
+                        <div className="flex items-center justify-between mb-6">
+                            <div className="flex items-center gap-2">
+                                <Users className="w-4 h-4 text-slate-500" />
+                                <p className="text-sm font-medium text-slate-700">
+                                    {filteredOrganizations.length} {filteredOrganizations.length === 1 ? 'organization' : 'organizations'}
+                                    {hasActiveFilters && (
+                                        <span className="text-slate-500"> (filtered from {organizations.length})</span>
+                                    )}
+                                </p>
+                            </div>
+                        </div>
 
-                {/* Organizations Grid */}
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {/* Organizations Grid */}
+                        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-2">
                     {filteredOrganizations.map((org) => (
                         <Link key={org.id} href={`/organizations/${org.id}`} className="group">
                             <Card className="h-full border border-slate-200 hover:border-[#006d77] hover:shadow-xl transition-all duration-200 bg-white">
@@ -199,30 +205,32 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                                     </div>
                                 </div>
                             </Card>
-                        </Link>
-                    ))}
-                </div>
-
-                {/* Empty State */}
-                {filteredOrganizations.length === 0 && (
-                    <div className="text-center py-16">
-                        <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
-                            <Building2 className="w-8 h-8 text-slate-400" />
+                            </Link>
+                        ))}
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                            No organizations found
-                        </h3>
-                        <p className="text-slate-600 mb-6">
-                            Try adjusting your filters to see more results.
-                        </p>
-                        <button
-                            onClick={clearFilters}
-                            className="px-6 py-2.5 bg-[#006d77] text-white rounded-lg hover:bg-[#004d55] transition-colors font-medium"
-                        >
-                            Clear all filters
-                        </button>
+
+                        {/* Empty State */}
+                        {filteredOrganizations.length === 0 && (
+                            <div className="text-center py-16">
+                                <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
+                                    <Building2 className="w-8 h-8 text-slate-400" />
+                                </div>
+                                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                                    No organizations found
+                                </h3>
+                                <p className="text-slate-600 mb-6">
+                                    Try adjusting your filters to see more results.
+                                </p>
+                                <button
+                                    onClick={clearFilters}
+                                    className="px-6 py-2.5 bg-[#006d77] text-white rounded-lg hover:bg-[#004d55] transition-colors font-medium"
+                                >
+                                    Clear all filters
+                                </button>
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

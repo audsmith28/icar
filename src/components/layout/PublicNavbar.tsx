@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from '@/i18n/routing';
+import { Map } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { LanguageSwitcher } from '../ui/LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
@@ -17,9 +18,12 @@ export const PublicNavbar = () => {
                 </Link>
 
                 <div className={styles.links}>
-                    <Link href="/organizations">Explore</Link>
-                    <Link href="/opportunities">Opportunities</Link>
-                    <Link href="/landscape">Landscape</Link>
+                    <Link href="/organizations" className={styles.navLink}>Organizations</Link>
+                    <Link href="/projects" className={styles.navLink}>Projects</Link>
+                    <Link href="/landscape" className={styles.navLink}>
+                        <Map size={16} className={styles.navIcon} />
+                        Map
+                    </Link>
                 </div>
 
                 <div className={styles.actions}>

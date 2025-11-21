@@ -1,5 +1,6 @@
-import { getProjects, Project } from './projects';
+import { getProjects, Project, filterProjectFields } from './projects';
 import { UserRole } from '../auth';
+import { getDb } from '../db';
 
 // Opportunity is just a Project that meets certain criteria
 export type Opportunity = Project;
@@ -11,28 +12,32 @@ export type Opportunity = Project;
  * - Has not expired (no expiry_date set or expiry_date still in the future)
  */
 export function getOpportunities(role: UserRole = 'public', sortBy?: 'closing_soon' | 'newest'): Project[] {
-    const allProjects = getProjects(role);
+    const db = getDb();
     const now = new Date();
+    
+    // Get all projects from database (we need to check collaboration_needs even for public users)
+    const stmt = db.prepare('SELECT * FROM projects');
+    const allRows = stmt.all() as any[];
 
-    // Filter projects that qualify as opportunities
-    const opportunities = allProjects.filter(project => {
+    // Filter projects that qualify as opportunities (check raw DB values)
+    const qualifyingProjects = allRows.filter(row => {
         // Must have collaboration needs OR be featured
-        const hasNeeds = project.collaboration_needs && project.collaboration_needs.trim().length > 0;
-        const isFeatured = project.featured === true;
+        const hasNeeds = row.collaboration_needs && row.collaboration_needs.trim().length > 0;
+        const isFeatured = row.featured === 1 || row.featured === true;
         
         if (!hasNeeds && !isFeatured) {
             return false;
         }
 
         // Status must be "Open" or "Active"
-        const status = project.status?.toLowerCase();
+        const status = row.status?.toLowerCase();
         if (status !== 'open' && status !== 'active') {
             return false;
         }
 
         // Must not be expired
-        if (project.expiry_date) {
-            const expiryDate = new Date(project.expiry_date);
+        if (row.expiry_date) {
+            const expiryDate = new Date(row.expiry_date);
             if (expiryDate < now) {
                 return false;
             }
@@ -40,6 +45,9 @@ export function getOpportunities(role: UserRole = 'public', sortBy?: 'closing_so
 
         return true;
     });
+
+    // Now apply role-based filtering to the qualifying projects
+    const opportunities = qualifyingProjects.map(row => filterProjectFields(row, role));
 
     // Sort opportunities
     if (sortBy === 'closing_soon') {

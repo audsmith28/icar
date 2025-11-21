@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { getOpportunities } from '@/lib/api/opportunities';
 
 export async function GET() {
     try {
-        const stmt = db.prepare('SELECT * FROM opportunities');
-        const opportunities = stmt.all();
+        const session = await getServerSession(authOptions);
+        const userRole = (session?.user as any)?.role || 'public';
+        const opportunities = getOpportunities(userRole);
         return NextResponse.json(opportunities);
     } catch (error) {
         console.error('Database error:', error);

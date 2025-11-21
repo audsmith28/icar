@@ -161,7 +161,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                         title="Active collaborations"
                         description="Projects your organization is currently involved in."
                         primaryAction="View all projects"
-                        primaryActionHref="/dashboard/opportunities"
+                        primaryActionHref="/dashboard/projects"
                     >
                         {activeProjectsList.length > 0 ? (
                             <ul className="space-y-3 text-sm text-slate-700">
@@ -192,7 +192,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                         title="Opportunities that may fit your organization"
                         description="Based on your profile and region."
                         primaryAction="Browse all opportunities"
-                        primaryActionHref="/dashboard/opportunities"
+                        primaryActionHref="/dashboard/projects"
                     >
                         {recommendedOpportunities.length > 0 ? (
                             <ul className="space-y-3 text-sm text-slate-700">

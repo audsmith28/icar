@@ -105,20 +105,20 @@ export default async function DashboardPage() {
                         </div>
                     </div>
 
-                    {/* Opportunities Stat Card */}
-                    <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 bg-[#fff4f0] rounded-lg">
-                                <Briefcase className="w-6 h-6 text-[#e29578]" />
+                        {/* Projects Stat Card */}
+                        <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+                            <div className="flex items-center justify-between mb-4">
+                                <div className="p-3 bg-[#fff4f0] rounded-lg">
+                                    <Briefcase className="w-6 h-6 text-[#e29578]" />
+                                </div>
+                            </div>
+                            <div className="text-4xl font-bold text-[#004d55] mb-1">
+                                {stats.opportunities}
+                            </div>
+                            <div className="text-sm font-medium text-gray-600">
+                                Projects Seeking Collaboration
                             </div>
                         </div>
-                        <div className="text-4xl font-bold text-[#004d55] mb-1">
-                            {stats.opportunities}
-                        </div>
-                        <div className="text-sm font-medium text-gray-600">
-                            Open Opportunities
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -155,35 +155,35 @@ export default async function DashboardPage() {
                         </div>
                     </div>
 
-                    {/* Opportunities Card */}
-                    <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-                        <div className="p-8">
-                            <div className="flex flex-col lg:flex-row items-start gap-6">
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <div className="p-3 bg-[#fff4f0] rounded-lg">
-                                            <Briefcase className="w-6 h-6 text-[#e29578]" />
+                        {/* Projects Card */}
+                        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
+                            <div className="p-8">
+                                <div className="flex flex-col lg:flex-row items-start gap-6">
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="p-3 bg-[#fff4f0] rounded-lg">
+                                                <Briefcase className="w-6 h-6 text-[#e29578]" />
+                                            </div>
+                                            <h2 className="text-2xl lg:text-3xl font-bold text-[#004d55]">
+                                                Projects
+                                            </h2>
                                         </div>
-                                        <h2 className="text-2xl lg:text-3xl font-bold text-[#004d55]">
-                                            Collaboration Opportunities
-                                        </h2>
+                                        <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                                            Discover projects seeking partners and resources. Find ways to contribute your expertise and drive collective impact.
+                                        </p>
+                                        <Link href="/dashboard/projects">
+                                            <button className="px-6 py-3 bg-[#e29578] text-white rounded-lg hover:bg-[#d17f63] transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
+                                                View Projects
+                                                <ArrowRight className="w-5 h-5" />
+                                            </button>
+                                        </Link>
                                     </div>
-                                    <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                                        Discover projects seeking partners and resources. Find ways to contribute your expertise and drive collective impact.
-                                    </p>
-                                    <Link href="/dashboard/opportunities">
-                                        <button className="px-6 py-3 bg-[#e29578] text-white rounded-lg hover:bg-[#d17f63] transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
-                                            View Opportunities
-                                            <ArrowRight className="w-5 h-5" />
-                                        </button>
-                                    </Link>
-                                </div>
-                                <div className="hidden lg:block p-4 bg-[#fff4f0] rounded-lg">
-                                    <Briefcase className="w-12 h-12 text-[#e29578]" />
+                                    <div className="hidden lg:block p-4 bg-[#fff4f0] rounded-lg">
+                                        <Briefcase className="w-12 h-12 text-[#e29578]" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     {/* Landscape Card */}
                     <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">

@@ -100,10 +100,10 @@ export default function NewProjectPage() {
 
     return (
         <div className="container py-10">
-            <Link href="/dashboard/opportunities" className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-6">
-                <ArrowLeft size={16} />
-                Back to Opportunities
-            </Link>
+                <Link href="/dashboard/projects" className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-6">
+                    <ArrowLeft size={16} />
+                    Back to Projects
+                </Link>
 
             <PageHeader
                 title="Create New Project"
@@ -313,7 +313,7 @@ export default function NewProjectPage() {
                             <Save className="w-4 h-4 mr-2" />
                             {isSaving ? 'Creating...' : 'Create Project'}
                         </Button>
-                        <Link href="/dashboard/opportunities">
+                        <Link href="/dashboard/projects">
                             <Button type="button" variant="outline">
                                 Cancel
                             </Button>

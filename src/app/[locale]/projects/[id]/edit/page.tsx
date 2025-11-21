@@ -144,7 +144,7 @@ export default function EditProjectPage() {
                 throw new Error(errorData.error || 'Failed to delete project');
             }
 
-            router.push('/dashboard/opportunities');
+            router.push('/dashboard/projects');
         } catch (err: any) {
             setError(err.message || 'Failed to delete project');
             setIsDeleting(false);
@@ -163,8 +163,8 @@ export default function EditProjectPage() {
         return (
             <div className="container py-10">
                 <p className="text-red-600">Project not found.</p>
-                <Link href="/dashboard/opportunities">
-                    <Button className="mt-4">Back to Opportunities</Button>
+                <Link href="/dashboard/projects">
+                    <Button className="mt-4">Back to Projects</Button>
                 </Link>
             </div>
         );

@@ -149,7 +149,7 @@ export default function ContactPage() {
                             <Link href="/organizations">
                                 <Button>Browse Directory</Button>
                             </Link>
-                            <Link href="/opportunities">
+                            <Link href="/projects">
                                 <Button variant="outline" className="w-full justify-start">Opportunities</Button>
                             </Link>
                         </CardContent>

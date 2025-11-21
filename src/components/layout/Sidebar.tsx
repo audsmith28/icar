@@ -26,7 +26,7 @@ export function Sidebar({ role = 'org' }: SidebarProps) {
     const coreItems = [
         { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
         { label: 'Organizations', href: '/dashboard/organizations', icon: Users },
-        { label: 'Opportunities', href: '/dashboard/opportunities', icon: Briefcase },
+        { label: 'Projects', href: '/dashboard/projects', icon: Briefcase },
     ];
 
     // Org-specific items
