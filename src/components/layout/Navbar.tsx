@@ -42,22 +42,40 @@ export const Navbar = () => {
                 </Link>
 
                 <div className={styles.links}>
-                    <Link href="/dashboard" className={styles.navLink}>Dashboard</Link>
-                    <Link href="/dashboard/organizations" className={styles.navLink}>Organizations</Link>
-                    <Link href="/dashboard/opportunities" className={styles.navLink}>Opportunities</Link>
-                    <Link href="/landscape" className={styles.navLink}>
-                        <Map size={16} className={styles.navIcon} />
-                        Map
-                    </Link>
-                    <Link href="/dashboard/resources" className={styles.navLink}>
-                        <BookOpen size={16} className={styles.navIcon} />
-                        Resources
-                    </Link>
-                    {isAdmin && (
-                        <Link href="/dashboard/admin/claims" className={styles.navLink}>
-                            <ShieldCheck size={16} className={styles.navIcon} />
-                            Moderation
-                        </Link>
+                    {isAdmin ? (
+                        // Admin navigation
+                        <>
+                            <Link href="/dashboard" className={styles.navLink}>Dashboard</Link>
+                            <Link href="/dashboard/organizations" className={styles.navLink}>Organizations</Link>
+                            <Link href="/dashboard/opportunities" className={styles.navLink}>Opportunities</Link>
+                            <Link href="/landscape" className={styles.navLink}>
+                                <Map size={16} className={styles.navIcon} />
+                                Map
+                            </Link>
+                            <Link href="/dashboard/resources" className={styles.navLink}>
+                                <BookOpen size={16} className={styles.navIcon} />
+                                Resources
+                            </Link>
+                            <Link href="/dashboard/admin/claims" className={styles.navLink}>
+                                <ShieldCheck size={16} className={styles.navIcon} />
+                                Moderation
+                            </Link>
+                        </>
+                    ) : (
+                        // Org/Stakeholder navigation
+                        <>
+                            <Link href="/dashboard" className={styles.navLink}>My Dashboard</Link>
+                            <Link href="/dashboard/opportunities" className={styles.navLink}>Projects</Link>
+                            <Link href="/dashboard/organizations" className={styles.navLink}>Organizations</Link>
+                            <Link href="/landscape" className={styles.navLink}>
+                                <Map size={16} className={styles.navIcon} />
+                                Map
+                            </Link>
+                            <Link href="/dashboard/resources" className={styles.navLink}>
+                                <BookOpen size={16} className={styles.navIcon} />
+                                Resources
+                            </Link>
+                        </>
                     )}
                 </div>
 

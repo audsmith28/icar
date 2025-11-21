@@ -2,11 +2,12 @@ import React from 'react';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
-import { getStakeholders } from '@/lib/api/stakeholders';
+import { getStakeholders, getStakeholderById } from '@/lib/api/stakeholders';
 import { getProjects } from '@/lib/api/projects';
 import { getOpportunities, type Opportunity } from '@/lib/api/opportunities';
 import { Link } from '@/i18n/routing';
 import { Building2, Briefcase, TrendingUp, Users, CheckCircle, ArrowRight } from 'lucide-react';
+import { OrgDashboard } from '@/components/dashboard/OrgDashboard';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,12 +20,37 @@ export default async function DashboardPage() {
 
     const user = session.user as any;
     const role = user?.role || 'public';
+    const organizationId = user?.organizationId;
 
     // Fetch data
     const organizations = await getStakeholders(role);
     const projects = await getProjects(role);
     const opportunities = await getOpportunities();
 
+    // If user is org/stakeholder and has an organization, show org dashboard
+    if ((role === 'org' || role === 'funder') && organizationId) {
+        const org = await getStakeholderById(organizationId, role);
+        if (org) {
+            // Filter projects for this organization
+            const userProjects = projects.filter(p => p.organization_id === organizationId);
+            
+            return (
+                <div className="min-h-screen bg-[#fafafa]">
+                    <div className="max-w-7xl mx-auto px-6 py-8">
+                        <OrgDashboard 
+                            org={org}
+                            userProjects={userProjects}
+                            allProjects={projects}
+                            allOpportunities={opportunities}
+                            userRole={role}
+                        />
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    // Admin view (or fallback for org users without organization)
     // Calculate stats
     const stats = {
         organizations: organizations.length,
