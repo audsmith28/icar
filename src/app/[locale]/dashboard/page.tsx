@@ -35,12 +35,12 @@ export default async function DashboardPage() {
     return (
         <div className="min-h-screen bg-[#fafafa]">
             {/* Hero Header Section */}
-            <div className="bg-gradient-to-br from-[#004d55] to-[#006d77] text-white">
+            <div className="bg-gradient-to-br from-[#004d55] to-[#006d77]">
                 <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-                    <h1 className="text-4xl lg:text-5xl font-bold mb-3">
+                    <h1 className="text-4xl lg:text-5xl font-bold mb-3 text-white">
                         Welcome back, {user?.name || 'User'}
                     </h1>
-                    <p className="text-lg lg:text-xl text-white/90">
+                    <p className="text-lg lg:text-xl text-white">
                         Role: <span className="font-semibold capitalize">{role}</span>
                     </p>
                 </div>
