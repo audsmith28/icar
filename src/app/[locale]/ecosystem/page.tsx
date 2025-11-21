@@ -1,12 +1,13 @@
 import React from 'react';
 import { getStakeholders } from '@/lib/api/stakeholders';
 import { getProjects } from '@/lib/api/projects';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHero } from '@/components/ui/PageHero';
 import { Card } from '@/components/ui/Card';
 import { SimpleBarChart } from '@/components/visualization/SimpleBarChart';
 import { Link } from '@/i18n/routing';
 import { LandscapeMap } from '@/components/landscape/LandscapeMap';
 import { Button } from '@/components/ui/Button';
+import { TrendingUp } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -72,11 +73,15 @@ export default async function EcosystemPage() {
         }));
 
     return (
-        <div className="container py-10">
-            <PageHeader
+        <div className="min-h-screen bg-sea-green-off-white">
+            {/* Page Hero Header */}
+            <PageHero
                 title="ICAR Ecosystem"
                 description="Visualizing the resilience ecosystem across Israel"
+                icon={TrendingUp}
             />
+
+            <div className="container py-10">
 
             {/* Key Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -161,6 +166,7 @@ export default async function EcosystemPage() {
                         </Button>
                     </Link>
                 </div>
+            </div>
             </div>
         </div>
     );

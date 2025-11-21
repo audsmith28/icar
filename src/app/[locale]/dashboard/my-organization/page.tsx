@@ -4,11 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Link } from '@/i18n/routing';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHero } from '@/components/ui/PageHero';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { FileUpload } from '@/components/organizations/FileUpload';
+import { Building2 } from 'lucide-react';
 
 const ORG_TYPES = ['NGO', 'Government', 'Private Sector', 'Academic', 'Community Group', 'Funder', 'Startup'];
 const STATUS_OPTIONS = ['Active', 'Inactive', 'Pending'];
@@ -149,11 +150,14 @@ export default function MyOrganizationPage() {
     }
 
     return (
-        <div className="container py-10">
-            <PageHeader
+        <div className="min-h-screen bg-sea-green-off-white">
+            <PageHero
                 title="My Organization"
                 description="Manage your organization profile"
+                icon={Building2}
+                variant="compact"
             />
+            <div className="container py-10">
 
             {showSuccess && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -346,6 +350,7 @@ export default function MyOrganizationPage() {
                         </Button>
                     </Link>
                 </div>
+            </div>
             </div>
         </div>
     );

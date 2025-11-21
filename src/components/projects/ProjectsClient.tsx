@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHero } from '@/components/ui/PageHero';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -46,28 +46,27 @@ export function ProjectsClient({
     const displayedProjects = activeTab === 'seeking-collaboration' ? opportunities : allProjects;
 
     return (
-        <div className="container py-10">
-            <div className="flex items-center justify-between mb-6">
-                <PageHeader
-                    title="Projects"
-                    description={
-                        activeTab === 'seeking-collaboration'
-                            ? "Projects seeking partners, volunteers, and resources"
-                            : "All projects in the ICAR ecosystem"
-                    }
-                />
-                {canCreateProject && (
-                    <Link href="/projects/new">
-                        <Button variant="primary">
-                            <Plus size={16} className="mr-2" />
-                            Create Project
-                        </Button>
-                    </Link>
-                )}
-            </div>
+        <div className="min-h-screen bg-sea-green-off-white">
+            {/* Page Hero Header */}
+            <PageHero
+                title="Projects"
+                description={
+                    activeTab === 'seeking-collaboration'
+                        ? "Projects seeking partners, volunteers, and resources"
+                        : "All projects in the ICAR ecosystem"
+                }
+                icon={Briefcase}
+                action={canCreateProject ? {
+                    label: "Create Project",
+                    href: "/projects/new",
+                    variant: 'outline'
+                } : undefined}
+            />
 
-            {/* Tabs */}
-            <div className="mb-6 border-b border-slate-200">
+            <div className="container py-10">
+
+                {/* Tabs */}
+                <div className="mb-6 border-b border-slate-200">
                 <div className="flex gap-1">
                     <button
                         onClick={() => setActiveTab('all')}
@@ -225,6 +224,7 @@ export function ProjectsClient({
                     </div>
                 </div>
             )}
+            </div>
         </div>
     );
 }

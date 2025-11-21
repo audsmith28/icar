@@ -64,7 +64,7 @@ export const PublicNavbar = () => {
                                     role="menuitem"
                                     onClick={() => setShowOrganizationsMenu(false)}
                                 >
-                                    <Building2 size={16} className="mr-2" aria-hidden="true" />
+                                    <Building2 size={16} className="mr-2 text-sea-green-darker" aria-hidden="true" />
                                     All Organizations
                                 </Link>
                                 <Link 
@@ -73,7 +73,7 @@ export const PublicNavbar = () => {
                                     role="menuitem"
                                     onClick={() => setShowOrganizationsMenu(false)}
                                 >
-                                    <Briefcase size={16} className="mr-2" aria-hidden="true" />
+                                    <Briefcase size={16} className="mr-2 text-sea-green-darker" aria-hidden="true" />
                                     Projects
                                 </Link>
                             </div>

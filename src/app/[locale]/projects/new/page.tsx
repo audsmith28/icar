@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { Link } from '@/i18n/routing';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHero } from '@/components/ui/PageHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { ArrowLeft, Save } from 'lucide-react';
+import { ArrowLeft, Save, Plus } from 'lucide-react';
 
 const FOCUS_AREAS = [
     'Mental Health',
@@ -97,16 +97,20 @@ export default function NewProjectPage() {
     }
 
     return (
-        <div className="container py-10">
+        <div className="min-h-screen bg-sea-green-off-white">
+            {/* Page Hero Header */}
+            <PageHero
+                title="Create New Project"
+                description="Add a new project or collaboration opportunity to the ICAR platform"
+                icon={Plus}
+                variant="compact"
+            />
+
+            <div className="container max-w-4xl py-10">
                 <Link href="/dashboard/projects" className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-6">
                     <ArrowLeft size={16} />
                     Back to Projects
                 </Link>
-
-            <PageHeader
-                title="Create New Project"
-                description="Add a new project or collaboration opportunity to the ICAR platform"
-            />
 
             {showSuccess && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -284,8 +288,9 @@ export default function NewProjectPage() {
                         </Link>
                     </div>
                 </div>
-            </form>
-        </div>
-    );
-}
+                </form>
+                </div>
+            </div>
+        );
+    }
 

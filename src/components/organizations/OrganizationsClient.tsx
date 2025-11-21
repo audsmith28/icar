@@ -9,6 +9,7 @@ import { Stakeholder } from '@/lib/api/stakeholders';
 import { Building2, MapPin, ArrowRight, Users } from 'lucide-react';
 import { OrgLogo } from './OrgLogo';
 import { NATIONAL_IMPERATIVES } from '@/lib/national-imperatives';
+import { PageHero } from '@/components/ui/PageHero';
 
 interface OrganizationsClientProps {
     organizations: Stakeholder[];
@@ -70,22 +71,12 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
 
     return (
         <div className="min-h-screen bg-sea-green-off-white">
-            {/* Page Header */}
-            <div className="bg-white border-b border-slate-200 shadow-sm">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-sea-green-darker bg-opacity-10 rounded-lg">
-                            <Building2 className="w-6 h-6 text-sea-green-darker" />
-                        </div>
-                        <h1 className="text-3xl font-bold text-slate-900">
-                            Organizations Directory
-                        </h1>
-                    </div>
-                    <p className="text-base text-slate-600 max-w-2xl">
-                        Explore resilience organizations across Israel working to strengthen communities and build a more resilient future.
-                    </p>
-                </div>
-            </div>
+            {/* Page Hero Header */}
+            <PageHero
+                title="Organizations Directory"
+                description="Explore resilience organizations across Israel working to strengthen communities and build a more resilient future."
+                icon={Building2}
+            />
 
             {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

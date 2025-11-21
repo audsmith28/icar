@@ -1,7 +1,7 @@
 import React from 'react';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHero } from '@/components/ui/PageHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -10,7 +10,7 @@ import { getProjects } from '@/lib/api/projects';
 import { hasApprovedClaim } from '@/lib/api/claims';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Building2 } from 'lucide-react';
 import { OrgLogo } from '@/components/organizations/OrgLogo';
 import { ClaimOrgButton } from '@/components/organizations/ClaimOrgButton';
 import { ContactOrganizationButton } from '@/components/organizations/ContactOrganizationButton';
@@ -44,23 +44,25 @@ export default async function OrganizationDetailPage({ params }: { params: Promi
     const canClaim = isOrg && !orgIsClaimed && !userOwnsOrg;
 
     return (
-        <div className="container py-10">
-            <Link href="/organizations" className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-6">
-                <ArrowLeft size={16} />
-                Back to Organizations
-            </Link>
+        <div className="min-h-screen bg-sea-green-off-white">
+            {/* Page Hero Header */}
+            <PageHero
+                title={organization.name}
+                description={`${organization.type} • ${organization.location}`}
+                icon={Building2}
+                variant="compact"
+            />
 
-            <div className="mb-6">
-                <div className="flex items-start gap-6">
+            <div className="container py-10">
+                <Link href="/organizations" className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 mb-6">
+                    <ArrowLeft size={16} />
+                    Back to Organizations
+                </Link>
+
+                {/* Organization Logo */}
+                <div className="mb-6">
                     <OrgLogo orgId={organization.id} orgName={organization.name} size="lg" />
-                    <div className="flex-1">
-                        <PageHeader
-                            title={organization.name}
-                            description={`${organization.type} • ${organization.location}`}
-                        />
-                    </div>
                 </div>
-            </div>
 
             <div className="grid gap-6 md:grid-cols-3">
                 <div className="md:col-span-2 space-y-6">
@@ -253,6 +255,7 @@ export default async function OrganizationDetailPage({ params }: { params: Promi
                         </Card>
                     )}
                 </div>
+            </div>
             </div>
         </div>
     );

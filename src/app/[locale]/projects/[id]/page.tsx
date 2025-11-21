@@ -6,11 +6,13 @@ import { getStakeholderById } from '@/lib/api/stakeholders';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { ArrowLeft, Calendar, MapPin, Users, CheckCircle, Edit } from 'lucide-react';
+import { PageHero } from '@/components/ui/PageHero';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { OrgLogo } from '@/components/organizations/OrgLogo';
 import { ExpressInterestButton } from '@/components/projects/ExpressInterestButton';
+import { Briefcase } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -65,78 +67,74 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
     return (
         <div className="min-h-screen bg-sea-green-off-white">
+            {/* Page Hero Header */}
+            <PageHero
+                title={project.title}
+                description={`${project.organization_name} • ${project.location}`}
+                icon={Briefcase}
+                variant="compact"
+                action={canEdit ? {
+                    label: "Edit Project",
+                    href: `/projects/${id}/edit`,
+                    variant: 'outline'
+                } : undefined}
+            />
+
             <div className="max-w-6xl mx-auto px-6 py-10">
-                {/* Back link and actions */}
-                <div className="flex items-center justify-between mb-6">
-                    <Link 
-                        href="/dashboard/projects" 
-                        className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
-                    >
-                        <ArrowLeft size={16} />
-                        Back to Projects
-                    </Link>
-                    {canEdit && (
-                        <Link href={`/projects/${id}/edit`}>
-                            <Button variant="outline" className="inline-flex items-center gap-2">
-                                <Edit size={16} />
-                                Edit Project
-                            </Button>
-                        </Link>
-                    )}
-                </div>
+                {/* Back link */}
+                <Link 
+                    href="/dashboard/projects" 
+                    className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors mb-6"
+                >
+                    <ArrowLeft size={16} />
+                    Back to Projects
+                </Link>
 
-                {/* Header Section */}
+                {/* Header Section with Status Badge */}
                 <div className="bg-white rounded-xl shadow-sm ring-1 ring-slate-200 p-8 mb-6">
-                    <div className="flex items-start justify-between gap-6 mb-6">
-                        <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-4">
-                                <Badge 
-                                    variant={
-                                        projectData.status === 'Active' ? 'success' : 
-                                        projectData.status === 'Planning' ? 'warning' : 
-                                        'default'
-                                    }
-                                    className="text-sm font-semibold"
-                                >
-                                    {projectData.status}
-                                </Badge>
-                            </div>
-                            <h1 className="text-4xl font-bold text-sea-green-darkest mb-4">
-                                {projectData.title}
-                            </h1>
-                            <div className="flex flex-wrap items-center gap-4 text-slate-600">
-                                <div className="flex items-center gap-2">
-                                    <Users size={18} />
-                                    <span className="font-medium">{projectData.owner}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <MapPin size={18} />
-                                    <span>{projectData.region}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Calendar size={18} />
-                                    <span>
-                                        {formatDate(projectData.dateRange.start)} - {formatDate(projectData.dateRange.end)}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        {ownerOrg && (
-                            <OrgLogo orgId={ownerOrg.id} orgName={ownerOrg.name} size="lg" />
-                        )}
+                    <div className="flex items-center gap-3 mb-4">
+                        <Badge 
+                            variant={
+                                projectData.status === 'Active' ? 'success' : 
+                                projectData.status === 'Planning' ? 'warning' : 
+                                'default'
+                            }
+                            className="text-sm font-semibold"
+                        >
+                            {projectData.status}
+                        </Badge>
                     </div>
-
-                    {/* Themes/Tags */}
-                    {projectData.themes.length > 0 && (
-                        <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-200">
-                            {projectData.themes.map((theme, idx) => (
-                                <Badge key={idx} variant="outline" className="bg-slate-50 border-slate-300 text-slate-700">
-                                    {theme}
-                                </Badge>
-                            ))}
+                    <div className="flex flex-wrap items-center gap-4 text-slate-600">
+                        <div className="flex items-center gap-2">
+                            <Users size={18} />
+                            <span className="font-medium">{projectData.owner}</span>
                         </div>
-                    )}
+                        <div className="flex items-center gap-2">
+                            <MapPin size={18} />
+                            <span>{projectData.region}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Calendar size={18} />
+                            <span>
+                                {formatDate(projectData.dateRange.start)} - {formatDate(projectData.dateRange.end)}
+                            </span>
+                        </div>
+                    </div>
                 </div>
+                {ownerOrg && (
+                    <OrgLogo orgId={ownerOrg.id} orgName={ownerOrg.name} size="lg" />
+                )}
+
+                {/* Themes/Tags */}
+                {projectData.themes.length > 0 && (
+                    <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-200 mb-6">
+                        {projectData.themes.map((theme, idx) => (
+                            <Badge key={idx} variant="outline" className="bg-slate-50 border-slate-300 text-slate-700">
+                                {theme}
+                            </Badge>
+                        ))}
+                    </div>
+                )}
 
                 <div className="grid gap-6 lg:grid-cols-[2fr,1fr]">
                     {/* Main Content */}

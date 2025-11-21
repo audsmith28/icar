@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { Link } from '@/i18n/routing';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHero } from '@/components/ui/PageHero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { ArrowLeft, Save, Trash2 } from 'lucide-react';
+import { ArrowLeft, Save, Trash2, Edit } from 'lucide-react';
 import { Project } from '@/lib/api/projects';
 
 const FOCUS_AREAS = [
@@ -178,16 +178,20 @@ export default function EditProjectPage() {
     }
 
     return (
-        <div className="container py-10">
-            <Link href={`/projects/${projectId}`} className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-6">
-                <ArrowLeft size={16} />
-                Back to Project
-            </Link>
-
-            <PageHeader
-                title="Edit Project"
-                description="Update project information"
+        <div className="min-h-screen bg-sea-green-off-white">
+            {/* Page Hero Header */}
+            <PageHero
+                title={`Edit Project: ${project.title}`}
+                description="Update the details of your project or collaboration opportunity"
+                icon={Edit}
+                variant="compact"
             />
+
+            <div className="container max-w-4xl py-10">
+                <Link href={`/projects/${projectId}`} className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-6">
+                    <ArrowLeft size={16} />
+                    Back to Project Details
+                </Link>
 
             {showSuccess && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -367,6 +371,7 @@ export default function EditProjectPage() {
                     </div>
                 </div>
             </form>
+            </div>
         </div>
     );
 }
