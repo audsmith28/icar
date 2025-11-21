@@ -7,6 +7,7 @@ import "../globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ToastProvider } from '@/components/ui/Toast';
+import { SessionProviderWrapper } from '@/components/providers/SessionProviderWrapper';
 
 export const metadata: Metadata = {
   title: "ICAR Platform Prototype",
@@ -38,15 +39,17 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={locale === 'he' ? 'rtl' : 'ltr'}>
       <body>
-        <ToastProvider>
-          <NextIntlClientProvider messages={messages}>
-            <Navbar />
-            <main style={{ minHeight: 'calc(100vh - 300px)' }}>
-              {children}
-            </main>
-            <Footer />
-          </NextIntlClientProvider>
-        </ToastProvider>
+        <SessionProviderWrapper>
+          <ToastProvider>
+            <NextIntlClientProvider messages={messages}>
+              <Navbar />
+              <main style={{ minHeight: 'calc(100vh - 300px)' }}>
+                {children}
+              </main>
+              <Footer />
+            </NextIntlClientProvider>
+          </ToastProvider>
+        </SessionProviderWrapper>
       </body>
     </html>
   );
