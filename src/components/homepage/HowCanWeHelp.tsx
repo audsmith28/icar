@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useSession } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -12,6 +13,7 @@ import styles from './HowCanWeHelp.module.css';
 
 export function HowCanWeHelp() {
     const { data: session } = useSession();
+    const t = useTranslations('HowCanWeHelp');
     const userRole = (session?.user as any)?.role || 'public';
     const canCreateProject = userRole === 'org' || userRole === 'funder' || userRole === 'admin';
     return (
@@ -39,10 +41,10 @@ export function HowCanWeHelp() {
             <div className="container mx-auto max-w-7xl relative z-10 px-4 lg:px-8">
                 <div className="text-center mb-12">
                     <h2 className="text-sea-green-darkest mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', lineHeight: '120%', fontWeight: 700 }}>
-                        How can we help?
+                        {t('title')}
                     </h2>
                     <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        Whether you're looking for partners, need support, or want to contribute, we have a path for you.
+                        {t('subtitle')}
                     </p>
                 </div>
 
@@ -54,16 +56,16 @@ export function HowCanWeHelp() {
                                 <Users className="w-8 h-8 text-sea-green-darker" />
                             </div>
                             <h3 className="text-lg md:text-xl font-bold text-sea-green-darkest mb-3" style={{ lineHeight: '140%' }}>
-                                Find Partners
+                                {t('findPartners.title')}
                             </h3>
                             <p className="text-sm text-gray-600 mb-4 min-h-[3rem]">
-                                Browse organizations to discover potential collaborators and build strategic partnerships.
+                                {t('findPartners.description')}
                             </p>
                             <Link href="/organizations" className="w-full">
                                 <button 
                                     className={`${styles.homepageButton} ${styles.homepageButtonPrimary} w-full`}
                                 >
-                                    Browse Organizations
+                                    {t('findPartners.button')}
                                     <ArrowRight className="w-4 h-4" />
                                 </button>
                             </Link>
@@ -77,10 +79,10 @@ export function HowCanWeHelp() {
                                 <HandHeart className="w-8 h-8 text-sea-green-darker" />
                             </div>
                             <h3 className="text-lg md:text-xl font-bold text-sea-green-darkest mb-3" style={{ lineHeight: '140%' }}>
-                                Get Help
+                                {t('getHelp.title')}
                             </h3>
                             <p className="text-sm text-gray-600 mb-4 min-h-[3rem]">
-                                Create a project to seek volunteers, funding, partners, or resources for your initiative.
+                                {t('getHelp.description')}
                             </p>
                             {canCreateProject ? (
                                 <Link href="/projects/new" className="w-full">
@@ -88,7 +90,7 @@ export function HowCanWeHelp() {
                                         className={`${styles.homepageButton} ${styles.homepageButtonPrimary} w-full`}
                                     >
                                         <Plus className="w-4 h-4" />
-                                        Create Project
+                                        {t('getHelp.button')}
                                     </button>
                                 </Link>
                             ) : (
@@ -96,7 +98,7 @@ export function HowCanWeHelp() {
                                     <button 
                                         className={`${styles.homepageButton} ${styles.homepageButtonPrimary} w-full`}
                                     >
-                                        Sign In to Create
+                                        {t('getHelp.signInToCreate')}
                                     </button>
                                 </Link>
                             )}
@@ -110,16 +112,16 @@ export function HowCanWeHelp() {
                                 <Search className="w-8 h-8 text-sea-green-darker" />
                             </div>
                             <h3 className="text-lg md:text-xl font-bold text-sea-green-darkest mb-3" style={{ lineHeight: '140%' }}>
-                                Offer Help
+                                {t('offerHelp.title')}
                             </h3>
                             <p className="text-sm text-gray-600 mb-4 min-h-[3rem]">
-                                Browse projects seeking collaboration and find opportunities to contribute your expertise.
+                                {t('offerHelp.description')}
                             </p>
                             <Link href="/projects?tab=seeking-collaboration" className="w-full">
                                 <button 
                                     className={`${styles.homepageButton} ${styles.homepageButtonPrimary} w-full`}
                                 >
-                                    Browse Projects
+                                    {t('offerHelp.button')}
                                     <ArrowRight className="w-4 h-4" />
                                 </button>
                             </Link>
@@ -133,16 +135,16 @@ export function HowCanWeHelp() {
                                 <Map className="w-8 h-8 text-sea-green-darker" />
                             </div>
                             <h3 className="text-lg md:text-xl font-bold text-sea-green-darkest mb-3" style={{ lineHeight: '140%' }}>
-                                Explore Ecosystem
+                                {t('exploreEcosystem.title')}
                             </h3>
                             <p className="text-sm text-gray-600 mb-4 min-h-[3rem]">
-                                Visualize the resilience ecosystem on an interactive map to understand coverage and gaps.
+                                {t('exploreEcosystem.description')}
                             </p>
                             <Link href="/ecosystem" className="w-full">
                                 <button 
                                     className={`${styles.homepageButton} ${styles.homepageButtonPrimary} w-full`}
                                 >
-                                    View Ecosystem
+                                    {t('exploreEcosystem.button')}
                                     <ArrowRight className="w-4 h-4" />
                                 </button>
                             </Link>
@@ -150,31 +152,31 @@ export function HowCanWeHelp() {
                     </Card>
                 </div>
 
-                {/* Additional Help Text */}
-                <div className="mt-12 text-center">
-                    <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-sea-green-off-white rounded-lg border border-sea-green-darker border-opacity-20">
-                        <div className="text-left">
-                            <p className="text-base font-semibold text-sea-green-darkest mb-1">
-                                New to ICAR?
-                            </p>
-                            <p className="text-sm text-gray-600">
-                                Sign in to access collaboration features, or request access to join the platform.
-                            </p>
-                        </div>
-                        <div className="flex gap-3 shrink-0">
-                            <Link href="/auth/signin">
-                                <Button variant="primary" size="sm">
-                                    Sign In
-                                </Button>
-                            </Link>
-                            <Link href="/contact?subject=Request%20Access&message=I%20would%20like%20to%20request%20access%20to%20the%20ICAR%20platform.%20Please%20let%20me%20know%20what%20information%20you%20need%20for%20verification.">
-                                <Button variant="outline" size="sm">
-                                    Request Access
-                                </Button>
-                            </Link>
+                    {/* Additional Help Text */}
+                    <div className="mt-12 text-center">
+                        <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-sea-green-off-white rounded-lg border border-sea-green-darker border-opacity-20">
+                            <div className="text-left">
+                                <p className="text-base font-semibold text-sea-green-darkest mb-1">
+                                    {t('newToICAR.title')}
+                                </p>
+                                <p className="text-sm text-gray-600">
+                                    {t('newToICAR.description')}
+                                </p>
+                            </div>
+                            <div className="flex gap-3 shrink-0">
+                                <Link href="/auth/signin">
+                                    <Button variant="primary" size="sm">
+                                        {t('newToICAR.signIn')}
+                                    </Button>
+                                </Link>
+                                <Link href="/contact?subject=Request%20Access&message=I%20would%20like%20to%20request%20access%20to%20the%20ICAR%20platform.%20Please%20let%20me%20know%20what%20information%20you%20need%20for%20verification.">
+                                    <Button variant="outline" size="sm">
+                                        {t('newToICAR.requestAccess')}
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         </section>
     );

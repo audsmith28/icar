@@ -33,7 +33,9 @@
     },
     "newToICAR": {
       "title": "New to ICAR?",
-      "description": "Sign in to access collaboration features, or request access to join the platform."
+      "description": "Sign in to access collaboration features, or request access to join the platform.",
+      "signIn": "Sign In",
+      "requestAccess": "Request Access"
     }
   },
   "Navigation": {

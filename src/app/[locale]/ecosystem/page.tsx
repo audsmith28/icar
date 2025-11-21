@@ -2,8 +2,7 @@ import React from 'react';
 import { getStakeholders } from '@/lib/api/stakeholders';
 import { getProjects } from '@/lib/api/projects';
 import { PageHero } from '@/components/ui/PageHero';
-import { Card } from '@/components/ui/Card';
-import { SimpleBarChart } from '@/components/visualization/SimpleBarChart';
+import { EcosystemDashboard } from '@/components/visualization/EcosystemDashboard';
 import { Link } from '@/i18n/routing';
 import { LandscapeMap } from '@/components/landscape/LandscapeMap';
 import { Button } from '@/components/ui/Button';
@@ -16,62 +15,6 @@ export default async function EcosystemPage() {
     const organizations = await getStakeholders('public');
     const projects = await getProjects('public');
 
-    // Calculate statistics
-    const focusAreaCounts: Record<string, number> = {};
-    organizations.forEach(org => {
-        org.focus.forEach(area => {
-            focusAreaCounts[area] = (focusAreaCounts[area] || 0) + 1;
-        });
-    });
-
-    const typeCounts: Record<string, number> = {};
-    organizations.forEach(org => {
-        typeCounts[org.type] = (typeCounts[org.type] || 0) + 1;
-    });
-
-    const locationCounts: Record<string, number> = {};
-    organizations.forEach(org => {
-        locationCounts[org.location] = (locationCounts[org.location] || 0) + 1;
-    });
-
-    const statusCounts: Record<string, number> = {};
-    organizations.forEach(org => {
-        statusCounts[org.status] = (statusCounts[org.status] || 0) + 1;
-    });
-
-    const projectStatusCounts: Record<string, number> = {};
-    projects.forEach(project => {
-        projectStatusCounts[project.status] = (projectStatusCounts[project.status] || 0) + 1;
-    });
-
-    // Prepare chart data
-    const focusAreaData = Object.entries(focusAreaCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 8)
-        .map(([label, value]) => ({ label, value }));
-
-    const typeData = Object.entries(typeCounts)
-        .map(([label, value]) => ({ label, value }));
-
-    const locationData = Object.entries(locationCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 6)
-        .map(([label, value]) => ({ label, value }));
-
-    const statusData = Object.entries(statusCounts)
-        .map(([label, value]) => ({
-            label,
-            value,
-            color: label === 'Active' ? '#10b981' : '#f59e0b'
-        }));
-
-    const projectStatusData = Object.entries(projectStatusCounts)
-        .map(([label, value]) => ({
-            label,
-            value,
-            color: label === 'Active' ? '#10b981' : label === 'Planning' ? '#3b82f6' : '#6b7280'
-        }));
-
     return (
         <div className="min-h-screen bg-sea-green-off-white">
             {/* Page Hero Header */}
@@ -82,58 +25,8 @@ export default async function EcosystemPage() {
             />
 
             <div className="container py-10">
-
-            {/* Key Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <Card className="p-6 text-center">
-                    <div className="text-4xl font-bold text-sea-green-darkest">
-                        {organizations.length}
-                    </div>
-                    <div className="text-sm text-gray-600 mt-2">Organizations</div>
-                </Card>
-                <Card className="p-6 text-center">
-                    <div className="text-4xl font-bold text-sea-green-darkest">
-                        {projects.length}
-                    </div>
-                    <div className="text-sm text-gray-600 mt-2">Active Projects</div>
-                </Card>
-                <Card className="p-6 text-center">
-                    <div className="text-4xl font-bold text-sea-green-darkest">
-                        {Object.keys(focusAreaCounts).length}
-                    </div>
-                    <div className="text-sm text-gray-600 mt-2">Focus Areas</div>
-                </Card>
-                <Card className="p-6 text-center">
-                    <div className="text-4xl font-bold text-sea-green-darkest">
-                        {Object.keys(locationCounts).length}
-                    </div>
-                    <div className="text-sm text-gray-600 mt-2">Locations</div>
-                </Card>
-            </div>
-
-            {/* Charts */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <SimpleBarChart
-                    title="Organizations by Focus Area"
-                    data={focusAreaData}
-                />
-                <SimpleBarChart
-                    title="Organizations by Type"
-                    data={typeData}
-                />
-                <SimpleBarChart
-                    title="Organizations by Location"
-                    data={locationData}
-                />
-                <SimpleBarChart
-                    title="Organization Status"
-                    data={statusData}
-                />
-                <SimpleBarChart
-                    title="Project Status"
-                    data={projectStatusData}
-                />
-            </div>
+                {/* Enhanced Dashboard - Guidestar Style */}
+                <EcosystemDashboard organizations={organizations} projects={projects} />
 
             {/* Ecosystem Map - Categorized Organization Logos */}
             <div className="mt-12">
