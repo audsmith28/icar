@@ -10,6 +10,8 @@ import { getProjects } from '@/lib/api/projects';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { ArrowLeft } from 'lucide-react';
+import { OrgLogo } from '@/components/organizations/OrgLogo';
+import { ClaimOrgButton } from '@/components/organizations/ClaimOrgButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,10 +41,17 @@ export default async function OrganizationDetailPage({ params }: { params: Promi
                 Back to Organizations
             </Link>
 
-            <PageHeader
-                title={organization.name}
-                description={`${organization.type} • ${organization.location}`}
-            />
+            <div className="mb-6">
+                <div className="flex items-start gap-6">
+                    <OrgLogo orgId={organization.id} orgName={organization.name} size="lg" />
+                    <div className="flex-1">
+                        <PageHeader
+                            title={organization.name}
+                            description={`${organization.type} • ${organization.location}`}
+                        />
+                    </div>
+                </div>
+            </div>
 
             <div className="grid gap-6 md:grid-cols-3">
                 <div className="md:col-span-2 space-y-6">
@@ -158,19 +167,13 @@ export default async function OrganizationDetailPage({ params }: { params: Promi
                         </Card>
                     )}
 
-                    {/* Claim Organization (mock) */}
-                    {isPublic && (
-                        <Card className="bg-blue-50">
-                            <CardContent className="pt-6">
-                                <p className="text-sm text-gray-700 mb-3">
-                                    Is this your organization?
-                                </p>
-                                <Button variant="outline" className="w-full">
-                                    Claim this Organization
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    )}
+                    {/* Claim Organization */}
+                    <ClaimOrgButton
+                        orgId={organization.id}
+                        orgName={organization.name}
+                        userEmail={session?.user?.email || undefined}
+                        userName={session?.user?.name || undefined}
+                    />
 
                     {/* Sign in CTA for public users */}
                     {isPublic && (

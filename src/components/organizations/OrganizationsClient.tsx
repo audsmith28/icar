@@ -7,6 +7,7 @@ import { Filters } from '@/components/ui/Filters';
 import { Link } from '@/i18n/routing';
 import { Stakeholder } from '@/lib/api/stakeholders';
 import { Building2, MapPin, ArrowRight, Users } from 'lucide-react';
+import { OrgLogo } from './OrgLogo';
 
 interface OrganizationsClientProps {
     organizations: Stakeholder[];
@@ -117,22 +118,25 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                             <Card className="h-full border border-slate-200 hover:border-[#006d77] hover:shadow-xl transition-all duration-200 bg-white">
                                 <div className="p-6">
                                     {/* Card Header */}
-                                    <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-start gap-4 mb-4">
+                                        <OrgLogo orgId={org.id} orgName={org.name} size="md" />
                                         <div className="flex-1 min-w-0">
-                                            <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#006d77] transition-colors mb-1 line-clamp-2">
-                                                {org.name}
-                                            </h3>
+                                            <div className="flex items-start justify-between gap-2 mb-1">
+                                                <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#006d77] transition-colors line-clamp-2">
+                                                    {org.name}
+                                                </h3>
+                                                <Badge
+                                                    variant={org.status === 'Active' ? 'success' : 'default'}
+                                                    className="shrink-0"
+                                                >
+                                                    {org.status}
+                                                </Badge>
+                                            </div>
                                             <div className="flex items-center gap-2 text-xs text-slate-500">
                                                 <Building2 className="w-3.5 h-3.5" />
                                                 <span className="font-medium">{org.type}</span>
                                             </div>
                                         </div>
-                                        <Badge
-                                            variant={org.status === 'Active' ? 'success' : 'default'}
-                                            className="ml-2 shrink-0"
-                                        >
-                                            {org.status}
-                                        </Badge>
                                     </div>
 
                                     {/* Description */}
