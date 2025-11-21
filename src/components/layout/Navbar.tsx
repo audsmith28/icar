@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Link } from '@/i18n/routing';
 import { Search } from 'lucide-react';
@@ -28,9 +30,9 @@ export const Navbar = () => {
                     </div>
                     <ThemeToggle />
                     <LanguageSwitcher />
-                    <Link href="/auth/signin">
-                        <Button size="sm">Login</Button>
-                    </Link>
+                    <Button size="sm" asChild>
+                        <Link href="/auth/signin">Login</Link>
+                    </Button>
                 </div>
             </div>
         </nav>
