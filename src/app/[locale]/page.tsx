@@ -11,9 +11,9 @@ export default async function HomePage() {
 
   return (
     <div className="w-full">
-      {/* Hero Section - Full Teal Background */}
+      {/* Hero Section - Full Viewport Height, Above the Fold */}
       <section 
-        className="w-full text-center py-24 px-4 relative bg-sea-green-darkest"
+        className="w-full min-h-screen flex items-center justify-center text-center px-4 py-16 md:py-24 relative bg-sea-green-darkest"
       >
         {/* Wavy Lines at Top */}
         <WavyLines 
@@ -22,16 +22,16 @@ export default async function HomePage() {
           className="opacity-20"
         />
         
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <h1 className="text-white mb-8 max-w-5xl mx-auto" style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: '120%', fontWeight: 700 }}>
+        <div className="container mx-auto max-w-7xl relative z-10 w-full">
+          <h1 className="text-white mb-6 md:mb-8 max-w-5xl mx-auto" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: '120%', fontWeight: 700 }}>
             {t.rich('title', {
               highlight: (chunks) => <span className="text-orange">{chunks}</span>
             })}
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4">
             {t('subtitle')}
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-3 md:gap-4 justify-center px-4">
             <Link href="/auth/signin">
               <Button variant="primary" size="lg">Sign In</Button>
             </Link>
