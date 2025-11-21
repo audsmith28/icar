@@ -57,7 +57,7 @@ export function Sidebar({ role = 'org' }: SidebarProps) {
                         key={item.href}
                         href={item.href}
                         className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${isActive(item.href)
-                            ? 'bg-[var(--color-off-white-sea-green)] text-[#004d55] font-medium'
+                            ? 'bg-[#f0f9fa] text-[#004d55] font-medium'
                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                             }`}
                     >
