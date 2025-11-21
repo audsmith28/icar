@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { getStakeholderById } from '@/lib/api/stakeholders';
 import { getProjects } from '@/lib/api/projects';
+import { hasApprovedClaim } from '@/lib/api/claims';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import { ArrowLeft } from 'lucide-react';
@@ -32,8 +33,15 @@ export default async function OrganizationDetailPage({ params }: { params: Promi
     const orgProjects = allProjects.filter(p => p.organization_id === id);
 
     const isPublic = userRole === 'public';
+    const isOrg = userRole === 'org';
+    const userOrganizationId = (session?.user as any)?.organizationId;
     const canViewBudget = userRole === 'funder' || userRole === 'admin';
     const canViewCollaboration = userRole === 'org' || userRole === 'funder' || userRole === 'admin';
+    
+    // Check if org is already claimed (has approved claim) or if user already owns it
+    const orgIsClaimed = hasApprovedClaim(id);
+    const userOwnsOrg = userOrganizationId === id;
+    const canClaim = isOrg && !orgIsClaimed && !userOwnsOrg;
 
     return (
         <div className="container py-10">
@@ -194,13 +202,42 @@ export default async function OrganizationDetailPage({ params }: { params: Promi
                         </Card>
                     )}
 
-                    {/* Claim Organization */}
-                    <ClaimOrgButton
-                        orgId={organization.id}
-                        orgName={organization.name}
-                        userEmail={session?.user?.email || undefined}
-                        userName={session?.user?.name || undefined}
-                    />
+                    {/* Claim Organization - Only show for org role, if not already claimed, and user doesn't own it */}
+                    {canClaim && (
+                        <ClaimOrgButton
+                            orgId={organization.id}
+                            orgName={organization.name}
+                            userEmail={session?.user?.email || undefined}
+                            userName={session?.user?.name || undefined}
+                        />
+                    )}
+                    
+                    {/* Already claimed message */}
+                    {orgIsClaimed && !userOwnsOrg && (
+                        <Card className="bg-gray-50">
+                            <CardContent className="pt-6">
+                                <p className="text-sm text-gray-600 text-center">
+                                    This organization has already been claimed.
+                                </p>
+                            </CardContent>
+                        </Card>
+                    )}
+                    
+                    {/* User owns this org message */}
+                    {userOwnsOrg && (
+                        <Card className="bg-green-50 border-green-200">
+                            <CardContent className="pt-6">
+                                <p className="text-sm text-green-800 text-center font-medium">
+                                    ✓ You own this organization
+                                </p>
+                                <Link href="/dashboard/my-organization">
+                                    <Button variant="outline" className="w-full mt-3">
+                                        Manage Profile
+                                    </Button>
+                                </Link>
+                            </CardContent>
+                        </Card>
+                    )}
 
                     {/* Sign in CTA for public users */}
                     {isPublic && (

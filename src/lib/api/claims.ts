@@ -91,3 +91,22 @@ export function updateClaimStatus(
     return getClaimById(id);
 }
 
+/**
+ * Check if an organization has an approved claim
+ */
+export function hasApprovedClaim(organizationId: string): boolean {
+    const db = getDb();
+    const stmt = db.prepare('SELECT COUNT(*) as count FROM organization_claims WHERE organization_id = ? AND status = ?');
+    const result = stmt.get(organizationId, 'approved') as { count: number };
+    return result.count > 0;
+}
+
+/**
+ * Get approved claim for an organization
+ */
+export function getApprovedClaim(organizationId: string): OrganizationClaim | undefined {
+    const db = getDb();
+    const stmt = db.prepare('SELECT * FROM organization_claims WHERE organization_id = ? AND status = ? ORDER BY reviewed_date DESC LIMIT 1');
+    return stmt.get(organizationId, 'approved') as OrganizationClaim | undefined;
+}
+

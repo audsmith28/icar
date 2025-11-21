@@ -122,6 +122,22 @@ export function initDb() {
     )
   `);
 
+  // Edit History Table (for tiered moderation)
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS edit_history (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      entity_type TEXT NOT NULL, -- 'stakeholder' or 'project'
+      entity_id TEXT NOT NULL,
+      edit_date TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'pending', -- 'pending', 'approved', 'rejected'
+      edit_type TEXT NOT NULL, -- 'minor' or 'major'
+      changes_summary TEXT, -- JSON of what changed
+      reviewed_by TEXT,
+      reviewed_date TEXT
+    )
+  `);
+
   // Seed Data if empty
   const stmt = db.prepare('SELECT count(*) as count FROM stakeholders');
   const result = stmt.get() as { count: number };

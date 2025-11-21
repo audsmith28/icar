@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { getStakeholderById, updateStakeholder } from '@/lib/api/stakeholders';
+import { getEditType, shouldAutoApprove, createEditHistory } from '@/lib/api/moderation';
 
 export async function GET(
     request: NextRequest,
@@ -50,13 +51,48 @@ export async function PUT(
         }
 
         const body = await request.json();
-        const stakeholder = updateStakeholder(id, body, userRole);
-        
-        if (!stakeholder) {
-            return NextResponse.json({ error: 'Failed to update stakeholder' }, { status: 500 });
+        const userId = (session.user as any)?.id;
+
+        // Admin: Always direct publish (no moderation)
+        if (userRole === 'admin') {
+            const stakeholder = updateStakeholder(id, body, userRole);
+            if (!stakeholder) {
+                return NextResponse.json({ error: 'Failed to update stakeholder' }, { status: 500 });
+            }
+            return NextResponse.json(stakeholder);
         }
-        
-        return NextResponse.json(stakeholder);
+
+        // Org/Funder: Check if auto-approve (trusted user + minor edit)
+        const editType = getEditType('stakeholder', body, existing);
+        const autoApprove = userId && shouldAutoApprove(userId, editType);
+
+        if (autoApprove) {
+            // Trusted user with minor edit: Direct publish
+            const stakeholder = updateStakeholder(id, body, userRole);
+            if (!stakeholder) {
+                return NextResponse.json({ error: 'Failed to update stakeholder' }, { status: 500 });
+            }
+            
+            // Record the edit for history (approved immediately)
+            if (userId) {
+                createEditHistory(userId, 'stakeholder', id, editType, body, 'approved');
+            }
+            
+            return NextResponse.json(stakeholder);
+        } else {
+            // New user or major edit: Create moderation record (don't update yet)
+            if (userId) {
+                createEditHistory(userId, 'stakeholder', id, editType, body, 'pending');
+            }
+            
+            // Return pending status (changes not applied yet)
+            return NextResponse.json({
+                message: 'Edit submitted for moderation. Your changes will be reviewed before being published.',
+                status: 'pending',
+                editType,
+                note: 'For new users, all edits require moderation. After 3 approved edits, minor changes will be published immediately.'
+            }, { status: 202 }); // 202 Accepted
+        }
     } catch (error) {
         console.error('Error updating stakeholder:', error);
         return NextResponse.json({ error: 'Failed to update stakeholder' }, { status: 500 });
