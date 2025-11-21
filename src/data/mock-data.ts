@@ -1,7 +1,7 @@
 export const MOCK_USERS = [
-    { id: 'u1', name: 'Admin User', email: 'admin@icar.co.il', role: 'admin', avatar: 'https://placehold.co/150' },
-    { id: 'u2', name: 'Sarah Cohen', email: 'sarah@example.com', role: 'user', avatar: 'https://placehold.co/150' },
-    { id: 'u3', name: 'David Levy', email: 'david@example.com', role: 'user', avatar: 'https://placehold.co/150' },
+    { id: 'u1', name: 'Admin User', email: 'admin@icar.co.il', role: 'admin' as 'admin' | 'user', avatar: 'https://placehold.co/150' },
+    { id: 'u2', name: 'Sarah Cohen', email: 'sarah@example.com', role: 'user' as 'admin' | 'user', avatar: 'https://placehold.co/150' },
+    { id: 'u3', name: 'David Levy', email: 'david@example.com', role: 'user' as 'admin' | 'user', avatar: 'https://placehold.co/150' },
 ];
 
 export const MOCK_STAKEHOLDERS = [

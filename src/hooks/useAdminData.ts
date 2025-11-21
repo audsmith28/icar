@@ -13,7 +13,7 @@ export interface User {
 }
 
 export function useUsers() {
-  const [users, setUsers] = useState<User[]>(MOCK_USERS);
+  const [users, setUsers] = useState<User[]>(MOCK_USERS as User[]);
 
   const createUser = useCallback((userData: Partial<User>) => {
     const newUser: User = {

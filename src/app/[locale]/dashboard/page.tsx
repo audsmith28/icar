@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
 import { getStakeholders } from '@/lib/api/stakeholders';
 import { getProjects } from '@/lib/api/projects';
-import { getOpportunities } from '@/lib/api/opportunities';
+import { getOpportunities, type Opportunity } from '@/lib/api/opportunities';
 import { Link } from '@/i18n/routing';
 import { Building2, Briefcase, TrendingUp, Users, CheckCircle, ArrowRight } from 'lucide-react';
 
@@ -29,7 +29,7 @@ export default async function DashboardPage() {
     const stats = {
         organizations: organizations.length,
         projects: projects.length,
-        opportunities: opportunities.filter((o: any) => o.status === 'Open').length,
+        opportunities: opportunities.filter((o: Opportunity) => o.status === 'Open').length,
     };
 
     return (
