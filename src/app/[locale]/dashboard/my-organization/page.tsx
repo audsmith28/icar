@@ -167,7 +167,7 @@ export default function MyOrganizationPage() {
                 </div>
             )}
 
-            <div className="max-w-3xl">
+            <div className="max-w-4xl">
                 <Card className="p-6 mb-6">
                     <h3 className="text-lg font-semibold mb-4">Basic Information</h3>
 
@@ -180,7 +180,7 @@ export default function MyOrganizationPage() {
                                 type="text"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sea-green-darker"
                             />
                         </div>
 
@@ -192,7 +192,7 @@ export default function MyOrganizationPage() {
                                 <select
                                     value={formData.type}
                                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sea-green-darker"
                                 >
                                     {ORG_TYPES.map(type => (
                                         <option key={type} value={type}>{type}</option>
@@ -208,7 +208,7 @@ export default function MyOrganizationPage() {
                                     type="text"
                                     value={formData.location}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sea-green-darker"
                                 />
                             </div>
                         </div>
@@ -221,7 +221,7 @@ export default function MyOrganizationPage() {
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                                 rows={4}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sea-green-darker"
                             />
                         </div>
 
@@ -233,7 +233,7 @@ export default function MyOrganizationPage() {
                                 type="email"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#02808b]"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sea-green-darker"
                             />
                         </div>
                     </div>

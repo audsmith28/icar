@@ -17,7 +17,7 @@ export function LandscapeCategory({ category, organizations }: LandscapeCategory
     return (
         <div className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-                <h3 className="text-2xl font-bold text-[#004d57]">
+                <h3 className="text-2xl font-bold text-sea-green-darkest">
                     {category}
                 </h3>
                 <span className="text-sm text-gray-500 font-medium">

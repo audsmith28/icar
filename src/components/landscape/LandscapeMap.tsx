@@ -60,7 +60,7 @@ export function LandscapeMap({ organizations }: LandscapeMapProps) {
                                 onClick={() => setGroupingType(option.value)}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                                     groupingType === option.value
-                                        ? 'bg-[#02808b] text-white shadow-md'
+                                        ? 'bg-sea-green-darker text-white shadow-md'
                                         : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                                 }`}
                             >
@@ -92,13 +92,13 @@ export function LandscapeMap({ organizations }: LandscapeMapProps) {
             )}
 
             {/* Summary Stats */}
-            <div className="mt-8 p-6 bg-[#f0f9fa] rounded-lg">
+            <div className="mt-8 p-6 bg-sea-green-off-white rounded-lg">
                 <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
                     <div>
-                        <span className="font-semibold text-[#004d57]">{organizations.length}</span> total organizations
+                        <span className="font-semibold text-sea-green-darkest">{organizations.length}</span> total organizations
                     </div>
                     <div>
-                        <span className="font-semibold text-[#004d57]">{sortedCategories.length}</span> categories
+                        <span className="font-semibold text-sea-green-darkest">{sortedCategories.length}</span> categories
                     </div>
                     <div className="text-xs text-gray-500">
                         Click any logo or "View All" to explore organizations

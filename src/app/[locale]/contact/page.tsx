@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
@@ -11,6 +12,7 @@ import { useToast } from '@/components/ui/Toast';
 
 export default function ContactPage() {
     const { showToast } = useToast();
+    const searchParams = useSearchParams();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -18,6 +20,19 @@ export default function ContactPage() {
         subject: '',
         message: '',
     });
+
+    // Pre-fill form from URL parameters (for "Request Access" link)
+    useEffect(() => {
+        const subject = searchParams?.get('subject');
+        const message = searchParams?.get('message');
+        if (subject || message) {
+            setFormData(prev => ({
+                ...prev,
+                subject: subject ? decodeURIComponent(subject) : prev.subject,
+                message: message ? decodeURIComponent(message) : prev.message,
+            }));
+        }
+    }, [searchParams]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

@@ -66,7 +66,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-semibold text-[#004d57] mb-2 group-hover:text-[#02808b] transition-colors line-clamp-2">
+                <h3 className="text-lg font-semibold text-sea-green-darkest mb-2 group-hover:text-sea-green-darker transition-colors line-clamp-2">
                     {resource.title}
                 </h3>
 
@@ -82,11 +82,11 @@ export function ResourceCard({ resource }: ResourceCardProps) {
 
                 {/* View Button */}
                 <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-sm font-medium text-[#02808b] group-hover:text-[#004d57] transition-colors">
+                    <span className="text-sm font-medium text-sea-green-darker group-hover:text-sea-green-darkest transition-colors">
                         {resource.url && resource.url !== '#' ? 'View Resource' : 'Coming Soon'}
                     </span>
                     {resource.url && resource.url !== '#' ? (
-                        <ExternalLink className="w-4 h-4 text-[#02808b] group-hover:translate-x-1 transition-transform" />
+                        <ExternalLink className="w-4 h-4 text-sea-green-darker group-hover:translate-x-1 transition-transform" />
                     ) : (
                         <ArrowRight className="w-4 h-4 text-gray-400" />
                     )}

@@ -69,13 +69,13 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
     const hasActiveFilters = selectedType || selectedFocus.length > 0 || selectedLocation.length > 0 || selectedStatus || selectedNationalImperative.length > 0;
 
     return (
-        <div className="min-h-screen" style={{ backgroundColor: '#f0f9fa' }}>
+        <div className="min-h-screen bg-sea-green-off-white">
             {/* Page Header */}
             <div className="bg-white border-b border-slate-200 shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-[#02808b] bg-opacity-10 rounded-lg">
-                            <Building2 className="w-6 h-6 text-[#02808b]" />
+                        <div className="p-2 bg-sea-green-darker bg-opacity-10 rounded-lg">
+                            <Building2 className="w-6 h-6 text-sea-green-darker" />
                         </div>
                         <h1 className="text-3xl font-bold text-slate-900">
                             Organizations Directory
@@ -130,14 +130,14 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-2">
                     {filteredOrganizations.map((org) => (
                         <Link key={org.id} href={`/organizations/${org.id}`} className="group">
-                            <Card className="h-full border border-slate-200 hover:border-[#02808b] hover:shadow-xl transition-all duration-200 bg-white shadow-md">
+                            <Card className="h-full border border-slate-200 hover:border-sea-green-darker hover:shadow-xl transition-all duration-200 bg-white shadow-md">
                                 <div className="p-6">
                                     {/* Card Header */}
                                     <div className="flex items-start gap-4 mb-4">
                                         <OrgLogo orgId={org.id} orgName={org.name} size="md" />
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-start justify-between gap-2 mb-1">
-                                                <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#02808b] transition-colors line-clamp-2">
+                                                <h3 className="text-lg font-semibold text-slate-900 group-hover:text-sea-green-darker transition-colors line-clamp-2">
                                                     {org.name}
                                                 </h3>
                                                 <Badge
@@ -198,10 +198,10 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
 
                                     {/* View Profile CTA */}
                                     <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                                        <span className="text-sm font-medium text-[#02808b] group-hover:text-[#004d57] transition-colors">
+                                        <span className="text-sm font-medium text-sea-green-darker group-hover:text-sea-green-darkest transition-colors">
                                             View Profile
                                         </span>
-                                        <ArrowRight className="w-4 h-4 text-[#02808b] group-hover:translate-x-1 transition-transform" />
+                                        <ArrowRight className="w-4 h-4 text-sea-green-darker group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
                             </Card>
@@ -223,7 +223,7 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                                 </p>
                                 <button
                                     onClick={clearFilters}
-                                    className="px-6 py-2.5 bg-[#02808b] text-white rounded-lg hover:bg-[#004d57] transition-colors font-medium"
+                                    className="px-6 py-2.5 bg-sea-green-darker text-white rounded-lg hover:bg-sea-green-darkest transition-colors font-medium"
                                 >
                                     Clear all filters
                                 </button>

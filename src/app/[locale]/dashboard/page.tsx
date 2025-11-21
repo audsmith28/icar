@@ -36,7 +36,7 @@ export default async function DashboardPage() {
             const userProjects = projects.filter(p => p.organization_id === organizationId);
             
             return (
-                <div className="min-h-screen bg-[#fafafa]">
+                <div className="min-h-screen bg-sea-green-off-white">
                     <div className="max-w-7xl mx-auto px-6 py-8">
                         <OrgDashboard 
                             org={org}
@@ -60,9 +60,9 @@ export default async function DashboardPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#fafafa]">
+        <div className="min-h-screen bg-sea-green-off-white">
             {/* Hero Header Section */}
-            <div className="bg-gradient-to-br from-[#004d57] to-[#02808b]">
+            <div className="bg-gradient-to-br from-sea-green-darkest to-sea-green-darker">
                 <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
                     <h1 className="font-bold mb-4 text-white" style={{ fontSize: 'clamp(2.25rem, 5vw, 3rem)', lineHeight: '120%' }}>
                         Welcome back, {user?.name || 'User'}
@@ -79,11 +79,11 @@ export default async function DashboardPage() {
                     {/* Organizations Stat Card */}
                     <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow">
                         <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 bg-[#e8f4f5] rounded-lg">
-                                <Building2 className="w-6 h-6 text-[#02808b]" />
+                            <div className="p-3 bg-sea-green-off-white rounded-lg">
+                                <Building2 className="w-6 h-6 text-sea-green-darker" />
                             </div>
                         </div>
-                        <div className="text-4xl font-bold text-[#004d57] mb-1">
+                        <div className="text-4xl font-bold text-sea-green-darkest mb-1">
                             {stats.organizations}
                         </div>
                         <div className="text-sm font-medium text-gray-600">
@@ -94,11 +94,11 @@ export default async function DashboardPage() {
                     {/* Projects Stat Card */}
                     <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow">
                         <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 bg-[#fff4f0] rounded-lg">
-                                <TrendingUp className="w-6 h-6 text-[#d95222]" />
+                            <div className="p-3 bg-orange-light rounded-lg">
+                                <TrendingUp className="w-6 h-6 text-orange" />
                             </div>
                         </div>
-                        <div className="text-4xl font-bold text-[#004d57] mb-1">
+                        <div className="text-4xl font-bold text-sea-green-darkest mb-1">
                             {stats.projects}
                         </div>
                         <div className="text-sm font-medium text-gray-600">
@@ -109,11 +109,11 @@ export default async function DashboardPage() {
                         {/* Projects Stat Card */}
                         <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 hover:shadow-lg transition-shadow">
                             <div className="flex items-center justify-between mb-4">
-                                <div className="p-3 bg-[#fff4f0] rounded-lg">
-                                    <Briefcase className="w-6 h-6 text-[#d95222]" />
+                                <div className="p-3 bg-orange-light rounded-lg">
+                                    <Briefcase className="w-6 h-6 text-orange" />
                                 </div>
                             </div>
-                            <div className="text-4xl font-bold text-[#004d57] mb-1">
+                            <div className="text-4xl font-bold text-sea-green-darkest mb-1">
                                 {stats.opportunities}
                             </div>
                             <div className="text-sm font-medium text-gray-600">
@@ -132,10 +132,10 @@ export default async function DashboardPage() {
                             <div className="flex flex-col lg:flex-row items-start gap-6">
                                 <div className="flex-1">
                                     <div className="flex items-center gap-3 mb-4">
-                                        <div className="p-3 bg-[#e8f4f5] rounded-lg">
-                                            <Building2 className="w-6 h-6 text-[#02808b]" />
+                                        <div className="p-3 bg-sea-green-off-white rounded-lg">
+                                            <Building2 className="w-6 h-6 text-sea-green-darker" />
                                         </div>
-                                        <h2 className="text-2xl lg:text-3xl font-bold text-[#004d57]">
+                                        <h2 className="text-2xl lg:text-3xl font-bold text-sea-green-darkest">
                                             Organizations Directory
                                         </h2>
                                     </div>
@@ -149,8 +149,8 @@ export default async function DashboardPage() {
                                         </Button>
                                     </Link>
                                 </div>
-                                <div className="hidden lg:block p-4 bg-[#f0f9fa] rounded-lg">
-                                    <Building2 className="w-12 h-12 text-[#02808b]" />
+                                <div className="hidden lg:block p-4 bg-sea-green-off-white rounded-lg">
+                                    <Building2 className="w-12 h-12 text-sea-green-darker" />
                                 </div>
                             </div>
                         </div>
@@ -162,10 +162,10 @@ export default async function DashboardPage() {
                                 <div className="flex flex-col lg:flex-row items-start gap-6">
                                     <div className="flex-1">
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="p-3 bg-[#fff4f0] rounded-lg">
-                                                <Briefcase className="w-6 h-6 text-[#d95222]" />
+                                            <div className="p-3 bg-orange-light rounded-lg">
+                                                <Briefcase className="w-6 h-6 text-orange" />
                                             </div>
-                                            <h2 className="text-2xl lg:text-3xl font-bold text-[#004d57]">
+                                            <h2 className="text-2xl lg:text-3xl font-bold text-sea-green-darkest">
                                                 Projects
                                             </h2>
                                         </div>
@@ -179,8 +179,8 @@ export default async function DashboardPage() {
                                             </Button>
                                         </Link>
                                     </div>
-                                    <div className="hidden lg:block p-4 bg-[#fff4f0] rounded-lg">
-                                        <Briefcase className="w-12 h-12 text-[#d95222]" />
+                                    <div className="hidden lg:block p-4 bg-orange-light rounded-lg">
+                                        <Briefcase className="w-12 h-12 text-orange" />
                                     </div>
                                 </div>
                             </div>
@@ -192,10 +192,10 @@ export default async function DashboardPage() {
                                 <div className="flex flex-col lg:flex-row items-start gap-6">
                                     <div className="flex-1">
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="p-3 bg-[#e8f4f5] rounded-lg">
-                                                <TrendingUp className="w-6 h-6 text-[#02808b]" />
+                                            <div className="p-3 bg-sea-green-off-white rounded-lg">
+                                                <TrendingUp className="w-6 h-6 text-sea-green-darker" />
                                             </div>
-                                            <h2 className="text-2xl lg:text-3xl font-bold text-[#004d57]">
+                                            <h2 className="text-2xl lg:text-3xl font-bold text-sea-green-darkest">
                                                 Ecosystem
                                             </h2>
                                         </div>
@@ -209,8 +209,8 @@ export default async function DashboardPage() {
                                             </Button>
                                         </Link>
                                 </div>
-                                <div className="hidden lg:block p-4 bg-[#e8f4f5] rounded-lg">
-                                    <TrendingUp className="w-12 h-12 text-[#02808b]" />
+                                <div className="hidden lg:block p-4 bg-sea-green-off-white rounded-lg">
+                                    <TrendingUp className="w-12 h-12 text-sea-green-darker" />
                                 </div>
                             </div>
                         </div>
@@ -218,7 +218,7 @@ export default async function DashboardPage() {
 
                     {/* Admin Claims Card (Admin only) */}
                     {role === 'admin' && (
-                        <div className="bg-gradient-to-br from-[#004d57] to-[#02808b] rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <div className="bg-gradient-to-br from-sea-green-darkest to-sea-green-darker rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                             <div className="p-8 text-white">
                                 <div className="flex flex-col lg:flex-row items-start gap-6">
                                     <div className="flex-1">
@@ -250,7 +250,7 @@ export default async function DashboardPage() {
 
                     {/* My Organization Card (Org role only) */}
                     {role === 'org' && (
-                        <div className="bg-gradient-to-br from-[#004d57] to-[#02808b] rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <div className="bg-gradient-to-br from-sea-green-darkest to-sea-green-darker rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                             <div className="p-8 text-white">
                                 <div className="flex flex-col lg:flex-row items-start gap-6">
                                     <div className="flex-1">

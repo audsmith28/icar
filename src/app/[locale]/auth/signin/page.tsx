@@ -20,7 +20,7 @@ export default function SignInPage() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="flex items-center justify-center min-h-screen bg-sea-green-off-white">
             <Card className="w-full max-w-md">
                 <CardHeader className="text-center">
                     <CardTitle>Sign In to ICAR</CardTitle>

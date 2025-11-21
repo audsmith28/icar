@@ -99,10 +99,10 @@ export function SearchResultsClient({
             {/* Search Header */}
             <div className="mb-8">
                 <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-[#02808b] bg-opacity-10 rounded-lg">
-                        <Search className="w-6 h-6 text-[#02808b]" />
+                    <div className="p-2 bg-sea-green-darker bg-opacity-10 rounded-lg">
+                        <Search className="w-6 h-6 text-sea-green-darker" />
                     </div>
-                    <h1 className="text-3xl font-bold text-[#004d57]">
+                    <h1 className="text-3xl font-bold text-sea-green-darkest">
                         Search Results
                     </h1>
                 </div>
@@ -148,7 +148,7 @@ export function SearchResultsClient({
                             onClick={() => handleTypeChange('all')}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                 searchType === 'all'
-                                    ? 'bg-[#02808b] text-white'
+                                    ? 'bg-sea-green-darker text-white'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
                         >
@@ -158,7 +158,7 @@ export function SearchResultsClient({
                             onClick={() => handleTypeChange('orgs')}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                 searchType === 'orgs'
-                                    ? 'bg-[#02808b] text-white'
+                                    ? 'bg-sea-green-darker text-white'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
                         >
@@ -168,7 +168,7 @@ export function SearchResultsClient({
                             onClick={() => handleTypeChange('projects')}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                 searchType === 'projects'
-                                    ? 'bg-[#02808b] text-white'
+                                    ? 'bg-sea-green-darker text-white'
                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
                         >
@@ -212,8 +212,8 @@ export function SearchResultsClient({
                     {(searchType === 'all' || searchType === 'orgs') && results.organizations.length > 0 && (
                         <div>
                             <div className="flex items-center gap-2 mb-4">
-                                <Building2 className="w-5 h-5 text-[#02808b]" />
-                                <h2 className="text-xl font-semibold text-[#004d57]">
+                                <Building2 className="w-5 h-5 text-sea-green-darker" />
+                                <h2 className="text-xl font-semibold text-sea-green-darkest">
                                     Organizations ({results.organizations.length})
                                 </h2>
                             </div>
@@ -225,7 +225,7 @@ export function SearchResultsClient({
                                                 <div className="flex items-start gap-4 mb-3">
                                                     <OrgLogo orgId={org.id} orgName={org.name} size="md" />
                                                     <div className="flex-1 min-w-0">
-                                                        <h3 className="text-lg font-semibold text-[#004d57] mb-1 line-clamp-2">
+                                                        <h3 className="text-lg font-semibold text-sea-green-darkest mb-1 line-clamp-2">
                                                             {org.name}
                                                         </h3>
                                                         <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -261,7 +261,7 @@ export function SearchResultsClient({
                         <div>
                             <div className="flex items-center gap-2 mb-4">
                                 <Briefcase className="w-5 h-5 text-[#d95222]" />
-                                <h2 className="text-xl font-semibold text-[#004d57]">
+                                <h2 className="text-xl font-semibold text-sea-green-darkest">
                                     Projects ({results.projects.length})
                                 </h2>
                             </div>
@@ -272,13 +272,13 @@ export function SearchResultsClient({
                                             <div className="p-6">
                                                 <div className="flex items-start justify-between mb-3">
                                                     <div className="flex-1">
-                                                        <h3 className="text-lg font-semibold text-[#004d57] mb-1 line-clamp-2">
+                                                        <h3 className="text-lg font-semibold text-sea-green-darkest mb-1 line-clamp-2">
                                                             {project.title}
                                                         </h3>
                                                         <Link
                                                             href={`/organizations/${project.organization_id}`}
                                                             onClick={(e) => e.stopPropagation()}
-                                                            className="text-sm text-[#02808b] hover:underline"
+                                                            className="text-sm text-sea-green-darker hover:underline"
                                                         >
                                                             {project.organization_name}
                                                         </Link>

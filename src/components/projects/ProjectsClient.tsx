@@ -73,7 +73,7 @@ export function ProjectsClient({
                         onClick={() => setActiveTab('all')}
                         className={`px-6 py-3 font-medium text-sm transition-colors border-b-2 ${
                             activeTab === 'all'
-                                ? 'border-[#02808b] text-[#02808b]'
+                                ? 'border-sea-green-darker text-sea-green-darker'
                                 : 'border-transparent text-slate-600 hover:text-slate-900'
                         }`}
                     >
@@ -100,7 +100,7 @@ export function ProjectsClient({
 
             {/* Info Banner */}
             {activeTab === 'seeking-collaboration' && (
-                <div className="mb-6 p-4 bg-[#f0f9fa] border border-[#02808b] border-opacity-20 rounded-lg">
+                <div className="mb-6 p-4 bg-sea-green-off-white border border-sea-green-darker border-opacity-20 rounded-lg">
                     <p className="text-sm text-slate-700">
                         {canViewCollaboration
                             ? `Showing ${opportunities.length} projects that are seeking partners, volunteers, or resources`
@@ -117,13 +117,13 @@ export function ProjectsClient({
                             <div className="p-6">
                                 <div className="flex items-start justify-between mb-3">
                                     <div className="flex-1">
-                                        <h3 className="text-lg font-semibold text-[#004d57] mb-1 hover:text-[#02808b] transition-colors">
+                                        <h3 className="text-lg font-semibold text-sea-green-darkest mb-1 hover:text-sea-green-darker transition-colors">
                                             {project.title}
                                         </h3>
                                         <Link
                                             href={`/organizations/${project.organization_id}`}
                                             onClick={(e) => e.stopPropagation()}
-                                            className="text-sm text-[#02808b] hover:underline"
+                                            className="text-sm text-sea-green-darker hover:underline"
                                         >
                                             {project.organization_name}
                                         </Link>
@@ -156,7 +156,7 @@ export function ProjectsClient({
 
                                 {/* Role-gated: Collaboration Needs */}
                                 {canViewCollaboration && project.collaboration_needs && (
-                                    <div className="mt-4 pt-4 border-t bg-[#f0f9fa] -m-6 mt-4 p-4 rounded-b-lg">
+                                    <div className="mt-4 pt-4 border-t bg-sea-green-off-white -m-6 mt-4 p-4 rounded-b-lg">
                                         <p className="text-xs font-medium text-gray-700 mb-1">Collaboration Needs:</p>
                                         <p className="text-sm text-gray-800 line-clamp-2">{project.collaboration_needs}</p>
                                     </div>
@@ -168,7 +168,7 @@ export function ProjectsClient({
                                         <Link 
                                             href="/auth/signin" 
                                             onClick={(e) => e.stopPropagation()}
-                                            className="text-sm text-[#02808b] hover:underline"
+                                            className="text-sm text-sea-green-darker hover:underline"
                                         >
                                             Sign in to see collaboration details →
                                         </Link>

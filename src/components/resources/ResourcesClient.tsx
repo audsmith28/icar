@@ -104,7 +104,7 @@ export function ResourcesClient({ resources }: ResourcesClientProps) {
                             onClick={() => setSelectedCategory(category.value)}
                             className={`px-4 py-2 font-medium text-sm transition-colors border-b-2 ${
                                 selectedCategory === category.value
-                                    ? 'border-[#02808b] text-[#02808b]'
+                                    ? 'border-sea-green-darker text-sea-green-darker'
                                     : 'border-transparent text-gray-600 hover:text-gray-900'
                             }`}
                         >

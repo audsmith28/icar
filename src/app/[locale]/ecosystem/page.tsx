@@ -81,25 +81,25 @@ export default async function EcosystemPage() {
             {/* Key Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <Card className="p-6 text-center">
-                    <div className="text-4xl font-bold text-[var(--color-sea-green-darkest)]">
+                    <div className="text-4xl font-bold text-sea-green-darkest">
                         {organizations.length}
                     </div>
                     <div className="text-sm text-gray-600 mt-2">Organizations</div>
                 </Card>
                 <Card className="p-6 text-center">
-                    <div className="text-4xl font-bold text-[var(--color-sea-green-darkest)]">
+                    <div className="text-4xl font-bold text-sea-green-darkest">
                         {projects.length}
                     </div>
                     <div className="text-sm text-gray-600 mt-2">Active Projects</div>
                 </Card>
                 <Card className="p-6 text-center">
-                    <div className="text-4xl font-bold text-[var(--color-sea-green-darkest)]">
+                    <div className="text-4xl font-bold text-sea-green-darkest">
                         {Object.keys(focusAreaCounts).length}
                     </div>
                     <div className="text-sm text-gray-600 mt-2">Focus Areas</div>
                 </Card>
                 <Card className="p-6 text-center">
-                    <div className="text-4xl font-bold text-[var(--color-sea-green-darkest)]">
+                    <div className="text-4xl font-bold text-sea-green-darkest">
                         {Object.keys(locationCounts).length}
                     </div>
                     <div className="text-sm text-gray-600 mt-2">Locations</div>
@@ -132,7 +132,7 @@ export default async function EcosystemPage() {
 
             {/* Ecosystem Map - Categorized Organization Logos */}
             <div className="mt-12">
-                <h2 className="text-2xl font-bold text-[var(--color-sea-green-darkest)] mb-6">
+                <h2 className="text-2xl font-bold text-sea-green-darkest mb-6">
                     Ecosystem Map
                 </h2>
                 <p className="text-gray-600 mb-6 max-w-3xl">
@@ -142,8 +142,8 @@ export default async function EcosystemPage() {
             </div>
 
             {/* CTA */}
-            <div className="mt-12 p-8 bg-[var(--color-off-white-sea-green)] rounded-lg text-center">
-                <h3 className="text-xl font-semibold text-[var(--color-sea-green-darkest)] mb-3">
+            <div className="mt-12 p-8 bg-sea-green-off-white rounded-lg text-center">
+                <h3 className="text-xl font-semibold text-sea-green-darkest mb-3">
                     Join the ICAR Ecosystem
                 </h3>
                 <p className="text-gray-700 mb-4">

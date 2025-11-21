@@ -88,7 +88,7 @@ export function LandscapeQuadrant({
                         <CategoryIcon />
                     </div>
                     <div>
-                        <h3 className="text-lg font-bold text-[#004d57] line-clamp-1">
+                        <h3 className="text-lg font-bold text-sea-green-darkest line-clamp-1">
                             {category}
                         </h3>
                         <p className="text-sm text-gray-500">
@@ -111,7 +111,7 @@ export function LandscapeQuadrant({
             {organizations.length > previewCount && (
                 <button
                     onClick={onViewAll}
-                    className="w-full mt-auto px-4 py-2.5 bg-gray-50 hover:bg-[#02808b] hover:text-white text-gray-700 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 group"
+                    className="w-full mt-auto px-4 py-2.5 bg-gray-50 hover:bg-sea-green-darker hover:text-white text-gray-700 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 group"
                 >
                     View All {organizations.length}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
