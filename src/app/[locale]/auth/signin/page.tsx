@@ -46,8 +46,11 @@ export default function SignInPage() {
                         </div>
                         <Button type="submit" className="w-full">Sign In</Button>
                     </form>
-                    <div className="mt-4 text-center text-sm text-gray-500">
-                        <p>Use <strong>admin</strong> / <strong>password</strong></p>
+                    <div className="mt-4 text-center text-sm text-gray-500 space-y-1">
+                        <p className="font-semibold">Test Credentials:</p>
+                        <p>Admin: <strong>admin</strong> / <strong>password</strong></p>
+                        <p>Organization: <strong>org</strong> / <strong>password</strong></p>
+                        <p>Funder: <strong>funder</strong> / <strong>password</strong></p>
                     </div>
                 </CardContent>
             </Card>
