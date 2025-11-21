@@ -69,9 +69,9 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
     const hasActiveFilters = selectedType || selectedFocus.length > 0 || selectedLocation.length > 0 || selectedStatus || selectedNationalImperative.length > 0;
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+        <div className="min-h-screen" style={{ backgroundColor: '#f0f9fa' }}>
             {/* Page Header */}
-            <div className="bg-white border-b border-slate-200">
+            <div className="bg-white border-b border-slate-200 shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div className="flex items-center gap-3 mb-3">
                         <div className="p-2 bg-[#02808b] bg-opacity-10 rounded-lg">
@@ -130,7 +130,7 @@ export function OrganizationsClient({ organizations, userRole = 'public' }: Orga
                         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-2">
                     {filteredOrganizations.map((org) => (
                         <Link key={org.id} href={`/organizations/${org.id}`} className="group">
-                            <Card className="h-full border border-slate-200 hover:border-[#02808b] hover:shadow-xl transition-all duration-200 bg-white">
+                            <Card className="h-full border border-slate-200 hover:border-[#02808b] hover:shadow-xl transition-all duration-200 bg-white shadow-md">
                                 <div className="p-6">
                                     {/* Card Header */}
                                     <div className="flex items-start gap-4 mb-4">

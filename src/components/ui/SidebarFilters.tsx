@@ -113,7 +113,7 @@ export function SidebarFilters({
             <aside
                 className={`
                     ${isOpen ? 'block' : 'hidden'} lg:block
-                    w-full lg:w-64 bg-white border border-slate-200 rounded-xl shadow-sm p-6
+                    w-full lg:w-64 bg-white border border-slate-200 rounded-xl shadow-md p-6
                     lg:sticky lg:top-4 lg:self-start
                     mb-6 lg:mb-0
                 `}
