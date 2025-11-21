@@ -1,0 +1,216 @@
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import { Card } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Filters } from '@/components/ui/Filters';
+import { Link } from '@/i18n/routing';
+import { Stakeholder } from '@/lib/api/stakeholders';
+import { Building2, MapPin, ArrowRight, Users } from 'lucide-react';
+
+interface OrganizationsClientProps {
+    organizations: Stakeholder[];
+    userRole?: 'public' | 'org' | 'funder' | 'admin';
+}
+
+export function OrganizationsClient({ organizations, userRole = 'public' }: OrganizationsClientProps) {
+    const [selectedType, setSelectedType] = useState('');
+    const [selectedFocus, setSelectedFocus] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('');
+    const [selectedStatus, setSelectedStatus] = useState('');
+
+    // Extract unique filter options from data
+    const filterOptions = useMemo(() => {
+        const types = Array.from(new Set(organizations.map(o => o.type)))
+            .map(t => ({ value: t, label: t }));
+
+        const focusAreas = Array.from(
+            new Set(organizations.flatMap(o => o.focus))
+        ).map(f => ({ value: f, label: f }));
+
+        const locations = Array.from(new Set(organizations.map(o => o.location)))
+            .map(l => ({ value: l, label: l }));
+
+        const statuses = Array.from(new Set(organizations.map(o => o.status)))
+            .map(s => ({ value: s, label: s }));
+
+        return { types, focusAreas, locations, statuses };
+    }, [organizations]);
+
+    // Filter organizations based on selected filters
+    const filteredOrganizations = useMemo(() => {
+        return organizations.filter(org => {
+            if (selectedType && org.type !== selectedType) return false;
+            if (selectedFocus && !org.focus.includes(selectedFocus)) return false;
+            if (selectedLocation && org.location !== selectedLocation) return false;
+            if (selectedStatus && org.status !== selectedStatus) return false;
+            return true;
+        });
+    }, [organizations, selectedType, selectedFocus, selectedLocation, selectedStatus]);
+
+    const clearFilters = () => {
+        setSelectedType('');
+        setSelectedFocus('');
+        setSelectedLocation('');
+        setSelectedStatus('');
+    };
+
+    const hasActiveFilters = selectedType || selectedFocus || selectedLocation || selectedStatus;
+
+    return (
+        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+            {/* Page Header */}
+            <div className="bg-white border-b border-slate-200">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="p-2 bg-[var(--color-sea-green)] bg-opacity-10 rounded-lg">
+                            <Building2 className="w-6 h-6 text-[var(--color-sea-green)]" />
+                        </div>
+                        <h1 className="text-3xl font-bold text-slate-900">
+                            Organizations Directory
+                        </h1>
+                    </div>
+                    <p className="text-base text-slate-600 max-w-2xl">
+                        Explore resilience organizations across Israel working to strengthen communities and build a more resilient future.
+                    </p>
+                </div>
+            </div>
+
+            {/* Main Content */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                {/* Filters Section */}
+                <div className="mb-8">
+                    <Filters
+                        types={filterOptions.types}
+                        focusAreas={filterOptions.focusAreas}
+                        locations={filterOptions.locations}
+                        statuses={filterOptions.statuses}
+                        selectedType={selectedType}
+                        selectedFocus={selectedFocus}
+                        selectedLocation={selectedLocation}
+                        selectedStatus={selectedStatus}
+                        onTypeChange={setSelectedType}
+                        onFocusChange={setSelectedFocus}
+                        onLocationChange={setSelectedLocation}
+                        onStatusChange={setSelectedStatus}
+                        onClearFilters={clearFilters}
+                    />
+                </div>
+
+                {/* Results Count */}
+                <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-slate-500" />
+                        <p className="text-sm font-medium text-slate-700">
+                            {filteredOrganizations.length} {filteredOrganizations.length === 1 ? 'organization' : 'organizations'}
+                            {hasActiveFilters && (
+                                <span className="text-slate-500"> (filtered from {organizations.length})</span>
+                            )}
+                        </p>
+                    </div>
+                </div>
+
+                {/* Organizations Grid */}
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {filteredOrganizations.map((org) => (
+                        <Link key={org.id} href={`/organizations/${org.id}`} className="group">
+                            <Card className="h-full border border-slate-200 hover:border-[var(--color-sea-green)] hover:shadow-xl transition-all duration-200 bg-white">
+                                <div className="p-6">
+                                    {/* Card Header */}
+                                    <div className="flex items-start justify-between mb-4">
+                                        <div className="flex-1 min-w-0">
+                                            <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[var(--color-sea-green)] transition-colors mb-1 line-clamp-2">
+                                                {org.name}
+                                            </h3>
+                                            <div className="flex items-center gap-2 text-xs text-slate-500">
+                                                <Building2 className="w-3.5 h-3.5" />
+                                                <span className="font-medium">{org.type}</span>
+                                            </div>
+                                        </div>
+                                        <Badge
+                                            variant={org.status === 'Active' ? 'success' : 'default'}
+                                            className="ml-2 shrink-0"
+                                        >
+                                            {org.status}
+                                        </Badge>
+                                    </div>
+
+                                    {/* Description */}
+                                    <p className="text-sm text-slate-600 mb-4 line-clamp-3 leading-relaxed">
+                                        {org.description}
+                                    </p>
+
+                                    {/* Focus Areas */}
+                                    <div className="flex flex-wrap gap-1.5 mb-4">
+                                        {org.focus.slice(0, 3).map((area, idx) => (
+                                            <Badge
+                                                key={idx}
+                                                variant="outline"
+                                                className="text-xs px-2 py-0.5 bg-slate-50 border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors"
+                                            >
+                                                {area}
+                                            </Badge>
+                                        ))}
+                                        {org.focus.length > 3 && (
+                                            <Badge
+                                                variant="outline"
+                                                className="text-xs px-2 py-0.5 bg-slate-50 border-slate-300 text-slate-500"
+                                            >
+                                                +{org.focus.length - 3}
+                                            </Badge>
+                                        )}
+                                    </div>
+
+                                    {/* Location */}
+                                    <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-4">
+                                        <MapPin className="w-3.5 h-3.5" />
+                                        <span>{org.location}</span>
+                                    </div>
+
+                                    {/* Role-gated preview */}
+                                    {userRole !== 'public' && org.collaboration_needs && (
+                                        <div className="mt-4 pt-4 border-t border-slate-100">
+                                            <p className="text-xs text-slate-600 line-clamp-2">
+                                                <span className="font-semibold text-slate-700">Collaboration:</span>{' '}
+                                                {org.collaboration_needs}
+                                            </p>
+                                        </div>
+                                    )}
+
+                                    {/* View Profile CTA */}
+                                    <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+                                        <span className="text-sm font-medium text-[var(--color-sea-green)] group-hover:text-[var(--color-sea-green-darkest)] transition-colors">
+                                            View Profile
+                                        </span>
+                                        <ArrowRight className="w-4 h-4 text-[var(--color-sea-green)] group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                </div>
+                            </Card>
+                        </Link>
+                    ))}
+                </div>
+
+                {/* Empty State */}
+                {filteredOrganizations.length === 0 && (
+                    <div className="text-center py-16">
+                        <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
+                            <Building2 className="w-8 h-8 text-slate-400" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                            No organizations found
+                        </h3>
+                        <p className="text-slate-600 mb-6">
+                            Try adjusting your filters to see more results.
+                        </p>
+                        <button
+                            onClick={clearFilters}
+                            className="px-6 py-2.5 bg-[var(--color-sea-green)] text-white rounded-lg hover:bg-[var(--color-sea-green-darkest)] transition-colors font-medium"
+                        >
+                            Clear all filters
+                        </button>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}

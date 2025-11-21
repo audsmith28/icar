@@ -1,0 +1,38 @@
+{
+  "HomePage": {
+    "title": "Israel's Collective Action for <highlight>Resilience</highlight>",
+    "subtitle": "Connecting stakeholders, mapping opportunities, and fostering collaboration for a stronger ecosystem.",
+    "getStarted": "Get Started",
+    "exploreMap": "Explore Map",
+    "registerInitiative": "Register Initiative",
+    "featuresTitle": "Platform Features",
+    "features": {
+      "map": {
+        "title": "Interactive Map",
+        "description": "Visualize initiatives geographically to identify coverage gaps and opportunities for collaboration."
+      },
+      "directory": {
+        "title": "Resource Directory",
+        "description": "Access a comprehensive directory of NGOs, volunteer groups, and government services."
+      },
+      "needs": {
+        "title": "Needs Matching",
+        "description": "Connect available resources with real-time needs from communities and organizations."
+      },
+      "analytics": {
+        "title": "Analytics Dashboard",
+        "description": "Track impact metrics and trends to inform strategic decision-making and resource allocation."
+      }
+    }
+  },
+  "Navigation": {
+    "home": "Home",
+    "map": "Map",
+    "directory": "Directory",
+    "about": "About",
+    "login": "Login"
+  },
+  "Footer": {
+    "copyright": "© 2025 ICAR Platform. All rights reserved."
+  }
+}

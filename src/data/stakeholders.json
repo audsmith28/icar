@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "name": "Tech for Good Israel",
+        "type": "NGO",
+        "role": "Coordinator",
+        "location": "Tel Aviv",
+        "description": "Coordinating tech initiatives for resilience."
+    },
+    {
+        "id": "2",
+        "name": "Healing Hearts",
+        "type": "Non-profit",
+        "role": "Service Provider",
+        "location": "Jerusalem",
+        "description": "Providing trauma support for children."
+    },
+    {
+        "id": "3",
+        "name": "Resilience Network",
+        "type": "Community",
+        "role": "Network",
+        "location": "Haifa",
+        "description": "Connecting local resilience groups."
+    },
+    {
+        "id": "4",
+        "name": "Innovate IL",
+        "type": "Startup",
+        "role": "Technology",
+        "location": "Herzliya",
+        "description": "Developing apps for emergency response."
+    }
+]

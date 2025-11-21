@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* ICAR Brand Colors */
   --color-teal-dark: #004d55;

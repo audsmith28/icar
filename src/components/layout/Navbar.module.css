@@ -1,0 +1,87 @@
+ .navbar {
+     background-color: var(--color-sea-green-darkest);
+     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+     padding: 1rem 0;
+     position: sticky;
+     top: 0;
+     z-index: 100;
+     color: var(--color-white);
+ }
+
+ .container {
+     max-width: var(--max-width);
+     margin: 0 auto;
+     padding: 0 1rem;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ .logo {
+     display: flex;
+     flex-direction: column;
+     line-height: 1.1;
+     font-family: var(--font-heading);
+     text-decoration: none;
+ }
+
+ .logoText {
+     font-size: 1.5rem;
+     color: var(--color-white);
+     font-weight: 700;
+ }
+
+ .logoSub {
+     font-size: 0.75rem;
+     color: var(--color-off-white-sea-green);
+     text-transform: uppercase;
+     letter-spacing: 1px;
+ }
+
+ .links {
+     display: flex;
+     gap: 2rem;
+ }
+
+ .links a {
+     color: var(--color-off-white-sea-green);
+     font-weight: 500;
+     text-decoration: none;
+     transition: color 0.2s;
+ }
+
+ .links a:hover {
+     color: var(--color-white);
+ }
+
+ .actions {
+     display: flex;
+     align-items: center;
+     gap: var(--spacing-md);
+ }
+
+ .searchWrapper {
+     position: relative;
+     display: flex;
+     align-items: center;
+ }
+
+ .searchIcon {
+     position: absolute;
+     left: 10px;
+     color: var(--color-gray-800);
+ }
+
+ .searchInput {
+     padding: 0.5rem 0.5rem 0.5rem 2.25rem;
+     border: 1px solid var(--color-gray-200);
+     border-radius: var(--radius-md);
+     font-family: var(--font-body);
+     font-size: 0.875rem;
+     width: 200px;
+ }
+
+ .searchInput:focus {
+     outline: none;
+     border-color: var(--color-teal-primary);
+ }

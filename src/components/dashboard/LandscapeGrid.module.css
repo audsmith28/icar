@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.categorySection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.categoryTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+}

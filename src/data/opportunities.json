@@ -1,0 +1,29 @@
+[
+    {
+        "id": "1",
+        "title": "Emergency Response Coordination",
+        "organization": "Resilience Network",
+        "location": "South District",
+        "type": "Volunteering",
+        "status": "Open",
+        "description": "Seeking volunteers to help coordinate emergency supplies."
+    },
+    {
+        "id": "2",
+        "title": "Trauma Support Funding",
+        "organization": "Healing Hearts",
+        "location": "National",
+        "type": "Funding",
+        "status": "Urgent",
+        "description": "Grant opportunity for organizations providing trauma care."
+    },
+    {
+        "id": "3",
+        "title": "Tech Mentorship Program",
+        "organization": "Tech for Good Israel",
+        "location": "Remote",
+        "type": "Mentorship",
+        "status": "Open",
+        "description": "Mentors needed for early-stage resilience startups."
+    }
+]
