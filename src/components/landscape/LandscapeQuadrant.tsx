@@ -3,6 +3,7 @@
 import React from 'react';
 import { Stakeholder } from '@/lib/api/stakeholders';
 import { LandscapeLogo } from './LandscapeLogo';
+import { Card } from '@/components/ui/Card';
 import { ArrowRight, Brain, Building2, MapPin, Target, Heart, Utensils, Users, GraduationCap, Zap, Shield } from 'lucide-react';
 
 interface LandscapeQuadrantProps {
@@ -71,37 +72,58 @@ export function LandscapeQuadrant({
     const previewOrgs = organizations.slice(0, previewCount);
     const remainingCount = organizations.length - previewCount;
     const categoryColor = getCategoryColor(category, groupingType);
-    const CategoryIcon = () => getCategoryIcon(category, groupingType);
+    const categoryIcon = getCategoryIcon(category, groupingType);
 
     return (
-        <div 
-            className="bg-white rounded-xl border-2 border-gray-200 p-6 hover:border-[#02808b] hover:shadow-xl transition-all duration-300 flex flex-col h-full"
-            style={{ borderTopColor: `${categoryColor}40`, borderTopWidth: '4px' }}
+        <Card 
+            className="p-6 hover:shadow-xl transition-all duration-300 flex flex-col h-full relative overflow-hidden group"
+            style={{ 
+                borderTopColor: categoryColor, 
+                borderTopWidth: '4px',
+                borderTopStyle: 'solid'
+            }}
         >
+            {/* Subtle background gradient */}
+            <div 
+                className="absolute top-0 left-0 right-0 h-32 opacity-5 pointer-events-none"
+                style={{ background: `linear-gradient(to bottom, ${categoryColor}, transparent)` }}
+            />
+            
             {/* Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-5 relative z-10">
                 <div className="flex items-center gap-3">
                     <div 
-                        className="p-2 rounded-lg"
-                        style={{ backgroundColor: `${categoryColor}15`, color: categoryColor }}
+                        className="p-3 rounded-xl shadow-sm"
+                        style={{ 
+                            backgroundColor: `${categoryColor}15`, 
+                            color: categoryColor 
+                        }}
                     >
-                        <CategoryIcon />
+                        {categoryIcon}
                     </div>
                     <div>
-                        <h3 className="text-lg font-bold text-sea-green-darkest line-clamp-1">
+                        <h3 className="text-lg font-bold text-sea-green-darkest line-clamp-1 mb-1">
                             {category}
                         </h3>
-                        <p className="text-sm text-gray-500">
-                            {organizations.length} {organizations.length === 1 ? 'organization' : 'organizations'}
-                        </p>
+                        <div className="flex items-center gap-2">
+                            <span className="text-sm font-semibold text-sea-green-darker">
+                                {organizations.length}
+                            </span>
+                            <span className="text-xs text-gray-500">
+                                {organizations.length === 1 ? 'organization' : 'organizations'}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Logo Grid Preview */}
-            <div className="grid grid-cols-3 gap-3 mb-4 flex-1 min-h-[200px]">
+            <div className="grid grid-cols-3 gap-3 mb-5 flex-1 min-h-[200px] relative z-10">
                 {previewOrgs.map((org) => (
-                    <div key={org.id} className="aspect-square flex items-center justify-center">
+                    <div 
+                        key={org.id} 
+                        className="aspect-square flex items-center justify-center bg-gray-50 rounded-lg p-2 hover:bg-white hover:shadow-md transition-all duration-200 group-hover:scale-105"
+                    >
                         <LandscapeLogo organization={org} showTooltip={true} />
                     </div>
                 ))}
@@ -111,13 +133,25 @@ export function LandscapeQuadrant({
             {organizations.length > previewCount && (
                 <button
                     onClick={onViewAll}
-                    className="w-full mt-auto px-4 py-2.5 bg-gray-50 hover:bg-sea-green-darker hover:text-white text-gray-700 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 group"
+                    className="w-full mt-auto px-4 py-2.5 rounded-lg font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 group relative z-10"
+                    style={{
+                        backgroundColor: `${categoryColor}10`,
+                        color: categoryColor,
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = categoryColor;
+                        e.currentTarget.style.color = 'white';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = `${categoryColor}10`;
+                        e.currentTarget.style.color = categoryColor;
+                    }}
                 >
                     View All {organizations.length}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
             )}
-        </div>
+        </Card>
     );
 }
 

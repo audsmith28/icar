@@ -6,7 +6,7 @@ import { EcosystemDashboard } from '@/components/visualization/EcosystemDashboar
 import { Link } from '@/i18n/routing';
 import { LandscapeMap } from '@/components/landscape/LandscapeMap';
 import { Button } from '@/components/ui/Button';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, MapPin } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,13 +32,20 @@ export default async function EcosystemPage() {
                 <EcosystemDashboard organizations={organizations} projects={projects} />
 
                 {/* Ecosystem Map - Categorized Organization Logos */}
-                <div className="mt-12">
-                    <h2 className="text-2xl font-bold text-sea-green-darkest mb-4">
-                        Ecosystem Map
-                    </h2>
-                    <p className="text-gray-600 mb-6 max-w-3xl">
-                        Explore organizations grouped by different dimensions. Use the toggle buttons above to view organizations by focus area, type, location, or national imperatives.
-                    </p>
+                <div className="mt-16">
+                    <div className="mb-8">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="p-2 bg-sea-green-darker rounded-lg">
+                                <MapPin className="w-6 h-6 text-white" aria-hidden="true" />
+                            </div>
+                            <h2 className="text-3xl font-bold text-sea-green-darkest">
+                                Ecosystem Map
+                            </h2>
+                        </div>
+                        <p className="text-gray-600 max-w-3xl text-lg leading-relaxed">
+                            Explore organizations grouped by different dimensions. Use the toggle buttons to view organizations by focus area, type, location, or national imperatives.
+                        </p>
+                    </div>
                     <LandscapeMap organizations={organizations} />
                 </div>
 

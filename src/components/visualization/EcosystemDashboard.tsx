@@ -172,64 +172,110 @@ export function EcosystemDashboard({ organizations, projects }: EcosystemDashboa
                 <IsraelRegionMap regionData={stats.regionCounts} />
 
                 {/* Middle: Bar Chart - Focus Areas */}
-                <Card className="p-6">
-                    <h3 className="text-lg font-semibold text-sea-green-darkest mb-4">
-                        Organizations by Focus Area
-                    </h3>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={focusAreaBarData} layout="vertical">
-                            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                            <XAxis type="number" stroke="#6b7280" fontSize={12} />
-                            <YAxis 
-                                dataKey="name" 
-                                type="category" 
-                                width={120}
-                                stroke="#6b7280" 
-                                fontSize={11}
-                                tick={{ fill: '#374151' }}
-                            />
-                            <Tooltip 
-                                contentStyle={{ 
-                                    backgroundColor: '#fff', 
-                                    border: '1px solid #e5e7eb',
-                                    borderRadius: '8px'
-                                }}
-                            />
-                            <Bar dataKey="value" fill={COLORS.teal} radius={[0, 4, 4, 0]} />
-                        </BarChart>
-                    </ResponsiveContainer>
+                <Card className="p-6 flex flex-col">
+                    <div className="mb-4">
+                        <h3 className="text-lg font-semibold text-sea-green-darkest mb-1">
+                            Organizations by Focus Area
+                        </h3>
+                        <p className="text-xs text-gray-500">
+                            {stats.focusAreaPercentages.length} focus areas represented
+                        </p>
+                    </div>
+                    <div className="flex-1 flex items-center justify-center min-h-[300px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart data={focusAreaBarData} layout="vertical">
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis type="number" stroke="#6b7280" fontSize={12} />
+                                <YAxis 
+                                    dataKey="name" 
+                                    type="category" 
+                                    width={120}
+                                    stroke="#6b7280" 
+                                    fontSize={11}
+                                    tick={{ fill: '#374151' }}
+                                />
+                                <Tooltip 
+                                    contentStyle={{ 
+                                        backgroundColor: '#fff', 
+                                        border: '1px solid #e5e7eb',
+                                        borderRadius: '8px'
+                                    }}
+                                />
+                                <Bar dataKey="value" fill={COLORS.teal} radius={[0, 4, 4, 0]} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                    {/* Summary stats below chart */}
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                        <div className="flex items-center justify-between text-sm">
+                            <span className="text-gray-600">Total organizations:</span>
+                            <span className="font-semibold text-sea-green-darkest">{stats.totalOrganizations}</span>
+                        </div>
+                    </div>
                 </Card>
 
                 {/* Right: Pie Chart - Organization Types */}
-                <Card className="p-6">
-                    <h3 className="text-lg font-semibold text-sea-green-darkest mb-4">
-                        Organizations by Type
-                    </h3>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <PieChart>
-                            <Pie
-                                data={typePieData}
-                                cx="50%"
-                                cy="50%"
-                                labelLine={false}
-                                label={({ name, value }) => {
-                                    const percentage = ((value / stats.totalOrganizations) * 100).toFixed(1);
-                                    return `${name}: ${percentage}%`;
-                                }}
-                                outerRadius={80}
-                                fill="#8884d8"
-                                dataKey="value"
-                            >
-                                {typePieData.map((entry, index) => (
-                                    <Cell 
-                                        key={`cell-${index}`} 
-                                        fill={[COLORS.teal, COLORS.orange, COLORS.peach, COLORS.lightTeal][index % 4]} 
-                                    />
-                                ))}
-                            </Pie>
-                            <Tooltip />
-                        </PieChart>
-                    </ResponsiveContainer>
+                <Card className="p-6 flex flex-col">
+                    <div className="mb-4">
+                        <h3 className="text-lg font-semibold text-sea-green-darkest mb-1">
+                            Organizations by Type
+                        </h3>
+                        <p className="text-xs text-gray-500">
+                            {typePieData.length} organization types
+                        </p>
+                    </div>
+                    <div className="flex-1 flex items-center justify-center min-h-[300px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <PieChart>
+                                <Pie
+                                    data={typePieData}
+                                    cx="50%"
+                                    cy="50%"
+                                    labelLine={false}
+                                    label={({ name, value }) => {
+                                        const percentage = ((value / stats.totalOrganizations) * 100).toFixed(1);
+                                        return `${name}: ${percentage}%`;
+                                    }}
+                                    outerRadius={80}
+                                    fill="#8884d8"
+                                    dataKey="value"
+                                >
+                                    {typePieData.map((entry, index) => (
+                                        <Cell 
+                                            key={`cell-${index}`} 
+                                            fill={[COLORS.teal, COLORS.orange, COLORS.peach, COLORS.lightTeal][index % 4]} 
+                                        />
+                                    ))}
+                                </Pie>
+                                <Tooltip 
+                                    contentStyle={{ 
+                                        backgroundColor: '#fff', 
+                                        border: '1px solid #e5e7eb',
+                                        borderRadius: '8px'
+                                    }}
+                                    formatter={(value: number, name: string, props: any) => [`${value} (${(props.payload.percent * 100).toFixed(0)}%)`, name]}
+                                />
+                                <Legend />
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </div>
+                    {/* Breakdown list below chart */}
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                        <div className="space-y-2">
+                            {typePieData.map((item, index) => (
+                                <div key={index} className="flex items-center justify-between text-sm">
+                                    <div className="flex items-center gap-2">
+                                        <div 
+                                            className="w-3 h-3 rounded-full"
+                                            style={{ backgroundColor: [COLORS.teal, COLORS.orange, COLORS.peach, COLORS.lightTeal][index % 4] }}
+                                        />
+                                        <span className="text-gray-700">{item.name}</span>
+                                    </div>
+                                    <span className="font-semibold text-sea-green-darkest">{item.value}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </Card>
             </div>
 

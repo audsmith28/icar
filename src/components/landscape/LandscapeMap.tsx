@@ -10,6 +10,7 @@ import {
 import { LandscapeQuadrant } from './LandscapeQuadrant';
 import { CategoryModal } from './CategoryModal';
 import { LayoutGrid, Building2, MapPin, Target } from 'lucide-react';
+import { Card } from '@/components/ui/Card';
 
 interface LandscapeMapProps {
     organizations: Stakeholder[];
@@ -49,19 +50,22 @@ export function LandscapeMap({ organizations }: LandscapeMapProps) {
 
     return (
         <div className="w-full">
-            {/* Toggle Controls */}
-            <div className="mb-8 p-4 bg-gray-50 rounded-lg">
-                <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-sm font-medium text-gray-700">Group by:</span>
-                    <div className="flex flex-wrap gap-2">
+            {/* Enhanced Toggle Controls */}
+            <Card className="p-6 mb-8 bg-gradient-to-br from-sea-green-off-white to-white border-sea-green-light">
+                <div className="flex flex-wrap items-center gap-4">
+                    <div className="flex items-center gap-2">
+                        <LayoutGrid className="w-5 h-5 text-sea-green-darker" />
+                        <span className="text-sm font-semibold text-sea-green-darkest uppercase tracking-wide">Group by:</span>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
                         {groupingOptions.map((option) => (
                             <button
                                 key={option.value}
                                 onClick={() => setGroupingType(option.value)}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                                className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                                     groupingType === option.value
-                                        ? 'bg-sea-green-darker text-white shadow-md'
-                                        : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                                        ? 'bg-sea-green-darker text-white shadow-lg transform scale-105'
+                                        : 'bg-white text-gray-700 hover:bg-sea-green-off-white border-2 border-gray-200 hover:border-sea-green-darker hover:shadow-md'
                                 }`}
                             >
                                 {option.icon}
@@ -70,7 +74,7 @@ export function LandscapeMap({ organizations }: LandscapeMapProps) {
                         ))}
                     </div>
                 </div>
-            </div>
+            </Card>
 
             {/* Quadrant Grid */}
             {sortedCategories.length === 0 ? (
@@ -83,32 +87,49 @@ export function LandscapeMap({ organizations }: LandscapeMapProps) {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-                    {sortedCategories.map(([category, orgs]) => (
-                        <LandscapeQuadrant
+                    {sortedCategories.map(([category, orgs], index) => (
+                        <div 
                             key={category}
-                            category={category}
-                            organizations={orgs}
-                            groupingType={groupingType}
-                            onViewAll={() => handleViewAll(category, orgs)}
-                        />
+                            className="animate-fade-in"
+                            style={{ animationDelay: `${index * 50}ms` }}
+                        >
+                            <LandscapeQuadrant
+                                category={category}
+                                organizations={orgs}
+                                groupingType={groupingType}
+                                onViewAll={() => handleViewAll(category, orgs)}
+                            />
+                        </div>
                     ))}
                 </div>
             )}
 
-            {/* Summary Stats */}
-            <div className="mt-8 p-6 bg-sea-green-off-white rounded-lg">
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
-                    <div>
-                        <span className="font-semibold text-sea-green-darkest">{organizations.length}</span> total organizations
+            {/* Enhanced Summary Stats */}
+            <Card className="mt-8 p-6 bg-gradient-to-br from-sea-green-off-white to-white border-sea-green-light">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="text-center md:text-left">
+                        <div className="text-3xl font-bold text-sea-green-darkest mb-1">
+                            {organizations.length}
+                        </div>
+                        <div className="text-sm text-gray-600 font-medium">
+                            Total Organizations
+                        </div>
                     </div>
-                    <div>
-                        <span className="font-semibold text-sea-green-darkest">{sortedCategories.length}</span> categories
+                    <div className="text-center md:text-left">
+                        <div className="text-3xl font-bold text-sea-green-darkest mb-1">
+                            {sortedCategories.length}
+                        </div>
+                        <div className="text-sm text-gray-600 font-medium">
+                            Active Categories
+                        </div>
                     </div>
-                    <div className="text-xs text-gray-500">
-                        Click any logo or "View All" to explore organizations
+                    <div className="text-center md:text-left flex items-center justify-center md:justify-start">
+                        <div className="text-sm text-gray-600">
+                            <span className="font-semibold text-sea-green-darkest">💡 Tip:</span> Click any logo or "View All" to explore organizations
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Card>
 
             {/* Category Modal */}
             {selectedCategory && (
