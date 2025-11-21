@@ -23,7 +23,7 @@ export default async function DashboardPage() {
     // Fetch data
     const organizations = await getStakeholders(role);
     const projects = await getProjects(role);
-    const opportunities = await getOpportunities(role);
+    const opportunities = await getOpportunities();
 
     // Calculate stats
     const stats = {
