@@ -39,7 +39,8 @@ export function HowCanWeHelp() {
                             <Link href="/organizations" className="w-full">
                                 <Button 
                                     variant="outline" 
-                                    className="w-full border-[#006d77] text-[#006d77] hover:bg-[#006d77] hover:text-white"
+                                    fullWidth
+                                    className="inline-flex items-center justify-center"
                                 >
                                     Browse Organizations
                                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -63,7 +64,9 @@ export function HowCanWeHelp() {
                             {canCreateProject ? (
                                 <Link href="/projects/new" className="w-full">
                                     <Button 
-                                        className="w-full bg-[#e29578] hover:bg-[#d17f63] text-white"
+                                        variant="primary"
+                                        fullWidth
+                                        className="inline-flex items-center justify-center"
                                     >
                                         <Plus className="w-4 h-4 mr-2" />
                                         Create Project
@@ -72,7 +75,8 @@ export function HowCanWeHelp() {
                             ) : (
                                 <Link href="/auth/signin" className="w-full">
                                     <Button 
-                                        className="w-full bg-[#e29578] hover:bg-[#d17f63] text-white"
+                                        variant="primary"
+                                        fullWidth
                                     >
                                         Sign In to Create
                                     </Button>
@@ -95,7 +99,9 @@ export function HowCanWeHelp() {
                             </p>
                             <Link href="/projects?tab=seeking-collaboration" className="w-full">
                                 <Button 
-                                    className="w-full bg-[#e29578] hover:bg-[#d17f63] text-white"
+                                    variant="primary"
+                                    fullWidth
+                                    className="inline-flex items-center justify-center"
                                 >
                                     <Briefcase className="w-4 h-4 mr-2" />
                                     Browse Projects
@@ -119,7 +125,8 @@ export function HowCanWeHelp() {
                             <Link href="/ecosystem" className="w-full">
                                 <Button 
                                     variant="outline" 
-                                    className="w-full border-[#006d77] text-[#006d77] hover:bg-[#006d77] hover:text-white"
+                                    fullWidth
+                                    className="inline-flex items-center justify-center"
                                 >
                                     View Ecosystem
                                     <ArrowRight className="w-4 h-4 ml-2" />

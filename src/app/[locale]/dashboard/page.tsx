@@ -8,6 +8,7 @@ import { getOpportunities, type Opportunity } from '@/lib/api/opportunities';
 import { Link } from '@/i18n/routing';
 import { Building2, Briefcase, TrendingUp, Users, CheckCircle, ArrowRight } from 'lucide-react';
 import { OrgDashboard } from '@/components/dashboard/OrgDashboard';
+import { Button } from '@/components/ui/Button';
 
 export const dynamic = 'force-dynamic';
 
@@ -142,10 +143,10 @@ export default async function DashboardPage() {
                                         Browse and connect with resilience organizations across Israel. Discover their focus areas, locations, and collaboration opportunities.
                                     </p>
                                     <Link href="/dashboard/organizations">
-                                        <button className="px-6 py-3 bg-[#e29578] text-white rounded-lg hover:bg-[#d17f63] transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
+                                        <Button variant="primary" size="lg" className="inline-flex items-center gap-2">
                                             Browse Organizations
                                             <ArrowRight className="w-5 h-5" />
-                                        </button>
+                                        </Button>
                                     </Link>
                                 </div>
                                 <div className="hidden lg:block p-4 bg-[#f0f9fa] rounded-lg">
@@ -172,10 +173,10 @@ export default async function DashboardPage() {
                                             Discover projects seeking partners and resources. Find ways to contribute your expertise and drive collective impact.
                                         </p>
                                         <Link href="/dashboard/projects">
-                                            <button className="px-6 py-3 bg-[#e29578] text-white rounded-lg hover:bg-[#d17f63] transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
+                                            <Button variant="primary" size="lg" className="inline-flex items-center gap-2">
                                                 View Projects
                                                 <ArrowRight className="w-5 h-5" />
-                                            </button>
+                                            </Button>
                                         </Link>
                                     </div>
                                     <div className="hidden lg:block p-4 bg-[#fff4f0] rounded-lg">
@@ -202,10 +203,10 @@ export default async function DashboardPage() {
                                             Visualize the resilience ecosystem with interactive charts and organization logos. Understand the ecosystem at a glance.
                                         </p>
                                         <Link href="/ecosystem">
-                                            <button className="px-6 py-3 bg-[#e29578] text-white rounded-lg hover:bg-[#d17f63] transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
+                                            <Button variant="primary" size="lg" className="inline-flex items-center gap-2">
                                                 View Ecosystem
                                                 <ArrowRight className="w-5 h-5" />
-                                            </button>
+                                            </Button>
                                         </Link>
                                 </div>
                                 <div className="hidden lg:block p-4 bg-[#e8f4f5] rounded-lg">
@@ -233,10 +234,10 @@ export default async function DashboardPage() {
                                             Review and approve organization ownership claims. Ensure the integrity of the ICAR directory.
                                         </p>
                                         <Link href="/dashboard/admin/claims">
-                                            <button className="px-6 py-3 bg-white text-[#006d77] rounded-lg hover:bg-gray-100 transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
+                                            <Button variant="outline" size="lg" className="inline-flex items-center gap-2 on-dark">
                                                 Review Claims
                                                 <ArrowRight className="w-5 h-5" />
-                                            </button>
+                                            </Button>
                                         </Link>
                                     </div>
                                     <div className="hidden lg:block p-4 bg-white/20 rounded-lg">
@@ -265,10 +266,10 @@ export default async function DashboardPage() {
                                             Manage your organization profile, update collaboration needs, and showcase your impact to the ecosystem.
                                         </p>
                                         <Link href="/dashboard/my-organization">
-                                            <button className="px-6 py-3 bg-white text-[#006d77] rounded-lg hover:bg-gray-100 transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
+                                            <Button variant="outline" size="lg" className="inline-flex items-center gap-2 on-dark">
                                                 Manage Profile
                                                 <ArrowRight className="w-5 h-5" />
-                                            </button>
+                                            </Button>
                                         </Link>
                                     </div>
                                     <div className="hidden lg:block p-4 bg-white/20 rounded-lg">

@@ -7,10 +7,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary' | 'outline' | 'destructive';
     size?: 'sm' | 'md' | 'lg';
     asChild?: boolean;
+    fullWidth?: boolean;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ children, className, variant = 'primary', size = 'md', asChild = false, ...props }, ref) => {
+    ({ children, className, variant = 'primary', size = 'md', asChild = false, fullWidth = false, ...props }, ref) => {
         const Comp = asChild ? Slot : 'button';
         
         return (
@@ -21,6 +22,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                     styles.button,
                     styles[variant],
                     styles[size],
+                    fullWidth && styles.fullWidth,
                     className
                 )}
                 {...props}

@@ -18,7 +18,21 @@ module.exports = {
         },
         'orange': {
           DEFAULT: '#e29578',
+          hover: '#d17f63',
           light: '#ffddd2',
+        },
+        'icar': {
+          teal: {
+            darkest: '#004d55',
+            dark: '#006d77',
+            light: '#83c5be',
+            lightest: '#f0f9fa',
+          },
+          orange: {
+            primary: '#e29578',
+            hover: '#d17f63',
+            light: '#ffddd2',
+          },
         },
       },
       fontFamily: {

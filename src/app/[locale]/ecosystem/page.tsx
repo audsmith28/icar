@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { SimpleBarChart } from '@/components/visualization/SimpleBarChart';
 import { Link } from '@/i18n/routing';
 import { LandscapeMap } from '@/components/landscape/LandscapeMap';
+import { Button } from '@/components/ui/Button';
 
 export const dynamic = 'force-dynamic';
 
@@ -150,14 +151,14 @@ export default async function EcosystemPage() {
                 </p>
                 <div className="flex gap-4 justify-center">
                     <Link href="/organizations">
-                        <button className="px-6 py-2 bg-[var(--color-sea-green)] text-white rounded-md hover:bg-[var(--color-sea-green-darkest)] transition-colors">
+                        <Button variant="secondary" size="md">
                             Explore Organizations
-                        </button>
+                        </Button>
                     </Link>
                     <Link href="/auth/signin">
-                        <button className="px-6 py-2 border-2 border-[var(--color-sea-green)] text-[var(--color-sea-green-darkest)] rounded-md hover:bg-[var(--color-sea-green)] hover:text-white transition-colors">
+                        <Button variant="outline" size="md">
                             Sign In
-                        </button>
+                        </Button>
                     </Link>
                 </div>
             </div>

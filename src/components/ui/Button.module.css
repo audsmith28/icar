@@ -48,6 +48,25 @@
     opacity: 1 !important;
 }
 
+/* Outline variant on white/dark backgrounds */
+.outline.on-white {
+    background-color: white !important;
+}
+
+.outline.on-white:hover {
+    background-color: #f0f9fa !important;
+}
+
+.outline.on-dark {
+    background-color: white !important;
+    color: #006d77 !important;
+    border-color: white !important;
+}
+
+.outline.on-dark:hover {
+    background-color: #f0f9fa !important;
+}
+
 .destructive {
     background-color: #ef4444 !important;
     color: white !important;
@@ -72,4 +91,8 @@
 .lg {
     padding: 0.75rem 1.5rem;
     font-size: 1.125rem;
+}
+
+.fullWidth {
+    width: 100%;
 }
