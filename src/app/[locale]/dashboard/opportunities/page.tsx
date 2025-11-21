@@ -39,16 +39,18 @@ export default async function OpportunitiesPage() {
 
                 <div className="grid gap-6 md:grid-cols-2">
                     {projectsWithNeeds.map((project) => (
-                        <Card key={project.id} className="hover:shadow-lg transition-shadow">
-                            <div className="p-6">
-                                <div className="flex items-start justify-between mb-3">
-                                    <div className="flex-1">
-                                        <h3 className="text-lg font-semibold text-[var(--color-sea-green-darkest)] mb-1">
-                                            {project.title}
-                                        </h3>
+                        <Link key={project.id} href={`/projects/${project.id}`}>
+                            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+                                <div className="p-6">
+                                    <div className="flex items-start justify-between mb-3">
+                                        <div className="flex-1">
+                                            <h3 className="text-lg font-semibold text-[#004d55] mb-1 hover:text-[#006d77] transition-colors">
+                                                {project.title}
+                                            </h3>
                                         <Link
                                             href={`/organizations/${project.organization_id}`}
-                                            className="text-sm text-[var(--color-sea-green)] hover:underline"
+                                            onClick={(e) => e.stopPropagation()}
+                                            className="text-sm text-[#006d77] hover:underline"
                                         >
                                             {project.organization_name}
                                         </Link>
@@ -75,7 +77,7 @@ export default async function OpportunitiesPage() {
 
                                 {/* Role-gated: Collaboration Needs */}
                                 {canViewCollaboration && project.collaboration_needs && (
-                                    <div className="mt-4 pt-4 border-t bg-[var(--color-off-white-sea-green)] -m-6 mt-4 p-4 rounded-b-lg">
+                                    <div className="mt-4 pt-4 border-t bg-[#f0f9fa] -m-6 mt-4 p-4 rounded-b-lg">
                                         <p className="text-xs font-medium text-gray-700 mb-1">Collaboration Needs:</p>
                                         <p className="text-sm text-gray-800">{project.collaboration_needs}</p>
                                     </div>
@@ -84,13 +86,18 @@ export default async function OpportunitiesPage() {
                                 {/* Public user CTA */}
                                 {!canViewCollaboration && (
                                     <div className="mt-4 pt-4 border-t">
-                                        <Link href="/auth/signin" className="text-sm text-[var(--color-sea-green)] hover:underline">
+                                        <Link 
+                                            href="/auth/signin" 
+                                            onClick={(e) => e.stopPropagation()}
+                                            className="text-sm text-[#006d77] hover:underline"
+                                        >
                                             Sign in to see collaboration details →
                                         </Link>
                                     </div>
                                 )}
                             </div>
                         </Card>
+                        </Link>
                     ))}
                 </div>
 
