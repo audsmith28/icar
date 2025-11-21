@@ -14,47 +14,49 @@
 }
 
 .primary {
-    background-color: #e29578;
-    color: #ffffff;
-    opacity: 1;
+    background-color: #e29578 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
 }
 
 .primary:hover {
-    background-color: #d17f63;
+    background-color: #d17f63 !important;
     transform: translateY(-1px);
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .secondary {
-    background-color: #006d77;
-    color: #ffffff;
-    opacity: 1;
+    background-color: #006d77 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
 }
 
 .secondary:hover {
-    background-color: #004d55;
-    opacity: 1;
+    background-color: #004d55 !important;
+    opacity: 1 !important;
 }
 
 .outline {
-    background-color: transparent;
-    border: 1px solid #006d77;
-    color: #006d77;
-    opacity: 1;
+    background-color: transparent !important;
+    border: 1px solid #006d77 !important;
+    color: #006d77 !important;
+    opacity: 1 !important;
 }
 
 .outline:hover {
-    background-color: #f0f9fa;
-    opacity: 1;
+    background-color: #f0f9fa !important;
+    opacity: 1 !important;
 }
 
 .destructive {
-    background-color: #ef4444;
-    color: white;
+    background-color: #ef4444 !important;
+    color: white !important;
+    opacity: 1 !important;
 }
 
 .destructive:hover {
-    background-color: #dc2626;
+    background-color: #dc2626 !important;
+    opacity: 1 !important;
 }
 
 .sm {

@@ -8,10 +8,10 @@ export default async function HomePage() {
 
   return (
     <div className="container">
-      <section className="text-center py-16 px-4 bg-gradient-to-b from-[var(--color-off-white-sea-green)] to-white rounded-[var(--radius-lg)] mb-12">
-        <h1 className="text-5xl md:text-6xl text-[var(--color-sea-green-darkest)] mb-6 max-w-4xl mx-auto">
+      <section className="text-center py-16 px-4 bg-gradient-to-b from-[#f0f9fa] to-white rounded-xl mb-12">
+        <h1 className="text-5xl md:text-6xl text-[#004d55] mb-6 max-w-4xl mx-auto">
           {t.rich('title', {
-            highlight: (chunks) => <span className="text-[var(--color-orange)]">{chunks}</span>
+            highlight: (chunks) => <span className="text-[#e29578]">{chunks}</span>
           })}
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -28,7 +28,7 @@ export default async function HomePage() {
       </section>
 
       <section className="mb-16">
-        <h2 className="text-center mb-8 text-2xl font-bold text-[var(--color-sea-green-darker)]">
+        <h2 className="text-center mb-8 text-2xl font-bold text-[#006d77]">
           Platform Overview
         </h2>
         <DashboardStats />

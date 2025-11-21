@@ -1,11 +1,12 @@
  .navbar {
-     background-color: #004d55;
+     background-color: #004d55 !important;
      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
      padding: 1rem 0;
      position: sticky;
      top: 0;
      z-index: 100;
      color: #ffffff;
+     opacity: 1 !important;
  }
 
  .container {
