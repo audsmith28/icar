@@ -76,18 +76,20 @@ export const Navbar = () => {
                                             className={styles.dropdownMenuItem}
                                             role="menuitem"
                                             onClick={() => setShowOrganizationsMenu(false)}
+                                            style={{ color: '#212529' }}
                                         >
-                                            <Building2 size={16} className="mr-2 text-sea-green-darker" aria-hidden="true" />
-                                            All Organizations
+                                            <Building2 size={16} className="mr-2" style={{ color: '#02808b' }} aria-hidden="true" />
+                                            <span>All Organizations</span>
                                         </Link>
                                         <Link 
                                             href="/dashboard/projects" 
                                             className={styles.dropdownMenuItem}
                                             role="menuitem"
                                             onClick={() => setShowOrganizationsMenu(false)}
+                                            style={{ color: '#212529' }}
                                         >
-                                            <Briefcase size={16} className="mr-2 text-sea-green-darker" aria-hidden="true" />
-                                            Projects
+                                            <Briefcase size={16} className="mr-2" style={{ color: '#02808b' }} aria-hidden="true" />
+                                            <span>Projects</span>
                                         </Link>
                                     </div>
                                 )}
@@ -124,18 +126,20 @@ export const Navbar = () => {
                                             className={styles.dropdownMenuItem}
                                             role="menuitem"
                                             onClick={() => setShowOrganizationsMenu(false)}
+                                            style={{ color: '#212529' }}
                                         >
-                                            <Building2 size={16} className="mr-2 text-sea-green-darker" aria-hidden="true" />
-                                            All Organizations
+                                            <Building2 size={16} className="mr-2" style={{ color: '#02808b' }} aria-hidden="true" />
+                                            <span>All Organizations</span>
                                         </Link>
                                         <Link 
                                             href="/projects" 
                                             className={styles.dropdownMenuItem}
                                             role="menuitem"
                                             onClick={() => setShowOrganizationsMenu(false)}
+                                            style={{ color: '#212529' }}
                                         >
-                                            <Briefcase size={16} className="mr-2 text-sea-green-darker" aria-hidden="true" />
-                                            Projects
+                                            <Briefcase size={16} className="mr-2" style={{ color: '#02808b' }} aria-hidden="true" />
+                                            <span>Projects</span>
                                         </Link>
                                     </div>
                                 )}

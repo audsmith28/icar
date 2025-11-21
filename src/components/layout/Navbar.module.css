@@ -205,11 +205,11 @@
      align-items: center;
      padding: 0.75rem 1rem;
      color: #212529 !important;
-     text-decoration: none;
+     text-decoration: none !important;
      font-size: 0.875rem;
      transition: background-color 0.2s, color 0.2s;
      border-bottom: 1px solid #f8f9fa;
-     background: none;
+     background: none !important;
      border: none;
      width: 100%;
      text-align: left;
@@ -217,11 +217,17 @@
      font-family: inherit;
  }
 
+ .dropdownMenuItem,
+ .dropdownMenuItem * {
+     color: #212529 !important;
+ }
+
  .dropdownMenuItem:last-child {
      border-bottom: none;
  }
 
- .dropdownMenuItem:hover {
+ .dropdownMenuItem:hover,
+ .dropdownMenuItem:hover * {
      background-color: #fff4f0 !important; /* Light orange background */
      color: #d95222 !important; /* Orange accent on hover */
  }
@@ -230,6 +236,10 @@
      outline: none;
      background-color: #fff4f0;
      color: #d95222;
+ }
+
+ .dropdownMenuItem:focus * {
+     color: #d95222 !important;
  }
 
  .chevron {
