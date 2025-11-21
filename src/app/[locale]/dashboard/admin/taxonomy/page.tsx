@@ -28,26 +28,68 @@ export default function TaxonomyPage() {
     const [editingItem, setEditingItem] = useState<{ type: TaxonomyType; index: number; value: string } | null>(null);
     const [newItem, setNewItem] = useState<{ type: TaxonomyType; value: string } | null>(null);
 
+    const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+
     useEffect(() => {
-        // Load taxonomy from database or use defaults
-        // For now, we'll use hardcoded defaults
-        setFocusAreas([
-            'Mental Health',
-            'Emergency Response',
-            'Family Support',
-            'Trauma Recovery',
-            'Community Resilience',
-            'Youth Programs',
-            'Elderly Care',
-            'Disability Support',
-            'Education',
-            'Research',
-        ]);
-        setOrgTypes(['NGO', 'Government', 'Private Sector', 'Academic', 'Community Group', 'Funder', 'Startup']);
-        setProjectStatuses(['Planning', 'Active', 'Completed', 'On Hold']);
-        setFileCategories(['report', 'impact_data', 'case_study', 'other']);
-        setLoading(false);
+        // Load taxonomy from API
+        const fetchTaxonomy = async () => {
+            try {
+                const response = await fetch('/api/taxonomy');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch taxonomy');
+                }
+                const data = await response.json();
+                setFocusAreas(data.focus_areas || []);
+                setOrgTypes(data.organization_types || []);
+                setProjectStatuses(data.project_statuses || []);
+                setFileCategories(data.file_categories || []);
+            } catch (err) {
+                console.error('Error loading taxonomy:', err);
+                // Fallback to defaults
+                setFocusAreas([
+                    'Mental Health',
+                    'Emergency Response',
+                    'Family Support',
+                    'Trauma Recovery',
+                    'Community Resilience',
+                    'Youth Programs',
+                    'Elderly Care',
+                    'Disability Support',
+                    'Education',
+                    'Research',
+                ]);
+                setOrgTypes(['NGO', 'Government', 'Private Sector', 'Academic', 'Community Group', 'Funder', 'Startup']);
+                setProjectStatuses(['Planning', 'Active', 'Completed', 'On Hold']);
+                setFileCategories(['report', 'impact_data', 'case_study', 'other']);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTaxonomy();
     }, []);
+
+    const saveTaxonomy = async (type: TaxonomyType, values: string[]) => {
+        setSaveStatus('saving');
+        try {
+            const response = await fetch('/api/taxonomy', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type, values }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to save taxonomy');
+            }
+
+            setSaveStatus('saved');
+            setTimeout(() => setSaveStatus('idle'), 2000);
+        } catch (err) {
+            console.error('Error saving taxonomy:', err);
+            setSaveStatus('error');
+            setTimeout(() => setSaveStatus('idle'), 3000);
+        }
+    };
 
     const handleAddItem = (type: TaxonomyType) => {
         if (newItem?.value.trim()) {
@@ -55,22 +97,30 @@ export default function TaxonomyPage() {
             switch (type) {
                 case 'focus_areas':
                     if (!focusAreas.includes(value)) {
-                        setFocusAreas([...focusAreas, value]);
+                        const updated = [...focusAreas, value];
+                        setFocusAreas(updated);
+                        saveTaxonomy(type, updated);
                     }
                     break;
                 case 'organization_types':
                     if (!orgTypes.includes(value)) {
-                        setOrgTypes([...orgTypes, value]);
+                        const updated = [...orgTypes, value];
+                        setOrgTypes(updated);
+                        saveTaxonomy(type, updated);
                     }
                     break;
                 case 'project_statuses':
                     if (!projectStatuses.includes(value)) {
-                        setProjectStatuses([...projectStatuses, value]);
+                        const updated = [...projectStatuses, value];
+                        setProjectStatuses(updated);
+                        saveTaxonomy(type, updated);
                     }
                     break;
                 case 'file_categories':
                     if (!fileCategories.includes(value)) {
-                        setFileCategories([...fileCategories, value]);
+                        const updated = [...fileCategories, value];
+                        setFileCategories(updated);
+                        saveTaxonomy(type, updated);
                     }
                     break;
             }
@@ -81,16 +131,24 @@ export default function TaxonomyPage() {
     const handleDeleteItem = (type: TaxonomyType, index: number) => {
         switch (type) {
             case 'focus_areas':
-                setFocusAreas(focusAreas.filter((_, i) => i !== index));
+                const updatedFocus = focusAreas.filter((_, i) => i !== index);
+                setFocusAreas(updatedFocus);
+                saveTaxonomy(type, updatedFocus);
                 break;
             case 'organization_types':
-                setOrgTypes(orgTypes.filter((_, i) => i !== index));
+                const updatedTypes = orgTypes.filter((_, i) => i !== index);
+                setOrgTypes(updatedTypes);
+                saveTaxonomy(type, updatedTypes);
                 break;
             case 'project_statuses':
-                setProjectStatuses(projectStatuses.filter((_, i) => i !== index));
+                const updatedStatuses = projectStatuses.filter((_, i) => i !== index);
+                setProjectStatuses(updatedStatuses);
+                saveTaxonomy(type, updatedStatuses);
                 break;
             case 'file_categories':
-                setFileCategories(fileCategories.filter((_, i) => i !== index));
+                const updatedCategories = fileCategories.filter((_, i) => i !== index);
+                setFileCategories(updatedCategories);
+                saveTaxonomy(type, updatedCategories);
                 break;
         }
     };
@@ -101,21 +159,25 @@ export default function TaxonomyPage() {
                 const newFocusAreas = [...focusAreas];
                 newFocusAreas[index] = newValue;
                 setFocusAreas(newFocusAreas);
+                saveTaxonomy(type, newFocusAreas);
                 break;
             case 'organization_types':
                 const newOrgTypes = [...orgTypes];
                 newOrgTypes[index] = newValue;
                 setOrgTypes(newOrgTypes);
+                saveTaxonomy(type, newOrgTypes);
                 break;
             case 'project_statuses':
                 const newStatuses = [...projectStatuses];
                 newStatuses[index] = newValue;
                 setProjectStatuses(newStatuses);
+                saveTaxonomy(type, newStatuses);
                 break;
             case 'file_categories':
                 const newCategories = [...fileCategories];
                 newCategories[index] = newValue;
                 setFileCategories(newCategories);
+                saveTaxonomy(type, newCategories);
                 break;
         }
         setEditingItem(null);
@@ -238,6 +300,24 @@ export default function TaxonomyPage() {
                 title="Taxonomy Management"
                 description="Manage categories, tags, and classification options used throughout the platform"
             />
+
+            {saveStatus === 'saved' && (
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 font-medium">✓ Changes saved successfully!</p>
+                </div>
+            )}
+
+            {saveStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 font-medium">Error: Failed to save changes. Please try again.</p>
+                </div>
+            )}
+
+            {saveStatus === 'saving' && (
+                <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p className="text-blue-800 font-medium">Saving changes...</p>
+                </div>
+            )}
 
             <div className="space-y-6">
                 {renderTaxonomySection('Focus Areas', 'focus_areas', focusAreas, setFocusAreas)}

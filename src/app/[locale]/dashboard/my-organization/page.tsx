@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { Link } from '@/i18n/routing';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -339,9 +340,11 @@ export default function MyOrganizationPage() {
                     <Button onClick={handleSave} disabled={isSaving}>
                         {isSaving ? 'Saving...' : 'Save Changes'}
                     </Button>
-                    <Button variant="outline">
-                        Cancel
-                    </Button>
+                    <Link href="/dashboard">
+                        <Button variant="outline">
+                            Cancel
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>

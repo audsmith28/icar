@@ -138,6 +138,15 @@ export function initDb() {
     )
   `);
 
+  // Taxonomy Table
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS taxonomy (
+      id TEXT PRIMARY KEY,
+      type TEXT NOT NULL UNIQUE, -- 'focus_areas', 'organization_types', 'project_statuses', 'file_categories'
+      items TEXT NOT NULL -- JSON array of values
+    )
+  `);
+
   // Seed Data if empty
   const stmt = db.prepare('SELECT count(*) as count FROM stakeholders');
   const result = stmt.get() as { count: number };
@@ -279,6 +288,11 @@ export function initDb() {
 // Initialize on first import (in dev this might run multiple times but CREATE IF NOT EXISTS handles it)
 try {
   initDb();
+  // Initialize taxonomy defaults after database is ready
+  // Import here to avoid circular dependency
+  import('./api/taxonomy').then(({ initTaxonomyDefaults }) => {
+    initTaxonomyDefaults();
+  });
 } catch (error) {
   console.error("Database initialization failed:", error);
 }

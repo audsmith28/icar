@@ -26,12 +26,12 @@ export default async function HomePage() {
         />
         
         <div className="container mx-auto max-w-7xl relative z-10">
-          <h1 className="text-5xl md:text-6xl text-white mb-6 max-w-4xl mx-auto">
+          <h1 className="text-white mb-8 max-w-5xl mx-auto" style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', lineHeight: '120%', fontWeight: 700 }}>
             {t.rich('title', {
               highlight: (chunks) => <span className="text-[#d95222]">{chunks}</span>
             })}
           </h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed">
             {t('subtitle')}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
@@ -64,7 +64,7 @@ export default async function HomePage() {
         />
         
         <div className="container mx-auto max-w-7xl relative z-10">
-          <h2 className="text-center mb-8 text-2xl font-bold text-[#004d57]">
+          <h2 className="text-center mb-12 text-[#004d57]" style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', lineHeight: '120%', fontWeight: 700 }}>
             Platform Overview
           </h2>
           <DashboardStats />

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { Link } from '@/i18n/routing';
-import { Search, Settings, Map, BookOpen, ShieldCheck } from 'lucide-react';
+import { Search, Settings, BookOpen, ShieldCheck } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { LanguageSwitcher } from '../ui/LanguageSwitcher';
 import styles from './Navbar.module.css';
@@ -48,20 +48,14 @@ export const Navbar = () => {
                             <Link href="/dashboard" className={styles.navLink}>Dashboard</Link>
                             <Link href="/dashboard/organizations" className={styles.navLink}>Organizations</Link>
                             <Link href="/dashboard/projects" className={styles.navLink}>Projects</Link>
-                            <Link href="/ecosystem" className={styles.navLink}>
-                                <Map size={16} className={styles.navIcon} />
-                                Ecosystem
-                            </Link>
+                            <Link href="/ecosystem" className={styles.navLink}>Ecosystem</Link>
                         </>
                     ) : (
                         // Public navigation
                         <>
                             <Link href="/organizations" className={styles.navLink}>Organizations</Link>
                             <Link href="/projects" className={styles.navLink}>Projects</Link>
-                            <Link href="/ecosystem" className={styles.navLink}>
-                                <Map size={16} className={styles.navIcon} />
-                                Ecosystem
-                            </Link>
+                            <Link href="/ecosystem" className={styles.navLink}>Ecosystem</Link>
                         </>
                     )}
                 </div>

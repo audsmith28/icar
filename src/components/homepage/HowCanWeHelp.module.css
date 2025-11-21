@@ -1,0 +1,42 @@
+/* Homepage-specific button overrides for cohesive styling */
+.homepageButton {
+    font-family: 'Roboto Slab', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.homepageButtonOutline {
+    background-color: #ffffff !important;
+    border: 2px solid #02808b !important;
+    color: #02808b !important;
+}
+
+.homepageButtonOutline:hover {
+    background-color: #f0f9fa !important;
+    border-color: #02808b !important;
+    color: #02808b !important;
+    transform: translateY(-1px);
+}
+
+.homepageButtonPrimary {
+    background-color: #d95222 !important;
+    border: 2px solid #d95222 !important;
+    color: #ffffff !important;
+}
+
+.homepageButtonPrimary:hover {
+    background-color: #c0451a !important;
+    border-color: #c0451a !important;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+

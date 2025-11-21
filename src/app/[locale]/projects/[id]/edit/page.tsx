@@ -45,8 +45,6 @@ export default function EditProjectPage() {
         status: 'Planning',
         focus_areas: [] as string[],
         location: '',
-        lat: '',
-        lng: '',
         start_date: '',
         end_date: '',
         collaboration_needs: '',
@@ -67,8 +65,6 @@ export default function EditProjectPage() {
                     status: data.status || 'Planning',
                     focus_areas: data.focus_areas || [],
                     location: data.location || '',
-                    lat: data.lat?.toString() || '',
-                    lng: data.lng?.toString() || '',
                     start_date: data.start_date || '',
                     end_date: data.end_date || '',
                     collaboration_needs: data.collaboration_needs || '',
@@ -105,8 +101,8 @@ export default function EditProjectPage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     ...formData,
-                    lat: formData.lat ? parseFloat(formData.lat) : null,
-                    lng: formData.lng ? parseFloat(formData.lng) : null,
+                    lat: null,
+                    lng: null,
                 }),
             });
 
@@ -264,6 +260,7 @@ export default function EditProjectPage() {
                                         value={formData.location}
                                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                                         required
+                                        placeholder="e.g., Tel Aviv, Jerusalem, Haifa"
                                     />
                                 </div>
                             </div>
@@ -341,38 +338,6 @@ export default function EditProjectPage() {
                         </CardContent>
                     </Card>
 
-                    {/* Coordinates */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Geographic Coordinates (Optional)</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                                        Latitude
-                                    </label>
-                                    <Input
-                                        type="number"
-                                        step="any"
-                                        value={formData.lat}
-                                        onChange={(e) => setFormData({ ...formData, lat: e.target.value })}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                                        Longitude
-                                    </label>
-                                    <Input
-                                        type="number"
-                                        step="any"
-                                        value={formData.lng}
-                                        onChange={(e) => setFormData({ ...formData, lng: e.target.value })}
-                                    />
-                                </div>
-                            </div>
-                        </CardContent>
-                    </Card>
 
                     {/* Actions */}
                     <div className="flex gap-4">

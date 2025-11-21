@@ -64,7 +64,7 @@ export default async function DashboardPage() {
             {/* Hero Header Section */}
             <div className="bg-gradient-to-br from-[#004d57] to-[#02808b]">
                 <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-                    <h1 className="text-4xl lg:text-5xl font-bold mb-3 text-white">
+                    <h1 className="font-bold mb-4 text-white" style={{ fontSize: 'clamp(2.25rem, 5vw, 3rem)', lineHeight: '120%' }}>
                         Welcome back, {user?.name || 'User'}
                     </h1>
                     <p className="text-lg lg:text-xl text-white">

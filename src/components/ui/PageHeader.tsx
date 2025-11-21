@@ -18,7 +18,7 @@ export function PageHeader({ title, description, action, className }: PageHeader
   return (
     <div className={clsx('flex items-center justify-between mb-8 pb-4 border-b border-gray-200', className)}>
       <div>
-        <h1 className="text-3xl font-heading font-bold tracking-tight text-sea-green-darkest">
+        <h1 className="font-heading font-bold tracking-tight text-sea-green-darkest" style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', lineHeight: '120%' }}>
           {title}
         </h1>
         {description && (

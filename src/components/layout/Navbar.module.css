@@ -47,39 +47,40 @@
      align-items: center;
  }
 
- .navLink {
-     color: #f0f9fa !important;
-     font-weight: 500;
-     text-decoration: none;
-     transition: color 0.2s;
-     opacity: 1 !important;
-     display: flex;
-     align-items: center;
-     gap: 0.5rem;
-     white-space: nowrap;
- }
+.navLink {
+    color: #f0f9fa !important;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    opacity: 1 !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    position: relative;
+}
 
- .navLink:hover {
-     color: #ffffff !important;
-     opacity: 1 !important;
- }
+.navLink:hover {
+    color: #d95222 !important; /* Orange accent on hover */
+    opacity: 1 !important;
+}
 
  .navIcon {
      opacity: 1 !important;
  }
 
- .links a {
-     color: #f0f9fa !important;
-     font-weight: 500;
-     text-decoration: none;
-     transition: color 0.2s;
-     opacity: 1 !important;
- }
+.links a {
+    color: #f0f9fa !important;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    opacity: 1 !important;
+}
 
- .links a:hover {
-     color: #ffffff !important;
-     opacity: 1 !important;
- }
+.links a:hover {
+    color: #d95222 !important; /* Orange accent on hover */
+    opacity: 1 !important;
+}
 
  .actions {
      display: flex;
@@ -91,25 +92,25 @@
      position: relative;
  }
 
- .settingsButton {
-     background: none;
-     border: none;
-     color: #f0f9fa !important;
-     cursor: pointer;
-     padding: 0.5rem;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     border-radius: 4px;
-     transition: all 0.2s;
-     opacity: 1 !important;
- }
+.settingsButton {
+    background: none;
+    border: none;
+    color: #f0f9fa !important;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    opacity: 1 !important;
+}
 
- .settingsButton:hover {
-     background-color: rgba(255, 255, 255, 0.1);
-     color: #ffffff !important;
-     opacity: 1 !important;
- }
+.settingsButton:hover {
+    background-color: rgba(217, 82, 34, 0.15); /* Light orange background on hover */
+    color: #d95222 !important; /* Orange accent on hover */
+    opacity: 1 !important;
+}
 
  .settingsMenu {
      position: absolute;
@@ -140,8 +141,8 @@
  }
 
  .settingsMenuItem:hover {
-     background-color: #f8f9fa;
-     color: #02808b;
+     background-color: #fff4f0; /* Light orange background */
+     color: #d95222; /* Orange accent on hover */
  }
 
  .searchWrapper {
