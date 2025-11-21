@@ -34,7 +34,23 @@ export function ActivityItem({
         <h4 className="font-medium text-gray-900">{title}</h4>
         {metadata.length > 0 && (
           <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
-            {metadata.map((item, index) => (
-              <span key={index} className="flex items-center gap-1">
-                {item.icon && <item.icon className="w-4 h-4" />}
-                {item.text}
+            {metadata.map((item, index) => {
+              const ItemIcon = item.icon;
+              return (
+                <span key={index} className="flex items-center gap-1">
+                  {ItemIcon && <ItemIcon className="w-4 h-4" />}
+                  {item.text}
+                </span>
+              );
+            })}
+          </div>
+        )}
+        {badge && (
+          <div className="mt-2">
+            <ICARBadge variant={badge.variant || 'default'}>{badge.label}</ICARBadge>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
