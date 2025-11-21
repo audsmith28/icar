@@ -29,7 +29,26 @@ export function initDb() {
       email TEXT,
       budget REAL, -- Funder/Admin only
       collaboration_needs TEXT, -- Org/Funder/Admin only
-      national_imperatives TEXT -- JSON array of National Imperatives
+      national_imperatives TEXT, -- JSON array of National Imperatives
+      contact_setting TEXT DEFAULT 'open', -- 'open', 'via_icar', 'closed'
+      uploaded_files TEXT -- JSON array of file metadata
+    )
+  `);
+
+  // Organization Files Table
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS organization_files (
+      id TEXT PRIMARY KEY,
+      organization_id TEXT NOT NULL,
+      file_name TEXT NOT NULL,
+      file_type TEXT NOT NULL,
+      file_size INTEGER,
+      file_url TEXT NOT NULL,
+      file_category TEXT, -- 'report', 'impact_data', 'case_study', 'other'
+      description TEXT,
+      uploaded_date TEXT NOT NULL,
+      uploaded_by TEXT,
+      FOREIGN KEY (organization_id) REFERENCES stakeholders(id)
     )
   `);
 

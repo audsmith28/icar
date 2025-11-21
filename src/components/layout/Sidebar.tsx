@@ -8,7 +8,8 @@ import {
     Users,
     LogOut,
     Briefcase,
-    Settings
+    Settings,
+    Tags
 } from 'lucide-react';
 import { UserRole } from '@/lib/auth';
 
@@ -36,6 +37,7 @@ export function Sidebar({ role = 'org' }: SidebarProps) {
     // Admin-only items
     const adminItems = role === 'admin' ? [
         { label: 'Moderate Claims', href: '/dashboard/admin/claims', icon: Users },
+        { label: 'Taxonomy', href: '/dashboard/admin/taxonomy', icon: Tags },
     ] : [];
 
     const items = [...coreItems, ...orgItems, ...adminItems];

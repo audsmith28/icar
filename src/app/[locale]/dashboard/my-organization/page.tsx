@@ -7,6 +7,7 @@ import { PageHeader } from '@/components/ui/PageHeader';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { FileUpload } from '@/components/organizations/FileUpload';
 
 const ORG_TYPES = ['NGO', 'Government', 'Private Sector', 'Academic', 'Community Group', 'Funder', 'Startup'];
 const STATUS_OPTIONS = ['Active', 'Inactive', 'Pending'];
@@ -28,7 +29,8 @@ export default function MyOrganizationPage() {
         collaborationNeeds: '',
         email: '',
         contact: '',
-        status: 'Active'
+        status: 'Active',
+        contactSetting: 'open' as 'open' | 'via_icar' | 'closed'
     });
 
     useEffect(() => {
@@ -60,7 +62,8 @@ export default function MyOrganizationPage() {
                     collaborationNeeds: org.collaboration_needs || '',
                     email: org.email || '',
                     contact: org.contact || '',
-                    status: org.status || 'Active'
+                    status: org.status || 'Active',
+                    contactSetting: org.contact_setting || 'open'
                 });
             } catch (err: any) {
                 setError(err.message || 'Failed to load organization');
@@ -101,6 +104,7 @@ export default function MyOrganizationPage() {
                     email: formData.email,
                     contact: formData.contact,
                     status: formData.status,
+                    contact_setting: formData.contactSetting,
                 }),
             });
 
@@ -264,6 +268,57 @@ export default function MyOrganizationPage() {
                 </Card>
 
                 <Card className="p-6 mb-6">
+                    <h3 className="text-lg font-semibold mb-2">Contact Settings</h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                        Control how other users can contact your organization
+                    </p>
+                    <div className="space-y-3">
+                        <label className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input
+                                type="radio"
+                                name="contactSetting"
+                                value="open"
+                                checked={formData.contactSetting === 'open'}
+                                onChange={(e) => setFormData({ ...formData, contactSetting: e.target.value as any })}
+                                className="mt-1"
+                            />
+                            <div>
+                                <p className="font-medium text-gray-900">Open</p>
+                                <p className="text-sm text-gray-600">Anyone can contact you directly</p>
+                            </div>
+                        </label>
+                        <label className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input
+                                type="radio"
+                                name="contactSetting"
+                                value="via_icar"
+                                checked={formData.contactSetting === 'via_icar'}
+                                onChange={(e) => setFormData({ ...formData, contactSetting: e.target.value as any })}
+                                className="mt-1"
+                            />
+                            <div>
+                                <p className="font-medium text-gray-900">Via ICAR</p>
+                                <p className="text-sm text-gray-600">Contact requests go through ICAR team</p>
+                            </div>
+                        </label>
+                        <label className="flex items-start gap-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input
+                                type="radio"
+                                name="contactSetting"
+                                value="closed"
+                                checked={formData.contactSetting === 'closed'}
+                                onChange={(e) => setFormData({ ...formData, contactSetting: e.target.value as any })}
+                                className="mt-1"
+                            />
+                            <div>
+                                <p className="font-medium text-gray-900">Closed</p>
+                                <p className="text-sm text-gray-600">No contact requests accepted</p>
+                            </div>
+                        </label>
+                    </div>
+                </Card>
+
+                <Card className="p-6 mb-6">
                     <h3 className="text-lg font-semibold mb-4">Collaboration Needs</h3>
                     <textarea
                         value={formData.collaborationNeeds}
@@ -276,6 +331,9 @@ export default function MyOrganizationPage() {
                         This will be visible to authenticated users and funders
                     </p>
                 </Card>
+
+                {/* File Uploads */}
+                <FileUpload organizationId={organizationId} />
 
                 <div className="flex gap-4">
                     <Button onClick={handleSave} disabled={isSaving}>

@@ -12,6 +12,7 @@ import { Link } from '@/i18n/routing';
 import { ArrowLeft } from 'lucide-react';
 import { OrgLogo } from '@/components/organizations/OrgLogo';
 import { ClaimOrgButton } from '@/components/organizations/ClaimOrgButton';
+import { ContactOrganizationButton } from '@/components/organizations/ContactOrganizationButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -130,15 +131,41 @@ export default async function OrganizationDetailPage({ params }: { params: Promi
                 </div>
 
                 <div className="space-y-6">
+                    {/* Contact Organization Button */}
+                    {!isPublic && (
+                        <ContactOrganizationButton
+                            organizationId={organization.id}
+                            organizationName={organization.name}
+                            contactSetting={organization.contact_setting || 'open'}
+                            email={organization.email}
+                            userEmail={session?.user?.email || undefined}
+                            userName={session?.user?.name || undefined}
+                        />
+                    )}
+
                     <Card>
                         <CardHeader>
                             <CardTitle>Contact Info</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-2">
-                            <div>
-                                <span className="text-sm font-medium text-gray-500">Email</span>
-                                <p className="mt-1">{organization.email || organization.contact}</p>
-                            </div>
+                            {organization.contact_setting === 'open' && (
+                                <div>
+                                    <span className="text-sm font-medium text-gray-500">Email</span>
+                                    <p className="mt-1">{organization.email || organization.contact}</p>
+                                </div>
+                            )}
+                            {organization.contact_setting === 'via_icar' && (
+                                <div>
+                                    <span className="text-sm font-medium text-gray-500">Contact</span>
+                                    <p className="mt-1 text-sm text-gray-600">Contact via ICAR team</p>
+                                </div>
+                            )}
+                            {organization.contact_setting === 'closed' && (
+                                <div>
+                                    <span className="text-sm font-medium text-gray-500">Contact</span>
+                                    <p className="mt-1 text-sm text-gray-600">Not accepting contact requests</p>
+                                </div>
+                            )}
                             <div>
                                 <span className="text-sm font-medium text-gray-500">Status</span>
                                 <div className="mt-1">

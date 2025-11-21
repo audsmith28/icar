@@ -30,6 +30,7 @@ export interface Stakeholder {
     budget?: number; // Funder/Admin only
     collaboration_needs?: string; // Org/Funder/Admin only
     national_imperatives?: string[]; // National Imperatives tags
+    contact_setting?: 'open' | 'via_icar' | 'closed'; // Contact preference
 }
 
 export function getStakeholders(role: UserRole = 'public'): Stakeholder[] {
@@ -64,6 +65,7 @@ function filterStakeholderFields(row: any, role: UserRole): Stakeholder {
         contact: row.contact,
         email: row.email,
         national_imperatives: JSON.parse(row.national_imperatives || '[]'),
+        contact_setting: (row.contact_setting || 'open') as 'open' | 'via_icar' | 'closed',
     };
 
     // Add collaboration_needs for org, funder, admin
@@ -103,7 +105,8 @@ export function updateStakeholder(id: string, stakeholderData: Partial<Omit<Stak
             email = COALESCE(?, email),
             collaboration_needs = COALESCE(?, collaboration_needs),
             budget = COALESCE(?, budget),
-            national_imperatives = COALESCE(?, national_imperatives)
+            national_imperatives = COALESCE(?, national_imperatives),
+            contact_setting = COALESCE(?, contact_setting)
         WHERE id = ?
     `);
     
@@ -121,6 +124,7 @@ export function updateStakeholder(id: string, stakeholderData: Partial<Omit<Stak
         stakeholderData.collaboration_needs || null,
         stakeholderData.budget ?? null,
         stakeholderData.national_imperatives ? JSON.stringify(stakeholderData.national_imperatives) : null,
+        stakeholderData.contact_setting || null,
         id
     );
     
