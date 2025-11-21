@@ -5,7 +5,7 @@ import { getProjectById } from '@/lib/api/projects';
 import { getStakeholderById } from '@/lib/api/stakeholders';
 import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/routing';
-import { ArrowLeft, Calendar, MapPin, Users, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Users, CheckCircle, Edit } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -54,6 +54,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
     const canViewCollaboration = userRole === 'org' || userRole === 'funder' || userRole === 'admin';
     const isPublic = userRole === 'public';
+    const organizationId = (session?.user as any)?.organizationId;
+    const canEdit = userRole === 'admin' || (organizationId && project.organization_id === organizationId);
 
     // Format dates
     const formatDate = (dateString: string) => {
@@ -64,14 +66,24 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     return (
         <div className="min-h-screen bg-slate-50">
             <div className="max-w-6xl mx-auto px-6 py-10">
-                {/* Back link */}
-                <Link 
-                    href="/dashboard/opportunities" 
-                    className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-6 transition-colors"
-                >
-                    <ArrowLeft size={16} />
-                    Back to Opportunities
-                </Link>
+                {/* Back link and actions */}
+                <div className="flex items-center justify-between mb-6">
+                    <Link 
+                        href="/dashboard/opportunities" 
+                        className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                    >
+                        <ArrowLeft size={16} />
+                        Back to Opportunities
+                    </Link>
+                    {canEdit && (
+                        <Link href={`/projects/${id}/edit`}>
+                            <Button variant="outline" className="inline-flex items-center gap-2">
+                                <Edit size={16} />
+                                Edit Project
+                            </Button>
+                        </Link>
+                    )}
+                </div>
 
                 {/* Header Section */}
                 <div className="bg-white rounded-xl shadow-sm ring-1 ring-slate-200 p-8 mb-6">

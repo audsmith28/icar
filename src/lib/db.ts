@@ -78,7 +78,9 @@ export function initDb() {
       end_date TEXT,
       collaboration_needs TEXT, -- Org/Funder/Admin only
       budget REAL, -- Funder/Admin only
-      kpis TEXT -- JSON, Funder/Admin only
+      kpis TEXT, -- JSON, Funder/Admin only
+      featured INTEGER DEFAULT 0, -- Boolean: 0 = false, 1 = true
+      expiry_date TEXT -- Optional expiry date for opportunities
     )
   `);
 

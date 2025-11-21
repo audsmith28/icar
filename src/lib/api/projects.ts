@@ -18,6 +18,8 @@ export interface Project {
     collaboration_needs?: string; // Org/Funder/Admin only
     budget?: number; // Funder/Admin only
     kpis?: any; // Parsed from JSON, Funder/Admin only
+    featured?: boolean; // Featured opportunity
+    expiry_date?: string; // Optional expiry date
 }
 
 /**
@@ -65,6 +67,8 @@ function filterProjectFields(row: any, role: UserRole): Project {
         lng: row.lng,
         start_date: row.start_date,
         end_date: row.end_date,
+        featured: row.featured === 1 || row.featured === true,
+        expiry_date: row.expiry_date || null,
     };
 
     // Add collaboration_needs for org, funder, admin
@@ -79,4 +83,102 @@ function filterProjectFields(row: any, role: UserRole): Project {
     }
 
     return base;
+}
+
+/**
+ * Create a new project
+ */
+export function createProject(projectData: Omit<Project, 'id' | 'organization_name'>, organizationName: string): Project {
+    const db = getDb();
+    const id = `project-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    const stmt = db.prepare(`
+        INSERT INTO projects (
+            id, title, organization_id, organization_name, description, status,
+            focus_areas, location, lat, lng, start_date, end_date,
+            collaboration_needs, budget, kpis
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+    
+    stmt.run(
+        id,
+        projectData.title,
+        projectData.organization_id,
+        organizationName,
+        projectData.description,
+        projectData.status || 'Planning',
+        JSON.stringify(projectData.focus_areas || []),
+        projectData.location,
+        projectData.lat || 0,
+        projectData.lng || 0,
+        projectData.start_date || '',
+        projectData.end_date || '',
+        projectData.collaboration_needs || null,
+        projectData.budget || null,
+        projectData.kpis ? JSON.stringify(projectData.kpis) : null,
+        projectData.featured ? 1 : 0,
+        projectData.expiry_date || null
+    );
+    
+    return getProjectById(id, 'admin')!;
+}
+
+/**
+ * Update an existing project
+ */
+export function updateProject(id: string, projectData: Partial<Omit<Project, 'id' | 'organization_id' | 'organization_name'>>, role: UserRole = 'public'): Project | undefined {
+    const db = getDb();
+    
+    // Get existing project to preserve organization_id
+    const existing = getProjectById(id, 'admin');
+    if (!existing) return undefined;
+    
+    const stmt = db.prepare(`
+        UPDATE projects SET
+            title = COALESCE(?, title),
+            description = COALESCE(?, description),
+            status = COALESCE(?, status),
+            focus_areas = COALESCE(?, focus_areas),
+            location = COALESCE(?, location),
+            lat = COALESCE(?, lat),
+            lng = COALESCE(?, lng),
+            start_date = COALESCE(?, start_date),
+            end_date = COALESCE(?, end_date),
+            collaboration_needs = COALESCE(?, collaboration_needs),
+            budget = COALESCE(?, budget),
+            kpis = COALESCE(?, kpis),
+            featured = COALESCE(?, featured),
+            expiry_date = COALESCE(?, expiry_date)
+        WHERE id = ?
+    `);
+    
+    stmt.run(
+        projectData.title || null,
+        projectData.description || null,
+        projectData.status || null,
+        projectData.focus_areas ? JSON.stringify(projectData.focus_areas) : null,
+        projectData.location || null,
+        projectData.lat ?? null,
+        projectData.lng ?? null,
+        projectData.start_date || null,
+        projectData.end_date || null,
+        projectData.collaboration_needs || null,
+        projectData.budget ?? null,
+        projectData.kpis ? JSON.stringify(projectData.kpis) : null,
+        projectData.featured ? 1 : 0,
+        projectData.expiry_date || null,
+        id
+    );
+    
+    return getProjectById(id, role);
+}
+
+/**
+ * Delete a project (admin only)
+ */
+export function deleteProject(id: string): boolean {
+    const db = getDb();
+    const stmt = db.prepare('DELETE FROM projects WHERE id = ?');
+    const result = stmt.run(id);
+    return result.changes > 0;
 }

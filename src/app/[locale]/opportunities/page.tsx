@@ -4,7 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { getProjects } from '@/lib/api/projects';
+import { getOpportunities } from '@/lib/api/opportunities';
 import { Link } from '@/i18n/routing';
 
 export const dynamic = 'force-dynamic';
@@ -14,11 +14,8 @@ export default async function OpportunitiesPage() {
     const userRole = (session?.user as any)?.role || 'public';
 
     try {
-        // Get all projects with role-based filtering
-        const allProjects = await getProjects(userRole);
-
-        // Filter to only projects with collaboration needs
-        const projectsWithNeeds = allProjects.filter(p => p.collaboration_needs);
+        // Get opportunities using the proper definition logic
+        const projectsWithNeeds = await getOpportunities(userRole, 'closing_soon');
 
         const canViewCollaboration = userRole !== 'public';
 

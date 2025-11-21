@@ -76,3 +76,49 @@ function filterStakeholderFields(row: any, role: UserRole): Stakeholder {
 
     return base;
 }
+
+/**
+ * Update an existing stakeholder/organization
+ */
+export function updateStakeholder(id: string, stakeholderData: Partial<Omit<Stakeholder, 'id'>>, role: UserRole = 'public'): Stakeholder | undefined {
+    const db = getDb();
+    
+    // Get existing stakeholder
+    const existing = getStakeholderById(id, 'admin');
+    if (!existing) return undefined;
+    
+    const stmt = db.prepare(`
+        UPDATE stakeholders SET
+            name = COALESCE(?, name),
+            type = COALESCE(?, type),
+            focus = COALESCE(?, focus),
+            location = COALESCE(?, location),
+            lat = COALESCE(?, lat),
+            lng = COALESCE(?, lng),
+            status = COALESCE(?, status),
+            description = COALESCE(?, description),
+            contact = COALESCE(?, contact),
+            email = COALESCE(?, email),
+            collaboration_needs = COALESCE(?, collaboration_needs),
+            budget = COALESCE(?, budget)
+        WHERE id = ?
+    `);
+    
+    stmt.run(
+        stakeholderData.name || null,
+        stakeholderData.type || null,
+        stakeholderData.focus ? JSON.stringify(stakeholderData.focus) : null,
+        stakeholderData.location || null,
+        stakeholderData.lat ?? null,
+        stakeholderData.lng ?? null,
+        stakeholderData.status || null,
+        stakeholderData.description || null,
+        stakeholderData.contact || null,
+        stakeholderData.email || null,
+        stakeholderData.collaboration_needs || null,
+        stakeholderData.budget ?? null,
+        id
+    );
+    
+    return getStakeholderById(id, role);
+}

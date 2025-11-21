@@ -200,7 +200,7 @@ export function OrgDashboard({ org, userProjects, allProjects, allOpportunities,
                                     <li key={o.id} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
                                         <p className="font-medium text-[#004d55]">{o.title}</p>
                                         <p className="text-xs text-slate-600">
-                                            {o.location} · {o.type}
+                                            {o.location}
                                         </p>
                                         <p className="mt-1 text-xs text-slate-600">
                                             {o.description.substring(0, 80)}...

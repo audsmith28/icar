@@ -4,8 +4,10 @@ import { authOptions } from '@/lib/auth';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { getProjects } from '@/lib/api/projects';
+import { Button } from '@/components/ui/Button';
+import { getOpportunities } from '@/lib/api/opportunities';
 import { Link } from '@/i18n/routing';
+import { Plus } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,20 +16,29 @@ export default async function OpportunitiesPage() {
     const userRole = (session?.user as any)?.role || 'public';
 
     try {
-        // Get all projects with role-based filtering
-        const allProjects = await getProjects(userRole);
-
-        // Filter to only projects with collaboration needs
-        const projectsWithNeeds = allProjects.filter(p => p.collaboration_needs);
+        // Get opportunities using the proper definition logic
+        const projectsWithNeeds = await getOpportunities(userRole, 'closing_soon');
 
         const canViewCollaboration = userRole !== 'public';
 
+        const canCreateProject = userRole === 'org' || userRole === 'funder' || userRole === 'admin';
+
         return (
             <div className="container py-10">
-                <PageHeader
-                    title="Collaboration Opportunities"
-                    description="Discover projects seeking partners, volunteers, and resources"
-                />
+                <div className="flex items-center justify-between mb-6">
+                    <PageHeader
+                        title="Collaboration Opportunities"
+                        description="Discover projects seeking partners, volunteers, and resources"
+                    />
+                    {canCreateProject && (
+                        <Link href="/projects/new">
+                            <Button className="bg-[#006d77] hover:bg-[#004d55] text-white">
+                                <Plus size={16} className="mr-2" />
+                                Create Project
+                            </Button>
+                        </Link>
+                    )}
+                </div>
 
                 <div className="mb-6 p-4 bg-blue-50 rounded-lg">
                     <p className="text-sm text-gray-700">
