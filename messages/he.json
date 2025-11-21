@@ -1,38 +1,120 @@
 {
-    "HomePage": {
-        "title": "הפעולה הקולקטיבית של ישראל ל<highlight>חוסן</highlight>",
-        "subtitle": "חיבור בעלי עניין, מיפוי הזדמנויות וקידום שיתופי פעולה לאקוסיסטם חזק יותר.",
-        "getStarted": "התחל כאן",
-        "exploreMap": "חקור את המפה",
-        "registerInitiative": "רשום יוזמה",
-        "featuresTitle": "תכונות הפלטפורמה",
-        "features": {
-            "map": {
-                "title": "מפה אינטראקטיבית",
-                "description": "הצג יוזמות על גבי מפה כדי לזהות פערים בכיסוי והזדמנויות לשיתוף פעולה."
-            },
-            "directory": {
-                "title": "אינדקס משאבים",
-                "description": "גישה לאינדקס מקיף של עמותות, קבוצות מתנדבים ושירותים ממשלתיים."
-            },
-            "needs": {
-                "title": "התאמת צרכים",
-                "description": "חיבור משאבים זמינים עם צרכים בזמן אמת מקהילות וארגונים."
-            },
-            "analytics": {
-                "title": "לוח מחוונים אנליטי",
-                "description": "מעקב אחר מדדי השפעה ומגמות לקבלת החלטות אסטרטגיות והקצאת משאבים."
-            }
-        }
+  "HomePage": {
+    "title": "הפעולה הקולקטיבית של ישראל ל<highlight>חוסן</highlight>",
+    "subtitle": "חיבור בעלי עניין, מיפוי הזדמנויות וקידום שיתופי פעולה לאקוסיסטם חזק יותר.",
+    "signIn": "התחברות",
+    "requestAccess": "בקש גישה",
+    "exploreOrganizations": "חקור ארגונים",
+    "platformOverview": "סקירת הפלטפורמה"
+  },
+  "HowCanWeHelp": {
+    "title": "איך אנחנו יכולים לעזור?",
+    "subtitle": "בין אם אתם מחפשים שותפים, זקוקים לתמיכה, או רוצים לתרום, יש לנו דרך עבורכם.",
+    "findPartners": {
+      "title": "מצא שותפים",
+      "description": "עיין בארגונים כדי לגלות שותפים פוטנציאליים ולבנות שותפויות אסטרטגיות.",
+      "button": "עיין בארגונים"
     },
-    "Navigation": {
-        "home": "בית",
-        "map": "מפה",
-        "directory": "אינדקס",
-        "about": "אודות",
-        "login": "התחברות"
+    "getHelp": {
+      "title": "קבל עזרה",
+      "description": "צור פרויקט כדי לחפש מתנדבים, מימון, שותפים או משאבים ליוזמה שלך.",
+      "button": "צור פרויקט",
+      "signInToCreate": "התחבר כדי ליצור"
     },
-    "Footer": {
-        "copyright": "© 2025 פלטפורמת ICAR. כל הזכויות שמורות."
+    "offerHelp": {
+      "title": "הצע עזרה",
+      "description": "עיין בפרויקטים המחפשים שיתוף פעולה ומצא הזדמנויות לתרום את המומחיות שלך.",
+      "button": "עיין בפרויקטים"
+    },
+    "exploreEcosystem": {
+      "title": "חקור את האקוסיסטם",
+      "description": "הצג את אקוסיסטם החוסן במפה אינטראקטיבית כדי להבין כיסוי ופערים.",
+      "button": "צפה באקוסיסטם"
+    },
+    "newToICAR": {
+      "title": "חדש ב-ICAR?",
+      "description": "התחבר כדי לגשת לתכונות שיתוף פעולה, או בקש גישה להצטרף לפלטפורמה."
     }
+  },
+  "Navigation": {
+    "dashboard": "לוח בקרה",
+    "organizations": "ארגונים",
+    "allOrganizations": "כל הארגונים",
+    "projects": "פרויקטים",
+    "ecosystem": "אקוסיסטם",
+    "login": "התחברות",
+    "signOut": "התנתק",
+    "resources": "משאבים",
+    "myOrganization": "הארגון שלי",
+    "moderation": "פיקוח",
+    "adminSettings": "הגדרות מנהל",
+    "preferences": "העדפות",
+    "searchPlaceholder": "חפש באקוסיסטם..."
+  },
+  "Pages": {
+    "organizations": {
+      "title": "מדריך ארגונים",
+      "description": "חקור ארגוני חוסן ברחבי ישראל הפועלים לחיזוק קהילות ובניית עתיד עמיד יותר.",
+      "count": "{count} {count, plural, one {ארגון} other {ארגונים}}",
+      "filtered": "מסונן מתוך {total}",
+      "noResults": "לא נמצאו ארגונים",
+      "noResultsDescription": "נסה להתאים את המסננים שלך כדי לראות תוצאות נוספות.",
+      "clearFilters": "נקה את כל המסננים"
+    },
+    "projects": {
+      "title": "פרויקטים",
+      "descriptionAll": "כל הפרויקטים באקוסיסטם ICAR",
+      "descriptionSeeking": "פרויקטים המחפשים שותפים, מתנדבים ומשאבים",
+      "createProject": "צור פרויקט",
+      "allProjects": "כל הפרויקטים",
+      "seekingCollaboration": "מחפש שיתוף פעולה",
+      "noProjects": "לא נמצאו פרויקטים",
+      "noProjectsSeeking": "אין פרויקטים המחפשים שיתוף פעולה כרגע",
+      "noProjectsDescription": "פרויקטים יופיעו כאן כשהארגונים יוסיפו אותם לפלטפורמה.",
+      "noProjectsSeekingDescription": "בדוק שוב בקרוב או עיין בכל הפרויקטים כדי לראות על מה הארגונים עובדים.",
+      "viewAllProjects": "צפה בכל הפרויקטים",
+      "createFirstProject": "צור את הפרויקט הראשון שלך"
+    },
+    "ecosystem": {
+      "title": "אקוסיסטם ICAR",
+      "description": "הצגת אקוסיסטם החוסן ברחבי ישראל"
+    },
+    "dashboard": {
+      "welcome": "ברוך שובך, {name}",
+      "role": "תפקיד: {role}",
+      "organizations": "ארגונים",
+      "projects": "פרויקטים",
+      "opportunities": "הזדמנויות",
+      "totalOrganizations": "סך הארגונים באקוסיסטם",
+      "activeProjects": "פרויקטים ויוזמות פעילים",
+      "openOpportunities": "הזדמנויות שיתוף פעולה פתוחות"
+    }
+  },
+  "Common": {
+    "back": "חזור",
+    "backTo": "חזור ל-{page}",
+    "save": "שמור",
+    "cancel": "ביטול",
+    "delete": "מחק",
+    "edit": "ערוך",
+    "create": "צור",
+    "update": "עדכן",
+    "close": "סגור",
+    "submit": "שלח",
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "success": "הצלחה",
+    "view": "צפה",
+    "viewProfile": "צפה בפרופיל",
+    "viewDetails": "צפה בפרטים",
+    "active": "פעיל",
+    "inactive": "לא פעיל",
+    "pending": "ממתין",
+    "completed": "הושלם",
+    "onHold": "מושהה",
+    "planning": "תכנון"
+  },
+  "Footer": {
+    "copyright": "© 2025 פלטפורמת ICAR. כל הזכויות שמורות."
+  }
 }

@@ -33,13 +33,13 @@ export default async function HomePage() {
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4 justify-center px-4">
             <Link href="/auth/signin">
-              <Button variant="primary" size="lg">Sign In</Button>
+              <Button variant="primary" size="lg">{t('signIn')}</Button>
             </Link>
             <Link href="/contact?subject=Request%20Access&message=I%20would%20like%20to%20request%20access%20to%20the%20ICAR%20platform.%20Please%20let%20me%20know%20what%20information%20you%20need%20for%20verification.">
-              <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white/20">Request Access</Button>
+              <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white/20">{t('requestAccess')}</Button>
             </Link>
             <Link href="/organizations">
-              <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white/20">Explore Organizations</Button>
+              <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white/20">{t('exploreOrganizations')}</Button>
             </Link>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default async function HomePage() {
         
         <div className="container mx-auto max-w-7xl relative z-10">
           <h2 className="text-center mb-12 text-sea-green-darkest" style={{ fontSize: 'clamp(2rem, 4vw, 2.5rem)', lineHeight: '120%', fontWeight: 700 }}>
-            Platform Overview
+            {t('platformOverview')}
           </h2>
           <DashboardStats />
         </div>

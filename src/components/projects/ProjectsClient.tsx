@@ -59,7 +59,7 @@ export function ProjectsClient({
                 action={canCreateProject ? {
                     label: "Create Project",
                     href: "/projects/new",
-                    variant: 'outline'
+                    variant: 'primary'
                 } : undefined}
             />
 

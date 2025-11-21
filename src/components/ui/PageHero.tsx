@@ -68,7 +68,11 @@ export function PageHero({
                   <Button 
                     variant={action.variant || 'primary'} 
                     size="lg"
-                    className="bg-white/10 border-white text-white hover:bg-white/20"
+                    className={
+                      action.variant === 'primary' 
+                        ? "bg-orange border-orange text-white hover:bg-orange-hover hover:border-orange-hover shadow-lg hover:shadow-xl transition-all"
+                        : "bg-white/10 border-white text-white hover:bg-white/20"
+                    }
                   >
                     {action.label}
                   </Button>
@@ -78,7 +82,11 @@ export function PageHero({
                   variant={action.variant || 'primary'} 
                   size="lg"
                   onClick={action.onClick}
-                  className="bg-white/10 border-white text-white hover:bg-white/20"
+                  className={
+                    action.variant === 'primary' 
+                      ? "bg-orange border-orange text-white hover:bg-orange-hover hover:border-orange-hover shadow-lg hover:shadow-xl transition-all"
+                      : "bg-white/10 border-white text-white hover:bg-white/20"
+                  }
                 >
                   {action.label}
                 </Button>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useSession, signOut } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { Search, Settings, BookOpen, ShieldCheck, LogOut, ChevronDown, Building2, Briefcase } from 'lucide-react';
 import { Button } from '../ui/Button';
@@ -11,13 +12,14 @@ import { ThemeToggle } from './ThemeToggle';
 import { Logo } from '../ui/Logo';
 
 export const Navbar = () => {
-    const { data: session } = useSession();
-    const userRole = (session?.user as any)?.role || 'public';
-    const isAdmin = userRole === 'admin';
-    const [showSettingsMenu, setShowSettingsMenu] = useState(false);
-    const [showOrganizationsMenu, setShowOrganizationsMenu] = useState(false);
-    const settingsRef = useRef<HTMLDivElement>(null);
-    const organizationsRef = useRef<HTMLDivElement>(null);
+        const { data: session } = useSession();
+        const t = useTranslations('Navigation');
+        const userRole = (session?.user as any)?.role || 'public';
+        const isAdmin = userRole === 'admin';
+        const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+        const [showOrganizationsMenu, setShowOrganizationsMenu] = useState(false);
+        const settingsRef = useRef<HTMLDivElement>(null);
+        const organizationsRef = useRef<HTMLDivElement>(null);
 
     // Close menus when clicking outside
     useEffect(() => {
@@ -46,18 +48,18 @@ export const Navbar = () => {
 
                 <div className={styles.links}>
                     {/* Standardized navigation - same labels for all authenticated users */}
-                    {session ? (
-                        <>
-                            <Link href="/dashboard" className={styles.navLink}>Dashboard</Link>
-                            <div className={styles.dropdownWrapper} ref={organizationsRef}>
-                                <button
-                                    onClick={() => setShowOrganizationsMenu(!showOrganizationsMenu)}
-                                    className={styles.navLink}
-                                    aria-expanded={showOrganizationsMenu}
-                                    aria-haspopup="true"
-                                    aria-label="Organizations menu"
-                                >
-                                    Organizations
+                        {session ? (
+                            <>
+                                <Link href="/dashboard" className={styles.navLink}>{t('dashboard')}</Link>
+                                <div className={styles.dropdownWrapper} ref={organizationsRef}>
+                                    <button
+                                        onClick={() => setShowOrganizationsMenu(!showOrganizationsMenu)}
+                                        className={styles.navLink}
+                                        aria-expanded={showOrganizationsMenu}
+                                        aria-haspopup="true"
+                                        aria-label="Organizations menu"
+                                    >
+                                        {t('organizations')}
                                     <ChevronDown 
                                         size={16} 
                                         className={styles.chevron}
@@ -79,7 +81,7 @@ export const Navbar = () => {
                                             style={{ color: '#212529' }}
                                         >
                                             <Building2 size={16} className="mr-2" style={{ color: '#02808b' }} aria-hidden="true" />
-                                            <span>All Organizations</span>
+                                            <span>{t('allOrganizations')}</span>
                                         </Link>
                                         <Link 
                                             href="/dashboard/projects" 
@@ -89,12 +91,12 @@ export const Navbar = () => {
                                             style={{ color: '#212529' }}
                                         >
                                             <Briefcase size={16} className="mr-2" style={{ color: '#02808b' }} aria-hidden="true" />
-                                            <span>Projects</span>
+                                            <span>{t('projects')}</span>
                                         </Link>
                                     </div>
                                 )}
                             </div>
-                            <Link href="/ecosystem" className={styles.navLink}>Ecosystem</Link>
+                            <Link href="/ecosystem" className={styles.navLink}>{t('ecosystem')}</Link>
                         </>
                     ) : (
                         // Public navigation
@@ -107,7 +109,7 @@ export const Navbar = () => {
                                     aria-haspopup="true"
                                     aria-label="Organizations menu"
                                 >
-                                    Organizations
+                                    {t('organizations')}
                                     <ChevronDown 
                                         size={16} 
                                         className={styles.chevron}
@@ -129,7 +131,7 @@ export const Navbar = () => {
                                             style={{ color: '#212529' }}
                                         >
                                             <Building2 size={16} className="mr-2" style={{ color: '#02808b' }} aria-hidden="true" />
-                                            <span>All Organizations</span>
+                                            <span>{t('allOrganizations')}</span>
                                         </Link>
                                         <Link 
                                             href="/projects" 
@@ -139,12 +141,12 @@ export const Navbar = () => {
                                             style={{ color: '#212529' }}
                                         >
                                             <Briefcase size={16} className="mr-2" style={{ color: '#02808b' }} aria-hidden="true" />
-                                            <span>Projects</span>
+                                            <span>{t('projects')}</span>
                                         </Link>
                                     </div>
                                 )}
                             </div>
-                            <Link href="/ecosystem" className={styles.navLink}>Ecosystem</Link>
+                            <Link href="/ecosystem" className={styles.navLink}>{t('ecosystem')}</Link>
                         </>
                     )}
                 </div>
@@ -165,14 +167,14 @@ export const Navbar = () => {
                         }}
                     >
                         <Search size={18} className={styles.searchIcon} aria-hidden="true" />
-                        <input 
-                            type="text" 
-                            name="q"
-                            placeholder="Search ecosystem..." 
-                            className={styles.searchInput}
-                            aria-label="Search organizations and projects"
-                            aria-describedby="search-description"
-                        />
+                            <input 
+                                type="text" 
+                                name="q"
+                                placeholder={t('searchPlaceholder')} 
+                                className={styles.searchInput}
+                                aria-label="Search organizations and projects"
+                                aria-describedby="search-description"
+                            />
                         <span id="search-description" className="sr-only">Search for organizations and projects in the ICAR ecosystem</span>
                     </form>
                     <ThemeToggle />
@@ -197,26 +199,26 @@ export const Navbar = () => {
                                         <>
                                             <Link href="/dashboard/resources" className={styles.settingsMenuItem}>
                                                 <BookOpen size={16} className="mr-2" />
-                                                Resources
+                                                {t('resources')}
                                             </Link>
                                             {(userRole === 'org' || userRole === 'funder') && (
                                                 <Link href="/dashboard/my-organization" className={styles.settingsMenuItem}>
-                                                    My Organization
+                                                    {t('myOrganization')}
                                                 </Link>
                                             )}
                                             {isAdmin && (
                                                 <>
                                                     <Link href="/dashboard/admin/claims" className={styles.settingsMenuItem}>
                                                         <ShieldCheck size={16} className="mr-2" />
-                                                        Moderation
+                                                        {t('moderation')}
                                                     </Link>
                                                     <Link href="/dashboard/admin/settings" className={styles.settingsMenuItem}>
-                                                        Admin Settings
+                                                        {t('adminSettings')}
                                                     </Link>
                                                 </>
                                             )}
                                             <Link href="/dashboard/settings" className={styles.settingsMenuItem}>
-                                                Preferences
+                                                {t('preferences')}
                                             </Link>
                                             <div className="border-t border-slate-200 my-2"></div>
                                             <button
@@ -226,18 +228,18 @@ export const Navbar = () => {
                                                 aria-label="Sign out of your account"
                                             >
                                                 <LogOut size={16} className="mr-2" aria-hidden="true" />
-                                                Sign Out
+                                                {t('signOut')}
                                             </button>
                                         </>
                                     )}
                                 </div>
                             )}
                     </div>
-                    {!session && (
-                        <Button variant="primary" size="sm" asChild>
-                            <Link href="/auth/signin">Login</Link>
-                        </Button>
-                    )}
+                        {!session && (
+                            <Button variant="primary" size="sm" asChild>
+                                <Link href="/auth/signin">{t('login')}</Link>
+                            </Button>
+                        )}
                 </div>
             </div>
         </nav>

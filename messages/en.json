@@ -2,35 +2,117 @@
   "HomePage": {
     "title": "Israel's Collective Action for <highlight>Resilience</highlight>",
     "subtitle": "Connecting stakeholders, mapping opportunities, and fostering collaboration for a stronger ecosystem.",
-    "getStarted": "Get Started",
-    "exploreMap": "Explore Map",
-    "registerInitiative": "Register Initiative",
-    "featuresTitle": "Platform Features",
-    "features": {
-      "map": {
-        "title": "Interactive Map",
-        "description": "Visualize initiatives geographically to identify coverage gaps and opportunities for collaboration."
-      },
-      "directory": {
-        "title": "Resource Directory",
-        "description": "Access a comprehensive directory of NGOs, volunteer groups, and government services."
-      },
-      "needs": {
-        "title": "Needs Matching",
-        "description": "Connect available resources with real-time needs from communities and organizations."
-      },
-      "analytics": {
-        "title": "Analytics Dashboard",
-        "description": "Track impact metrics and trends to inform strategic decision-making and resource allocation."
-      }
+    "signIn": "Sign In",
+    "requestAccess": "Request Access",
+    "exploreOrganizations": "Explore Organizations",
+    "platformOverview": "Platform Overview"
+  },
+  "HowCanWeHelp": {
+    "title": "How can we help?",
+    "subtitle": "Whether you're looking for partners, need support, or want to contribute, we have a path for you.",
+    "findPartners": {
+      "title": "Find Partners",
+      "description": "Browse organizations to discover potential collaborators and build strategic partnerships.",
+      "button": "Browse Organizations"
+    },
+    "getHelp": {
+      "title": "Get Help",
+      "description": "Create a project to seek volunteers, funding, partners, or resources for your initiative.",
+      "button": "Create Project",
+      "signInToCreate": "Sign In to Create"
+    },
+    "offerHelp": {
+      "title": "Offer Help",
+      "description": "Browse projects seeking collaboration and find opportunities to contribute your expertise.",
+      "button": "Browse Projects"
+    },
+    "exploreEcosystem": {
+      "title": "Explore Ecosystem",
+      "description": "Visualize the resilience ecosystem on an interactive map to understand coverage and gaps.",
+      "button": "View Ecosystem"
+    },
+    "newToICAR": {
+      "title": "New to ICAR?",
+      "description": "Sign in to access collaboration features, or request access to join the platform."
     }
   },
   "Navigation": {
-    "home": "Home",
-    "map": "Map",
-    "directory": "Directory",
-    "about": "About",
-    "login": "Login"
+    "dashboard": "Dashboard",
+    "organizations": "Organizations",
+    "allOrganizations": "All Organizations",
+    "projects": "Projects",
+    "ecosystem": "Ecosystem",
+    "login": "Login",
+    "signOut": "Sign Out",
+    "resources": "Resources",
+    "myOrganization": "My Organization",
+    "moderation": "Moderation",
+    "adminSettings": "Admin Settings",
+    "preferences": "Preferences",
+    "searchPlaceholder": "Search ecosystem..."
+  },
+  "Pages": {
+    "organizations": {
+      "title": "Organizations Directory",
+      "description": "Explore resilience organizations across Israel working to strengthen communities and build a more resilient future.",
+      "count": "{count} {count, plural, one {organization} other {organizations}}",
+      "filtered": "filtered from {total}",
+      "noResults": "No organizations found",
+      "noResultsDescription": "Try adjusting your filters to see more results.",
+      "clearFilters": "Clear all filters"
+    },
+    "projects": {
+      "title": "Projects",
+      "descriptionAll": "All projects in the ICAR ecosystem",
+      "descriptionSeeking": "Projects seeking partners, volunteers, and resources",
+      "createProject": "Create Project",
+      "allProjects": "All Projects",
+      "seekingCollaboration": "Seeking Collaboration",
+      "noProjects": "No projects found",
+      "noProjectsSeeking": "No projects seeking collaboration at this time",
+      "noProjectsDescription": "Projects will appear here as organizations add them to the platform.",
+      "noProjectsSeekingDescription": "Check back soon or browse all projects to see what organizations are working on.",
+      "viewAllProjects": "View all projects",
+      "createFirstProject": "Create Your First Project"
+    },
+    "ecosystem": {
+      "title": "ICAR Ecosystem",
+      "description": "Visualizing the resilience ecosystem across Israel"
+    },
+    "dashboard": {
+      "welcome": "Welcome back, {name}",
+      "role": "Role: {role}",
+      "organizations": "Organizations",
+      "projects": "Projects",
+      "opportunities": "Opportunities",
+      "totalOrganizations": "Total organizations in the ecosystem",
+      "activeProjects": "Active projects and initiatives",
+      "openOpportunities": "Open collaboration opportunities"
+    }
+  },
+  "Common": {
+    "back": "Back",
+    "backTo": "Back to {page}",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "view": "View",
+    "viewProfile": "View Profile",
+    "viewDetails": "View Details",
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "completed": "Completed",
+    "onHold": "On Hold",
+    "planning": "Planning"
   },
   "Footer": {
     "copyright": "© 2025 ICAR Platform. All rights reserved."
