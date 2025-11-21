@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { Link } from '@/i18n/routing';
-import { Search, Settings, BookOpen, ShieldCheck } from 'lucide-react';
+import { Search, Settings, BookOpen, ShieldCheck, LogOut } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { LanguageSwitcher } from '../ui/LanguageSwitcher';
 import styles from './Navbar.module.css';
@@ -120,6 +120,14 @@ export const Navbar = () => {
                                             <Link href="/dashboard/settings" className={styles.settingsMenuItem}>
                                                 Preferences
                                             </Link>
+                                            <div className="border-t border-slate-200 my-2"></div>
+                                            <button
+                                                onClick={() => signOut({ callbackUrl: '/' })}
+                                                className={`${styles.settingsMenuItem} w-full text-left text-red-600 hover:bg-red-50 hover:text-red-700`}
+                                            >
+                                                <LogOut size={16} className="mr-2" />
+                                                Sign Out
+                                            </button>
                                         </>
                                     )}
                                 </div>

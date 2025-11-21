@@ -134,6 +134,12 @@
      font-size: 0.875rem;
      transition: background-color 0.2s;
      border-bottom: 1px solid #f8f9fa;
+     background: none;
+     border: none;
+     width: 100%;
+     text-align: left;
+     cursor: pointer;
+     font-family: inherit;
  }
 
  .settingsMenuItem:last-child {
