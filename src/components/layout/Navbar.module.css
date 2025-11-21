@@ -48,11 +48,11 @@
  }
 
  .navLink {
-     color: #f0f9fa;
+     color: #f0f9fa !important;
      font-weight: 500;
      text-decoration: none;
      transition: color 0.2s;
-     opacity: 1;
+     opacity: 1 !important;
      display: flex;
      align-items: center;
      gap: 0.5rem;
@@ -60,25 +60,25 @@
  }
 
  .navLink:hover {
-     color: #ffffff;
-     opacity: 1;
+     color: #ffffff !important;
+     opacity: 1 !important;
  }
 
  .navIcon {
-     opacity: 0.9;
+     opacity: 1 !important;
  }
 
  .links a {
-     color: #f0f9fa;
+     color: #f0f9fa !important;
      font-weight: 500;
      text-decoration: none;
      transition: color 0.2s;
-     opacity: 1;
+     opacity: 1 !important;
  }
 
  .links a:hover {
-     color: #ffffff;
-     opacity: 1;
+     color: #ffffff !important;
+     opacity: 1 !important;
  }
 
  .actions {
@@ -94,7 +94,7 @@
  .settingsButton {
      background: none;
      border: none;
-     color: #f0f9fa;
+     color: #f0f9fa !important;
      cursor: pointer;
      padding: 0.5rem;
      display: flex;
@@ -102,12 +102,13 @@
      justify-content: center;
      border-radius: 4px;
      transition: all 0.2s;
-     opacity: 1;
+     opacity: 1 !important;
  }
 
  .settingsButton:hover {
      background-color: rgba(255, 255, 255, 0.1);
-     color: #ffffff;
+     color: #ffffff !important;
+     opacity: 1 !important;
  }
 
  .settingsMenu {
