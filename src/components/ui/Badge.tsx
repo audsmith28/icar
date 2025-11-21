@@ -1,25 +1,27 @@
 import * as React from "react"
+import clsx from 'clsx';
+import styles from './Badge.module.css';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-    variant?: "default" | "secondary" | "destructive" | "outline" | "success" | "warning";
+    variant?: "default" | "secondary" | "destructive" | "outline" | "success" | "warning" | "info";
+    size?: "sm" | "md" | "lg";
 }
 
-function Badge({ className, variant = "default", ...props }: BadgeProps) {
-    const variants = {
-        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline: "text-foreground",
-        success: "border-transparent bg-green-500 text-white hover:bg-green-600",
-        warning: "border-transparent bg-yellow-500 text-white hover:bg-yellow-600",
+export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
+    ({ className, variant = "default", size = "md", ...props }, ref) => {
+        return (
+            <div
+                ref={ref}
+                className={clsx(
+                    styles.badge,
+                    styles[variant] || styles.default,
+                    styles[size] || styles.md,
+                    className
+                )}
+                {...props}
+            />
+        );
     }
+);
 
-    return (
-        <div
-            className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${variants[variant]} ${className || ''}`}
-            {...props}
-        />
-    )
-}
-
-export { Badge }
+Badge.displayName = "Badge";

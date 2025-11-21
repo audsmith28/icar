@@ -1,92 +1,98 @@
 import React from 'react';
 import clsx from 'clsx';
 
-interface SkeletonProps {
-  className?: string;
-  variant?: 'text' | 'circular' | 'rectangular';
-  width?: string | number;
-  height?: string | number;
-  animation?: 'pulse' | 'wave' | 'none';
+interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
+    variant?: 'text' | 'circular' | 'rectangular';
+    width?: string | number;
+    height?: string | number;
+    animation?: 'pulse' | 'wave' | 'none';
 }
 
-/**
- * Skeleton loading component for better perceived performance
- */
-export function Skeleton({ 
-  className, 
-  variant = 'rectangular',
-  width,
-  height,
-  animation = 'pulse'
+export function Skeleton({
+    className,
+    variant = 'rectangular',
+    width,
+    height,
+    animation = 'pulse',
+    style,
+    ...props
 }: SkeletonProps) {
-  const baseClasses = clsx(
-    'bg-gray-200 rounded',
-    animation === 'pulse' && 'animate-pulse',
-    animation === 'wave' && 'animate-shimmer',
-    variant === 'text' && 'h-4 rounded',
-    variant === 'circular' && 'rounded-full',
-    variant === 'rectangular' && 'rounded-md',
-    className
-  );
-
-  const style: React.CSSProperties = {};
-  if (width) style.width = typeof width === 'number' ? `${width}px` : width;
-  if (height) style.height = typeof height === 'number' ? `${height}px` : height;
-
-  return <div className={baseClasses} style={style} aria-hidden="true" />;
+    const baseStyles = 'bg-gray-200 rounded';
+    
+    const variants = {
+        text: 'h-4 rounded',
+        circular: 'rounded-full',
+        rectangular: 'rounded-md',
+    };
+    
+    const animations = {
+        pulse: 'animate-pulse',
+        wave: 'animate-shimmer',
+        none: '',
+    };
+    
+    const customStyle: React.CSSProperties = {
+        width: width || (variant === 'text' ? '100%' : undefined),
+        height: height || (variant === 'text' ? undefined : '1rem'),
+        ...style,
+    };
+    
+    return (
+        <div
+            className={clsx(
+                baseStyles,
+                variants[variant],
+                animations[animation],
+                className
+            )}
+            style={customStyle}
+            {...props}
+        />
+    );
 }
 
-/**
- * Card Skeleton - for loading organization/project cards
- */
-export function CardSkeleton() {
-  return (
-    <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 animate-pulse">
-      <div className="flex items-start gap-4 mb-4">
-        <Skeleton variant="circular" width={64} height={64} />
-        <div className="flex-1 space-y-2">
-          <Skeleton variant="text" width="60%" height={24} />
-          <Skeleton variant="text" width="40%" height={16} />
+// Pre-built skeleton components
+export function CardSkeleton({ count = 1 }: { count?: number }) {
+    return (
+        <>
+            {Array.from({ length: count }).map((_, i) => (
+                <div key={i} className="rounded-lg border bg-white p-6 shadow-sm">
+                    <Skeleton variant="rectangular" height="24px" width="60%" className="mb-4" />
+                    <Skeleton variant="text" className="mb-2" />
+                    <Skeleton variant="text" width="80%" />
+                </div>
+            ))}
+        </>
+    );
+}
+
+export function TableSkeleton({ rows = 5, cols = 4 }: { rows?: number; cols?: number }) {
+    return (
+        <div className="w-full">
+            {/* Header */}
+            <div className="flex gap-4 border-b pb-3 mb-3">
+                {Array.from({ length: cols }).map((_, i) => (
+                    <Skeleton key={i} variant="rectangular" height="20px" width="100%" />
+                ))}
+            </div>
+            {/* Rows */}
+            {Array.from({ length: rows }).map((_, i) => (
+                <div key={i} className="flex gap-4 py-3 border-b">
+                    {Array.from({ length: cols }).map((_, j) => (
+                        <Skeleton key={j} variant="rectangular" height="16px" width="100%" />
+                    ))}
+                </div>
+            ))}
         </div>
-      </div>
-      <Skeleton variant="text" width="100%" height={16} className="mb-2" />
-      <Skeleton variant="text" width="80%" height={16} className="mb-4" />
-      <div className="flex gap-2 mb-4">
-        <Skeleton variant="rectangular" width={80} height={24} className="rounded-full" />
-        <Skeleton variant="rectangular" width={80} height={24} className="rounded-full" />
-      </div>
-      <Skeleton variant="text" width="40%" height={14} />
-    </div>
-  );
+    );
 }
 
-/**
- * Table Row Skeleton
- */
 export function TableRowSkeleton({ columns = 4 }: { columns?: number }) {
-  return (
-    <tr>
-      {Array.from({ length: columns }).map((_, i) => (
-        <td key={i} className="p-4">
-          <Skeleton variant="text" width="80%" />
-        </td>
-      ))}
-    </tr>
-  );
+    return (
+        <div className="flex gap-4 py-3 border-b">
+            {Array.from({ length: columns }).map((_, j) => (
+                <Skeleton key={j} variant="rectangular" height="16px" width="100%" />
+            ))}
+        </div>
+    );
 }
-
-/**
- * List Item Skeleton
- */
-export function ListItemSkeleton() {
-  return (
-    <div className="flex items-center gap-4 p-4 border-b border-gray-100">
-      <Skeleton variant="circular" width={40} height={40} />
-      <div className="flex-1 space-y-2">
-        <Skeleton variant="text" width="60%" height={20} />
-        <Skeleton variant="text" width="40%" height={16} />
-      </div>
-    </div>
-  );
-}
-

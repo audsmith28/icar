@@ -207,15 +207,10 @@ export const Navbar = () => {
                                                 </Link>
                                             )}
                                             {isAdmin && (
-                                                <>
-                                                    <Link href="/dashboard/admin/claims" className={styles.settingsMenuItem}>
-                                                        <ShieldCheck size={16} className="mr-2" />
-                                                        {t('moderation')}
-                                                    </Link>
-                                                    <Link href="/dashboard/admin/settings" className={styles.settingsMenuItem}>
-                                                        {t('adminSettings')}
-                                                    </Link>
-                                                </>
+                                                <Link href="/dashboard/admin/claims" className={styles.settingsMenuItem}>
+                                                    <ShieldCheck size={16} className="mr-2" />
+                                                    {t('moderation')}
+                                                </Link>
                                             )}
                                             <Link href="/dashboard/settings" className={styles.settingsMenuItem}>
                                                 {t('preferences')}

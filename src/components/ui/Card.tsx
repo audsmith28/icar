@@ -1,15 +1,27 @@
 import * as React from "react"
+import clsx from "clsx"
+import styles from './Card.module.css'
 
-const Card = React.forwardRef<
-    HTMLDivElement,
-    React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-    <div
-        ref={ref}
-        className={`rounded-lg border bg-card text-card-foreground shadow-sm ${className || ''}`}
-        {...props}
-    />
-))
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+    variant?: 'default' | 'elevated' | 'flat';
+    hover?: boolean;
+}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+    ({ className, variant = 'default', hover = true, ...props }, ref) => (
+        <div
+            ref={ref}
+            className={clsx(
+                styles.card,
+                variant === 'elevated' && styles.elevated,
+                variant === 'flat' && styles.flat,
+                !hover && 'hover:transform-none hover:shadow-sm',
+                className
+            )}
+            {...props}
+        />
+    )
+)
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<
