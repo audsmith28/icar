@@ -20,9 +20,9 @@ export const PublicNavbar = () => {
                 <div className={styles.links}>
                     <Link href="/organizations" className={styles.navLink}>Organizations</Link>
                     <Link href="/projects" className={styles.navLink}>Projects</Link>
-                    <Link href="/landscape" className={styles.navLink}>
+                    <Link href="/ecosystem" className={styles.navLink}>
                         <Map size={16} className={styles.navIcon} />
-                        Map
+                        Ecosystem
                     </Link>
                 </div>
 

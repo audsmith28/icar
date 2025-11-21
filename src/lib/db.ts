@@ -206,9 +206,37 @@ export function initDb() {
     ];
 
     const resources = [
-      { id: 'r1', title: 'Mental Health First Aid Kit', type: 'Guide', author: 'Ministry of Health', url: '#', description: 'Comprehensive guide.' },
-      { id: 'r2', title: 'Volunteer Management Best Practices', type: 'Document', author: 'ICAR Core Team', url: '#', description: 'Standard operating procedures.' },
-      { id: 'r3', title: 'Funding Opportunities Database', type: 'Database', author: 'Philanthropy IL', url: '#', description: 'List of active grants.' }
+      // Guides & Best Practices
+      { id: 'r1', title: 'Mental Health First Aid Kit', type: 'Guide', author: 'Ministry of Health', url: '#', description: 'Comprehensive guide for providing mental health first aid during crises and emergencies.' },
+      { id: 'r2', title: 'Volunteer Management Best Practices', type: 'Document', author: 'ICAR Core Team', url: '#', description: 'Standard operating procedures for managing volunteers effectively, including recruitment, training, and retention strategies.' },
+      { id: 'r4', title: 'Crisis Communication Protocols', type: 'Guide', author: 'Emergency Response Network', url: '#', description: 'Essential communication strategies and protocols for organizations during crisis situations.' },
+      { id: 'r5', title: 'Community Engagement Framework', type: 'Document', author: 'Community Resilience Institute', url: '#', description: 'A comprehensive framework for building and maintaining community engagement in resilience initiatives.' },
+      { id: 'r6', title: 'Trauma-Informed Care Guidelines', type: 'Guide', author: 'Mental Health Professionals Association', url: '#', description: 'Evidence-based guidelines for providing trauma-informed care to affected populations.' },
+      
+      // Funding & Grants
+      { id: 'r3', title: 'Funding Opportunities Database', type: 'Database', author: 'Philanthropy IL', url: '#', description: 'Comprehensive database of active grants and funding opportunities for NGOs and community organizations.' },
+      { id: 'r7', title: 'Grant Writing Template', type: 'Template', author: 'ICAR Core Team', url: '#', description: 'Professional grant writing template with best practices and examples for successful applications.' },
+      { id: 'r8', title: 'Budget Planning Tool', type: 'Tool', author: 'Financial Management Institute', url: '#', description: 'Excel-based tool for creating and managing organizational budgets for resilience projects.' },
+      
+      // Training & Capacity Building
+      { id: 'r9', title: 'Trauma-Informed Care Training', type: 'Training', author: 'Mental Health Training Center', url: '#', description: 'Online training module covering trauma-informed care principles and practices for frontline workers.' },
+      { id: 'r10', title: 'Leadership Development Program', type: 'Course', author: 'NGO Leadership Academy', url: '#', description: 'Comprehensive leadership development program designed for NGO managers and coordinators.' },
+      { id: 'r11', title: 'Data Management Workshop', type: 'Workshop', author: 'Tech for Good', url: '#', description: 'Workshop materials and recordings on effective data collection, management, and reporting for NGOs.' },
+      
+      // Tools & Templates
+      { id: 'r12', title: 'Project Proposal Template', type: 'Template', author: 'ICAR Core Team', url: '#', description: 'Professional project proposal template with sections for objectives, methodology, budget, and impact measurement.' },
+      { id: 'r13', title: 'Impact Measurement Framework', type: 'Tool', author: 'Impact Assessment Institute', url: '#', description: 'Framework and tools for measuring and reporting organizational impact and outcomes.' },
+      { id: 'r14', title: 'Volunteer Onboarding Checklist', type: 'Template', author: 'Volunteer Management Network', url: '#', description: 'Comprehensive checklist for onboarding new volunteers, ensuring they are properly trained and integrated.' },
+      
+      // Research & Data
+      { id: 'r15', title: 'Resilience Research Report 2024', type: 'Research', author: 'Resilience Research Center', url: '#', description: 'Annual research report on resilience initiatives, impact, and best practices across Israel.' },
+      { id: 'r16', title: 'Community Needs Assessment Study', type: 'Study', author: 'Social Research Institute', url: '#', description: 'Comprehensive study on community needs and gaps in resilience services across different regions.' },
+      
+      // Legal & Compliance
+      { id: 'r17', title: 'NGO Registration Guide', type: 'Legal', author: 'Legal Aid for NGOs', url: '#', description: 'Step-by-step guide for registering an NGO in Israel, including required documents and procedures.' },
+      
+      // Technology
+      { id: 'r18', title: 'Recommended Tech Stack for NGOs', type: 'Technology', author: 'Tech for Good', url: '#', description: 'Curated list of recommended software tools and platforms for NGOs, including free and low-cost options.' }
     ];
 
     // Projects from mock data

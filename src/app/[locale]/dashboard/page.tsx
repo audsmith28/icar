@@ -185,28 +185,28 @@ export default async function DashboardPage() {
                             </div>
                         </div>
 
-                    {/* Landscape Card */}
-                    <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-                        <div className="p-8">
-                            <div className="flex flex-col lg:flex-row items-start gap-6">
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <div className="p-3 bg-[#e8f4f5] rounded-lg">
-                                            <TrendingUp className="w-6 h-6 text-[#006d77]" />
+                        {/* Ecosystem Card */}
+                        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
+                            <div className="p-8">
+                                <div className="flex flex-col lg:flex-row items-start gap-6">
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="p-3 bg-[#e8f4f5] rounded-lg">
+                                                <TrendingUp className="w-6 h-6 text-[#006d77]" />
+                                            </div>
+                                            <h2 className="text-2xl lg:text-3xl font-bold text-[#004d55]">
+                                                Ecosystem
+                                            </h2>
                                         </div>
-                                        <h2 className="text-2xl lg:text-3xl font-bold text-[#004d55]">
-                                            Ecosystem Landscape
-                                        </h2>
-                                    </div>
-                                    <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-                                        Visualize the resilience ecosystem with interactive charts and organization logos. Understand the landscape at a glance.
-                                    </p>
-                                    <Link href="/landscape">
-                                        <button className="px-6 py-3 bg-[#e29578] text-white rounded-lg hover:bg-[#d17f63] transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
-                                            View Landscape
-                                            <ArrowRight className="w-5 h-5" />
-                                        </button>
-                                    </Link>
+                                        <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                                            Visualize the resilience ecosystem with interactive charts and organization logos. Understand the ecosystem at a glance.
+                                        </p>
+                                        <Link href="/ecosystem">
+                                            <button className="px-6 py-3 bg-[#e29578] text-white rounded-lg hover:bg-[#d17f63] transition-colors font-semibold inline-flex items-center gap-2 shadow-sm">
+                                                View Ecosystem
+                                                <ArrowRight className="w-5 h-5" />
+                                            </button>
+                                        </Link>
                                 </div>
                                 <div className="hidden lg:block p-4 bg-[#e8f4f5] rounded-lg">
                                     <TrendingUp className="w-12 h-12 text-[#006d77]" />

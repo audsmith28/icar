@@ -48,13 +48,9 @@ export const Navbar = () => {
                             <Link href="/dashboard" className={styles.navLink}>Dashboard</Link>
                             <Link href="/dashboard/organizations" className={styles.navLink}>Organizations</Link>
                             <Link href="/dashboard/projects" className={styles.navLink}>Projects</Link>
-                            <Link href="/landscape" className={styles.navLink}>
+                            <Link href="/ecosystem" className={styles.navLink}>
                                 <Map size={16} className={styles.navIcon} />
-                                Map
-                            </Link>
-                            <Link href="/dashboard/resources" className={styles.navLink}>
-                                <BookOpen size={16} className={styles.navIcon} />
-                                Resources
+                                Ecosystem
                             </Link>
                         </>
                     ) : (
@@ -62,19 +58,37 @@ export const Navbar = () => {
                         <>
                             <Link href="/organizations" className={styles.navLink}>Organizations</Link>
                             <Link href="/projects" className={styles.navLink}>Projects</Link>
-                            <Link href="/landscape" className={styles.navLink}>
+                            <Link href="/ecosystem" className={styles.navLink}>
                                 <Map size={16} className={styles.navIcon} />
-                                Map
+                                Ecosystem
                             </Link>
                         </>
                     )}
                 </div>
 
                 <div className={styles.actions}>
-                    <div className={styles.searchWrapper}>
+                    <form 
+                        action="/search" 
+                        method="get"
+                        className={styles.searchWrapper}
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            const form = e.currentTarget;
+                            const input = form.querySelector('input') as HTMLInputElement;
+                            if (input?.value.trim()) {
+                                window.location.href = `/search?q=${encodeURIComponent(input.value.trim())}`;
+                            }
+                        }}
+                    >
                         <Search size={18} className={styles.searchIcon} />
-                        <input type="text" placeholder="Search ecosystem..." className={styles.searchInput} />
-                    </div>
+                        <input 
+                            type="text" 
+                            name="q"
+                            placeholder="Search ecosystem..." 
+                            className={styles.searchInput}
+                            aria-label="Search organizations and projects"
+                        />
+                    </form>
                     <ThemeToggle />
                     <LanguageSwitcher />
                     <div className={styles.settingsWrapper} ref={settingsRef}>
@@ -85,33 +99,37 @@ export const Navbar = () => {
                         >
                             <Settings size={18} />
                         </button>
-                        {showSettingsMenu && (
-                            <div className={styles.settingsMenu}>
-                                {session && (
-                                    <>
-                                        {(userRole === 'org' || userRole === 'funder') && (
-                                            <Link href="/dashboard/my-organization" className={styles.settingsMenuItem}>
-                                                My Organization
+                            {showSettingsMenu && (
+                                <div className={styles.settingsMenu}>
+                                    {session && (
+                                        <>
+                                            <Link href="/dashboard/resources" className={styles.settingsMenuItem}>
+                                                <BookOpen size={16} className="mr-2" />
+                                                Resources
                                             </Link>
-                                        )}
-                                        {isAdmin && (
-                                            <>
-                                                <Link href="/dashboard/admin/claims" className={styles.settingsMenuItem}>
-                                                    <ShieldCheck size={16} className="mr-2" />
-                                                    Moderation
+                                            {(userRole === 'org' || userRole === 'funder') && (
+                                                <Link href="/dashboard/my-organization" className={styles.settingsMenuItem}>
+                                                    My Organization
                                                 </Link>
-                                                <Link href="/dashboard/admin/settings" className={styles.settingsMenuItem}>
-                                                    Admin Settings
-                                                </Link>
-                                            </>
-                                        )}
-                                        <Link href="/dashboard/settings" className={styles.settingsMenuItem}>
-                                            Preferences
-                                        </Link>
-                                    </>
-                                )}
-                            </div>
-                        )}
+                                            )}
+                                            {isAdmin && (
+                                                <>
+                                                    <Link href="/dashboard/admin/claims" className={styles.settingsMenuItem}>
+                                                        <ShieldCheck size={16} className="mr-2" />
+                                                        Moderation
+                                                    </Link>
+                                                    <Link href="/dashboard/admin/settings" className={styles.settingsMenuItem}>
+                                                        Admin Settings
+                                                    </Link>
+                                                </>
+                                            )}
+                                            <Link href="/dashboard/settings" className={styles.settingsMenuItem}>
+                                                Preferences
+                                            </Link>
+                                        </>
+                                    )}
+                                </div>
+                            )}
                     </div>
                     {!session && (
                         <Button size="sm" asChild>

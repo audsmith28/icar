@@ -116,12 +116,12 @@ export function HowCanWeHelp() {
                             <p className="text-sm text-gray-600 mb-4 min-h-[3rem]">
                                 Visualize the resilience ecosystem on an interactive map to understand coverage and gaps.
                             </p>
-                            <Link href="/landscape" className="w-full">
+                            <Link href="/ecosystem" className="w-full">
                                 <Button 
                                     variant="outline" 
                                     className="w-full border-[#006d77] text-[#006d77] hover:bg-[#006d77] hover:text-white"
                                 >
-                                    View Map
+                                    View Ecosystem
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             </Link>
